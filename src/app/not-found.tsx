@@ -10,7 +10,7 @@ export default function NotFound() {
           Page Not Found
         </h1>
         <p className="text-slate-400 mb-8 max-w-md mx-auto">
-          The page you're looking for doesn't exist or has been moved.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
           Perhaps it was just a dream?
         </p>
         <Link

@@ -73,7 +73,7 @@ export default function SearchPage() {
             {results.length > 0 ? (
               <>
                 <p className="text-slate-400 mb-6">
-                  Found {results.length} {results.length === 1 ? 'result' : 'results'} for "{query}"
+                  Found {results.length} {results.length === 1 ? 'result' : 'results'} for &ldquo;{query}&rdquo;
                 </p>
                 <div className="space-y-6">
                   {results.map((post) => (
