@@ -15,9 +15,9 @@ const footerLinks = {
     { name: 'Contact', href: '/contact' },
   ],
   app: [
-    { name: 'Download App', href: 'https://dreamapp.com' },
-    { name: 'Features', href: 'https://dreamapp.com/features' },
-    { name: 'Pricing', href: 'https://dreamapp.com/pricing' },
+    { name: 'Download App', href: 'https://dreamanalysis.netlify.app' },
+    { name: 'Features', href: 'https://dreamanalysis.netlify.app/features' },
+    { name: 'Pricing', href: 'https://dreamanalysis.netlify.app/pricing' },
   ],
 };
 

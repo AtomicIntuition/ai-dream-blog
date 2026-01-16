@@ -125,7 +125,7 @@ export default async function PostPage({ params }: PageProps) {
             <span className="text-sm text-slate-400">Share:</span>
             <a
               href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                `https://blog.dreamapp.com/post/${post.slug}`
+                `https://ai-dream-blog.vercel.app/post/${post.slug}`
               )}&text=${encodeURIComponent(post.title)}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -135,7 +135,7 @@ export default async function PostPage({ params }: PageProps) {
             </a>
             <a
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                `https://blog.dreamapp.com/post/${post.slug}`
+                `https://ai-dream-blog.vercel.app/post/${post.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -145,7 +145,7 @@ export default async function PostPage({ params }: PageProps) {
             </a>
             <a
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                `https://blog.dreamapp.com/post/${post.slug}`
+                `https://ai-dream-blog.vercel.app/post/${post.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -204,7 +204,7 @@ export default async function PostPage({ params }: PageProps) {
             subconscious is trying to tell you.
           </p>
           <Link
-            href="https://dreamapp.com"
+            href="https://dreamanalysis.netlify.app"
             className="btn-primary inline-flex"
           >
             Try Dream Analysis Free

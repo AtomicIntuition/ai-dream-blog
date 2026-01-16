@@ -55,7 +55,7 @@ export function Header() {
               </Link>
 
               <Link
-                href="https://dreamapp.com"
+                href="https://dreamanalysis.netlify.app"
                 className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-dream-600 to-aurora-600 hover:from-dream-500 hover:to-aurora-500 text-white text-sm font-medium rounded-lg transition-all shadow-lg shadow-dream-500/25"
               >
                 Try the App
@@ -91,7 +91,7 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="https://dreamapp.com"
+              href="https://dreamanalysis.netlify.app"
               className="block mt-3 px-4 py-3 bg-gradient-to-r from-dream-600 to-aurora-600 text-white text-center font-medium rounded-lg"
             >
               Try the App

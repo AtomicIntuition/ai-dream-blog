@@ -62,7 +62,7 @@ export default async function HomePage() {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
-              href="https://dreamapp.com"
+              href="https://dreamanalysis.netlify.app"
               className="btn-secondary"
             >
               Try the App
@@ -163,7 +163,7 @@ export default async function HomePage() {
                 discover patterns, and unlock insights about your subconscious mind.
               </p>
               <Link
-                href="https://dreamapp.com"
+                href="https://dreamanalysis.netlify.app"
                 className="btn-primary inline-flex"
               >
                 Start Free Analysis
