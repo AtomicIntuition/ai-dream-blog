@@ -55,8 +55,8 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
     notFound();
   }
 
-  let posts;
-  let pagination;
+  let posts: Awaited<ReturnType<typeof getPostsByCategory>>['posts'] = [];
+  let pagination: Awaited<ReturnType<typeof getPostsByCategory>>['pagination'] | null = null;
 
   try {
     const data = await getPostsByCategory(category, page, 12);
@@ -64,8 +64,6 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
     pagination = data.pagination;
   } catch (error) {
     console.error('Error fetching category posts:', error);
-    posts = [];
-    pagination = null;
   }
 
   const Icon = categoryIcons[category] || Moon;
