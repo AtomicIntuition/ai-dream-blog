@@ -1,0 +1,216 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { ArrowLeft, Calendar, Clock, Eye, Share2, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { getPost, getRecentPosts } from '@/lib/api';
+import { formatDate, calculateReadingTime, getCategoryLabel } from '@/lib/utils';
+import { PostCard } from '@/components/posts/PostCard';
+import { PostContent } from '@/components/posts/PostContent';
+
+interface PageProps {
+  params: { slug: string };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  try {
+    const { post } = await getPost(params.slug);
+    return {
+      title: post.meta_title || post.title,
+      description: post.meta_description || post.excerpt,
+      openGraph: {
+        title: post.title,
+        description: post.excerpt,
+        type: 'article',
+        publishedTime: post.published_at,
+        authors: ['Dream Insights'],
+        tags: post.tags,
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: post.title,
+        description: post.excerpt,
+      },
+    };
+  } catch {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+}
+
+export default async function PostPage({ params }: PageProps) {
+  let post;
+  let relatedPosts: Awaited<ReturnType<typeof getRecentPosts>>['posts'] = [];
+
+  try {
+    const data = await getPost(params.slug);
+    post = data.post;
+
+    // Get related posts
+    const recentData = await getRecentPosts(4);
+    relatedPosts = recentData.posts.filter((p) => p.slug !== params.slug).slice(0, 3);
+  } catch {
+    notFound();
+  }
+
+  const readingTime = calculateReadingTime(post.content);
+
+  const categoryClasses: Record<string, string> = {
+    'dream-stories': 'bg-dream-500/20 text-dream-300 border-dream-500/30',
+    'dream-science': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+    'sleep-tips': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+    'symbolism': 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+  };
+
+  return (
+    <div className="min-h-screen">
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Back link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-8"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to all posts
+        </Link>
+
+        {/* Header */}
+        <header className="mb-12">
+          {/* Category */}
+          <div className="flex items-center gap-3 mb-6">
+            <span
+              className={`px-3 py-1 text-sm font-medium rounded-full border ${
+                categoryClasses[post.category] || categoryClasses['dream-stories']
+              }`}
+            >
+              {getCategoryLabel(post.category)}
+            </span>
+            {post.generated_dream?.isLucid && (
+              <span className="px-3 py-1 text-sm bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-full">
+                Lucid Dream
+              </span>
+            )}
+          </div>
+
+          {/* Title */}
+          <h1 className="blog-title text-4xl md:text-5xl lg:text-6xl mb-4">
+            {post.title}
+          </h1>
+
+          {/* Subtitle */}
+          {post.subtitle && (
+            <p className="text-xl md:text-2xl text-slate-400 mb-6">{post.subtitle}</p>
+          )}
+
+          {/* Meta */}
+          <div className="flex flex-wrap items-center gap-4 text-slate-400 mb-8">
+            <span className="flex items-center gap-2">
+              <Calendar className="h-5 w-5" />
+              {formatDate(post.published_at)}
+            </span>
+            <span className="flex items-center gap-2">
+              <Clock className="h-5 w-5" />
+              {readingTime} min read
+            </span>
+            {post.view_count > 0 && (
+              <span className="flex items-center gap-2">
+                <Eye className="h-5 w-5" />
+                {post.view_count.toLocaleString()} views
+              </span>
+            )}
+          </div>
+
+          {/* Share buttons */}
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-slate-400">Share:</span>
+            <a
+              href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                `https://blog.dreamapp.com/post/${post.slug}`
+              )}&text=${encodeURIComponent(post.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+            >
+              <Twitter className="h-5 w-5" />
+            </a>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                `https://blog.dreamapp.com/post/${post.slug}`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+            >
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                `https://blog.dreamapp.com/post/${post.slug}`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+          </div>
+        </header>
+
+        {/* Content */}
+        <PostContent content={post.content} analysis={post.dream_analysis} />
+
+        {/* Tags */}
+        {post.tags && post.tags.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-white/10">
+            <h3 className="text-sm font-medium text-slate-400 mb-4">Tags</h3>
+            <div className="flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-sm bg-white/5 text-slate-300 rounded-full hover:bg-white/10 transition-colors"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+
+      {/* Related Posts */}
+      {relatedPosts.length > 0 && (
+        <section className="py-16 border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-display font-bold text-white mb-8">
+              Continue Reading
+            </h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              {relatedPosts.map((relatedPost) => (
+                <PostCard key={relatedPost.id} post={relatedPost} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <section className="py-16 border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+            Want to analyze your own dreams?
+          </h2>
+          <p className="text-slate-400 mb-6">
+            Get personalized AI-powered dream analysis and discover what your
+            subconscious is trying to tell you.
+          </p>
+          <Link
+            href="https://dreamapp.com"
+            className="btn-primary inline-flex"
+          >
+            Try Dream Analysis Free
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
