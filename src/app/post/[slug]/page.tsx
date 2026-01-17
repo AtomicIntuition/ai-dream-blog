@@ -12,6 +12,8 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const ogImage = 'https://ai-dream-blog.vercel.app/opengraph-image';
+
   try {
     const { post } = await getPost(params.slug);
     return {
@@ -24,11 +26,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         publishedTime: post.published_at,
         authors: ['Dream Insights'],
         tags: post.tags,
+        images: [
+          {
+            url: ogImage,
+            width: 1200,
+            height: 630,
+            alt: post.title,
+          },
+        ],
       },
       twitter: {
         card: 'summary_large_image',
         title: post.title,
         description: post.excerpt,
+        images: [ogImage],
+        creator: '@CodeAI4Crypto',
       },
     };
   } catch {
