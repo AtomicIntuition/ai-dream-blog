@@ -15,6 +15,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ai-dream-blog.vercel.app'),
   title: {
     default: 'Dream Insights | AI-Powered Dream Analysis Blog',
     template: '%s | Dream Insights',
@@ -26,9 +27,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'Dream Insights',
+    title: 'Dream Insights | AI-Powered Dream Analysis Blog',
+    description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'Dream Insights | AI-Powered Dream Analysis Blog',
+    description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
+    creator: '@CodeAI4Crypto',
   },
   robots: {
     index: true,
