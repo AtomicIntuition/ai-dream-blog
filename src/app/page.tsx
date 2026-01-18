@@ -6,6 +6,9 @@ import { getPosts, getCategories, getFeaturedPosts } from '@/lib/api';
 import { formatDate, calculateReadingTime, getCategoryLabel } from '@/lib/utils';
 import { AUTHOR } from '@/lib/author';
 
+// Revalidate every 60 seconds for fresh content
+export const revalidate = 60;
+
 const categoryIcons: Record<string, React.ElementType> = {
   'dream-stories': Moon,
   'dream-science': Brain,

@@ -6,6 +6,10 @@ import { getPostsByCategory, getCategories } from '@/lib/api';
 import { PostCard } from '@/components/posts/PostCard';
 import { getCategoryLabel } from '@/lib/utils';
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface PageProps {
   params: { category: string };
   searchParams: { page?: string };
