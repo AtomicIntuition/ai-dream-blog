@@ -322,15 +322,15 @@
   }
 
   [data-theme="dark"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(10 10 20) 0%, rgb(10 10 20 / 0.8) 25%, rgb(10 10 20 / 0.4) 50%, transparent 75%);
+    background: linear-gradient(to top, rgb(10 10 20) 0%, rgb(10 10 20 / 0.6) 40%, transparent 100%);
   }
 
   [data-theme="light"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(252 251 248) 0%, rgb(252 251 248 / 0.85) 25%, rgb(252 251 248 / 0.5) 50%, transparent 75%);
+    background: linear-gradient(to top, rgb(252 251 248) 0%, rgb(252 251 248 / 0.7) 40%, transparent 100%);
   }
 
   [data-theme="sepia"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(253 246 227) 0%, rgb(253 246 227 / 0.85) 25%, rgb(253 246 227 / 0.5) 50%, transparent 75%);
+    background: linear-gradient(to top, rgb(253 246 227) 0%, rgb(253 246 227 / 0.7) 40%, transparent 100%);
   }
 
   /* CTA card styling per theme */

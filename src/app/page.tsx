@@ -79,14 +79,14 @@ export default async function HomePage() {
               {/* Main Featured Post */}
               <div className="lg:col-span-3">
                 <Link href={`/post/${heroPost.slug}`} className="group block">
-                  <article className="relative h-full min-h-[420px] lg:min-h-[500px] rounded-3xl overflow-hidden glass-card hero-card-overlay">
+                  <article className="relative h-full min-h-[400px] lg:min-h-[500px] rounded-3xl overflow-hidden glass-card hero-card-overlay">
                     {/* Decorative background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-dream-500/20 via-aurora-500/10 to-cosmic-500/10" />
 
                     {/* Content */}
-                    <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 pb-7 md:p-8">
-                      <div className="space-y-3 md:space-y-4">
-                        <div className="flex items-center gap-3 flex-wrap">
+                    <div className="absolute inset-0 z-20 flex flex-col justify-end p-5 pt-8 md:p-8">
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3">
                           <span className={`category-badge category-${heroPost.category}`}>
                             {getCategoryLabel(heroPost.category)}
                           </span>
@@ -97,24 +97,24 @@ export default async function HomePage() {
                           )}
                         </div>
 
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[rgb(var(--hero-text))] leading-tight group-hover:text-[rgb(var(--accent-primary))] transition-colors">
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[rgb(var(--hero-text))] leading-tight group-hover:text-[rgb(var(--accent-primary))] transition-colors">
                           {heroPost.title}
                         </h1>
 
                         {heroPost.subtitle && (
-                          <p className="text-base sm:text-lg md:text-xl text-[rgb(var(--hero-subtitle))] line-clamp-2">
+                          <p className="text-lg md:text-xl text-[rgb(var(--hero-subtitle))] line-clamp-2">
                             {heroPost.subtitle}
                           </p>
                         )}
 
-                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 pt-1 sm:pt-2">
+                        <div className="flex items-center gap-4 pt-2">
                           <AuthorCard variant="compact" />
-                          <span className="hidden sm:inline text-[rgb(var(--text-muted))]">·</span>
-                          <span className="text-xs sm:text-sm text-[rgb(var(--hero-meta))]">
+                          <span className="text-[rgb(var(--text-muted))]">·</span>
+                          <span className="text-sm text-[rgb(var(--hero-meta))]">
                             {formatDate(heroPost.published_at)}
                           </span>
                           <span className="text-[rgb(var(--text-muted))]">·</span>
-                          <span className="text-xs sm:text-sm text-[rgb(var(--hero-meta))]">
+                          <span className="text-sm text-[rgb(var(--hero-meta))]">
                             {calculateReadingTime(heroPost.content)} min read
                           </span>
                         </div>
