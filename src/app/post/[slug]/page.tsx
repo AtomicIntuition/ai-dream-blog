@@ -6,6 +6,8 @@ import { getPost, getRecentPosts } from '@/lib/api';
 import { formatDate, calculateReadingTime, getCategoryLabel } from '@/lib/utils';
 import { PostCard } from '@/components/posts/PostCard';
 import { PostContent } from '@/components/posts/PostContent';
+import { AuthorCard } from '@/components/posts/AuthorCard';
+import { AUTHOR } from '@/lib/author';
 
 interface PageProps {
   params: { slug: string };
@@ -24,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: post.excerpt,
         type: 'article',
         publishedTime: post.published_at,
-        authors: ['Dream Insights'],
+        authors: [AUTHOR.name],
         tags: post.tags,
         images: [
           {
@@ -114,22 +116,25 @@ export default async function PostPage({ params }: PageProps) {
             <p className="text-xl md:text-2xl text-slate-400 mb-6">{post.subtitle}</p>
           )}
 
-          {/* Meta */}
-          <div className="flex flex-wrap items-center gap-4 text-slate-400 mb-8">
-            <span className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
-              {formatDate(post.published_at)}
-            </span>
-            <span className="flex items-center gap-2">
-              <Clock className="h-5 w-5" />
-              {readingTime} min read
-            </span>
-            {post.view_count > 0 && (
-              <span className="flex items-center gap-2">
-                <Eye className="h-5 w-5" />
-                {post.view_count.toLocaleString()} views
+          {/* Author & Meta Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-8 border-b border-white/10">
+            <AuthorCard variant="compact" />
+            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="h-4 w-4" />
+                {formatDate(post.published_at)}
               </span>
-            )}
+              <span className="flex items-center gap-1.5">
+                <Clock className="h-4 w-4" />
+                {readingTime} min read
+              </span>
+              {post.view_count > 0 && (
+                <span className="flex items-center gap-1.5">
+                  <Eye className="h-4 w-4" />
+                  {post.view_count.toLocaleString()} views
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Share buttons */}
@@ -187,6 +192,12 @@ export default async function PostPage({ params }: PageProps) {
             </div>
           </div>
         )}
+
+        {/* Author Box */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <h3 className="text-sm font-medium text-slate-400 mb-4">Written by</h3>
+          <AuthorCard variant="full" />
+        </div>
       </article>
 
       {/* Related Posts */}

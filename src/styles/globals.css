@@ -153,6 +153,194 @@
     @apply rounded-xl my-8;
   }
 
+  /* ========================================
+     PREMIUM BLOG CONTENT ELEMENTS
+     Expert-level visual components for engaging content
+     ======================================== */
+
+  /* Insight Callout - Key psychological insights */
+  .article-content .insight-callout {
+    @apply relative my-8 p-6 rounded-2xl;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(217, 70, 239, 0.1) 100%);
+    border-left: 4px solid rgb(139, 92, 246);
+  }
+
+  .article-content .insight-callout::before {
+    content: '💡';
+    @apply absolute -top-3 -left-2 text-2xl;
+  }
+
+  .article-content .insight-callout strong {
+    @apply text-dream-300 block mb-2 text-sm uppercase tracking-wider;
+  }
+
+  /* Dream Narrative - Immersive dream presentation */
+  .article-content .dream-narrative,
+  .article-content blockquote.dream-narrative {
+    @apply relative my-10 p-8 rounded-2xl italic text-lg leading-relaxed;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(217, 70, 239, 0.08) 50%, rgba(0, 180, 216, 0.05) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-left: none;
+    text-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+  }
+
+  .article-content .dream-narrative::before {
+    content: '"';
+    @apply absolute -top-6 left-4 text-8xl font-serif;
+    color: rgba(139, 92, 246, 0.3);
+    line-height: 1;
+  }
+
+  .article-content .dream-narrative::after {
+    content: '';
+    @apply absolute inset-0 rounded-2xl pointer-events-none;
+    background: radial-gradient(ellipse at top left, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  }
+
+  /* Psychology Box - Science/theory explanations */
+  .article-content .psychology-box {
+    @apply my-8 p-6 rounded-2xl;
+    background: linear-gradient(135deg, rgba(0, 180, 216, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+    border: 1px solid rgba(0, 180, 216, 0.2);
+  }
+
+  .article-content .psychology-box h4 {
+    @apply flex items-center gap-2 text-cosmic-300 text-sm uppercase tracking-wider mb-3 mt-0;
+  }
+
+  .article-content .psychology-box h4::before {
+    content: '🧠';
+  }
+
+  .article-content .psychology-box p {
+    @apply text-slate-300 mb-0;
+  }
+
+  /* Symbol Spotlight - Key dream symbols */
+  .article-content .symbol-spotlight {
+    @apply flex items-start gap-4 my-6 p-5 rounded-xl;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .article-content .symbol-spotlight .symbol-icon {
+    @apply text-3xl flex-shrink-0;
+  }
+
+  .article-content .symbol-spotlight .symbol-content strong {
+    @apply text-white block mb-1;
+  }
+
+  .article-content .symbol-spotlight .symbol-content p {
+    @apply text-slate-400 text-sm mb-0;
+  }
+
+  /* Reflection Prompt - Reader engagement questions */
+  .article-content .reflection-prompt {
+    @apply my-8 p-6 rounded-2xl text-center;
+    background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border: 1px dashed rgba(217, 70, 239, 0.3);
+  }
+
+  .article-content .reflection-prompt strong {
+    @apply text-aurora-300 block mb-2 text-sm uppercase tracking-wider;
+  }
+
+  .article-content .reflection-prompt::before {
+    content: '🤔';
+    @apply block text-2xl mb-2;
+  }
+
+  /* Takeaway List - Key points */
+  .article-content .takeaway-list {
+    @apply my-8 p-6 rounded-2xl space-y-4 list-none;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.05) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    padding-left: 1.5rem !important;
+  }
+
+  .article-content .takeaway-list li {
+    @apply flex items-start gap-3 text-base;
+    list-style: none !important;
+  }
+
+  .article-content .takeaway-list li::before {
+    content: '✓';
+    @apply text-emerald-400 font-bold flex-shrink-0;
+  }
+
+  .article-content .takeaway-list li strong {
+    @apply text-emerald-300;
+  }
+
+  /* Pull Quote - Impactful statements */
+  .article-content .pull-quote {
+    @apply my-12 py-8 px-6 text-center text-2xl font-display italic;
+    color: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(139, 92, 246, 0.3);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+    background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.05) 50%, transparent 100%);
+  }
+
+  .article-content .pull-quote::before {
+    content: '"';
+    @apply text-dream-500/50 text-6xl font-serif block -mb-4;
+  }
+
+  /* Tip Box - Practical advice */
+  .article-content .tip-box {
+    @apply my-8 p-6 rounded-2xl;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+
+  .article-content .tip-box::before {
+    content: '⭐';
+    @apply block text-xl mb-2;
+  }
+
+  .article-content .tip-box strong {
+    @apply text-amber-300 block mb-2;
+  }
+
+  /* Did You Know - Surprising facts */
+  .article-content .did-you-know {
+    @apply my-8 p-6 rounded-2xl;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1px solid rgba(96, 165, 250, 0.2);
+  }
+
+  .article-content .did-you-know::before {
+    content: '🔮';
+    @apply block text-xl mb-2;
+  }
+
+  .article-content .did-you-know strong {
+    @apply text-blue-300 block mb-2;
+  }
+
+  /* Enhanced heading styles with decorative elements */
+  .article-content h2 {
+    @apply text-2xl font-display font-semibold mt-12 mb-6 text-white relative;
+    padding-bottom: 0.75rem;
+  }
+
+  .article-content h2::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 rounded-full;
+    width: 60px;
+    background: linear-gradient(90deg, rgb(139, 92, 246), rgb(217, 70, 239));
+  }
+
+  .article-content h3 {
+    @apply text-xl font-semibold mt-10 mb-4 text-slate-100 flex items-center gap-2;
+  }
+
+  .article-content h3::before {
+    content: '◆';
+    @apply text-dream-500 text-sm;
+  }
+
   /* Button styles */
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium transition-all duration-200;
@@ -240,4 +428,37 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(139, 92, 246, 0.5);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Font display fallback */
+@layer base {
+  .font-display {
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-weight: 700;
+  }
+}
+
+/* Cosmic color utilities for Tailwind */
+@layer utilities {
+  .text-cosmic-300 {
+    color: rgb(100, 220, 255);
+  }
+
+  .text-aurora-300 {
+    color: rgb(240, 160, 255);
+  }
+
+  .border-cosmic-500\/30 {
+    border-color: rgba(0, 180, 216, 0.3);
+  }
 }
