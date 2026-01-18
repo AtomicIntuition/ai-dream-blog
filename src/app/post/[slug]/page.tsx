@@ -69,20 +69,13 @@ export default async function PostPage({ params }: PageProps) {
 
   const readingTime = calculateReadingTime(post.content);
 
-  const categoryClasses: Record<string, string> = {
-    'dream-stories': 'bg-dream-500/20 text-dream-300 border-dream-500/30',
-    'dream-science': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-    'sleep-tips': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-    'symbolism': 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-  };
-
   return (
     <div className="min-h-screen">
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to all posts
@@ -92,11 +85,7 @@ export default async function PostPage({ params }: PageProps) {
         <header className="mb-12">
           {/* Category */}
           <div className="flex items-center gap-3 mb-6">
-            <span
-              className={`px-3 py-1 text-sm font-medium rounded-full border ${
-                categoryClasses[post.category] || categoryClasses['dream-stories']
-              }`}
-            >
+            <span className={`category-badge category-${post.category}`}>
               {getCategoryLabel(post.category)}
             </span>
             {post.generated_dream?.isLucid && (
@@ -113,13 +102,13 @@ export default async function PostPage({ params }: PageProps) {
 
           {/* Subtitle */}
           {post.subtitle && (
-            <p className="text-xl md:text-2xl text-slate-400 mb-6">{post.subtitle}</p>
+            <p className="text-xl md:text-2xl text-[rgb(var(--text-muted))] mb-6">{post.subtitle}</p>
           )}
 
           {/* Author & Meta Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-8 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-8 border-b border-[rgb(var(--border-color))]">
             <AuthorCard variant="compact" />
-            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-[rgb(var(--text-muted))]">
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-4 w-4" />
                 {formatDate(post.published_at)}
@@ -139,14 +128,14 @@ export default async function PostPage({ params }: PageProps) {
 
           {/* Share buttons */}
           <div className="flex items-center gap-3">
-            <span className="text-sm text-slate-400">Share:</span>
+            <span className="text-sm text-[rgb(var(--text-muted))]">Share:</span>
             <a
               href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
                 `https://ai-dream-blog.vercel.app/post/${post.slug}`
               )}&text=${encodeURIComponent(post.title)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+              className="p-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
             >
               <Twitter className="h-5 w-5" />
             </a>
@@ -156,7 +145,7 @@ export default async function PostPage({ params }: PageProps) {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+              className="p-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
             >
               <Facebook className="h-5 w-5" />
             </a>
@@ -166,7 +155,7 @@ export default async function PostPage({ params }: PageProps) {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+              className="p-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
             >
               <Linkedin className="h-5 w-5" />
             </a>
@@ -178,13 +167,13 @@ export default async function PostPage({ params }: PageProps) {
 
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (
-          <div className="mt-12 pt-8 border-t border-white/10">
-            <h3 className="text-sm font-medium text-slate-400 mb-4">Tags</h3>
+          <div className="mt-12 pt-8 border-t border-[rgb(var(--border-color))]">
+            <h3 className="text-sm font-medium text-[rgb(var(--text-muted))] mb-4">Tags</h3>
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-sm bg-white/5 text-slate-300 rounded-full hover:bg-white/10 transition-colors"
+                  className="px-3 py-1 text-sm bg-[rgb(var(--glass-bg))] text-[rgb(var(--text-secondary))] rounded-full hover:bg-[rgb(var(--surface-hover))] border border-[rgb(var(--border-color))] transition-colors"
                 >
                   {tag}
                 </span>
@@ -194,17 +183,17 @@ export default async function PostPage({ params }: PageProps) {
         )}
 
         {/* Author Box */}
-        <div className="mt-12 pt-8 border-t border-white/10">
-          <h3 className="text-sm font-medium text-slate-400 mb-4">Written by</h3>
+        <div className="mt-12 pt-8 border-t border-[rgb(var(--border-color))]">
+          <h3 className="text-sm font-medium text-[rgb(var(--text-muted))] mb-4">Written by</h3>
           <AuthorCard variant="full" />
         </div>
       </article>
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section className="py-16 border-t border-white/10">
+        <section className="py-16 border-t border-[rgb(var(--border-color))]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-display font-bold text-white mb-8">
+            <h2 className="text-2xl font-display font-bold text-[rgb(var(--text-primary))] mb-8">
               Continue Reading
             </h2>
             <div className="grid gap-6 md:grid-cols-3">
@@ -217,12 +206,12 @@ export default async function PostPage({ params }: PageProps) {
       )}
 
       {/* CTA */}
-      <section className="py-16 border-t border-white/10">
+      <section className="py-16 border-t border-[rgb(var(--border-color))]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-[rgb(var(--text-primary))] mb-4">
             Want to analyze your own dreams?
           </h2>
-          <p className="text-slate-400 mb-6">
+          <p className="text-[rgb(var(--text-muted))] mb-6">
             Get personalized AI-powered dream analysis and discover what your
             subconscious is trying to tell you.
           </p>

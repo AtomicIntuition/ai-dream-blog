@@ -56,6 +56,15 @@
     --callout-success: 16 185 129 / 0.08;
     --callout-info: 96 165 250 / 0.1;
 
+    /* Hero card colors */
+    --hero-text: 255 255 255;
+    --hero-subtitle: 203 213 225;
+    --hero-meta: 148 163 184;
+
+    /* CTA section */
+    --cta-heading: 255 255 255;
+    --cta-text: 203 213 225;
+
     /* Mode identifier */
     --is-dark: 1;
     --is-light: 0;
@@ -109,6 +118,15 @@
     --callout-success: 16 185 129 / 0.08;
     --callout-info: 59 130 246 / 0.08;
 
+    /* Hero card colors - dark text for light bg card */
+    --hero-text: 32 33 36;
+    --hero-subtitle: 60 64 72;
+    --hero-meta: 107 114 128;
+
+    /* CTA section */
+    --cta-heading: 32 33 36;
+    --cta-text: 60 64 72;
+
     /* Mode identifier */
     --is-dark: 0;
     --is-light: 1;
@@ -161,6 +179,15 @@
     --callout-reflect: 146 64 14 / 0.08;
     --callout-success: 101 163 13 / 0.1;
     --callout-info: 180 83 9 / 0.08;
+
+    /* Hero card colors - warm dark text */
+    --hero-text: 68 51 34;
+    --hero-subtitle: 92 71 52;
+    --hero-meta: 133 109 85;
+
+    /* CTA section */
+    --cta-heading: 68 51 34;
+    --cta-text: 92 71 52;
 
     /* Mode identifier */
     --is-dark: 0;
@@ -283,6 +310,40 @@
   /* Surface utility for hover states */
   .surface-hover {
     background-color: rgb(var(--glass-hover));
+  }
+
+  /* Hero card overlay - different per theme */
+  .hero-card-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  [data-theme="dark"] .hero-card-overlay::before {
+    background: linear-gradient(to top, rgb(10 10 20) 0%, rgb(10 10 20 / 0.6) 40%, transparent 100%);
+  }
+
+  [data-theme="light"] .hero-card-overlay::before {
+    background: linear-gradient(to top, rgb(252 251 248) 0%, rgb(252 251 248 / 0.7) 40%, transparent 100%);
+  }
+
+  [data-theme="sepia"] .hero-card-overlay::before {
+    background: linear-gradient(to top, rgb(253 246 227) 0%, rgb(253 246 227 / 0.7) 40%, transparent 100%);
+  }
+
+  /* CTA card styling per theme */
+  .cta-card {
+    border: 1px solid rgb(var(--border-color));
+  }
+
+  [data-theme="light"] .cta-card {
+    background: linear-gradient(135deg, rgb(247 245 240) 0%, rgb(252 251 248) 100%);
+  }
+
+  [data-theme="sepia"] .cta-card {
+    background: linear-gradient(135deg, rgb(250 240 215) 0%, rgb(253 246 227) 100%);
   }
 
   /* ===========================================
@@ -649,43 +710,69 @@
   }
 
   /* ===========================================
-     CATEGORY BADGES
+     CATEGORY BADGES - Theme-aware
      =========================================== */
   .category-badge {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium;
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold;
     font-family: system-ui, -apple-system, sans-serif;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
+  /* Dream Stories - Purple */
   .category-dream-stories {
-    background: rgba(var(--accent-primary), 0.15);
-    color: rgb(var(--accent-primary));
-    border: 1px solid rgba(var(--accent-primary), 0.25);
+    background: rgba(139, 92, 246, 0.15);
+    color: rgb(109, 40, 217);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+  [data-theme="dark"] .category-dream-stories {
+    color: rgb(167, 139, 250);
+  }
+  [data-theme="sepia"] .category-dream-stories {
+    background: rgba(139, 92, 246, 0.12);
+    color: rgb(91, 33, 182);
   }
 
+  /* Dream Science - Cyan */
   .category-dream-science {
-    background: rgba(var(--accent-tertiary), 0.15);
-    color: rgb(var(--accent-tertiary));
-    border: 1px solid rgba(var(--accent-tertiary), 0.25);
+    background: rgba(6, 182, 212, 0.15);
+    color: rgb(14, 116, 144);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+  }
+  [data-theme="dark"] .category-dream-science {
+    color: rgb(34, 211, 238);
+  }
+  [data-theme="sepia"] .category-dream-science {
+    background: rgba(6, 182, 212, 0.12);
+    color: rgb(8, 94, 117);
   }
 
+  /* Sleep Tips - Green */
   .category-sleep-tips {
     background: rgba(16, 185, 129, 0.15);
-    color: rgb(5, 150, 105);
-    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: rgb(4, 120, 87);
+    border: 1px solid rgba(16, 185, 129, 0.3);
   }
-
   [data-theme="dark"] .category-sleep-tips {
     color: rgb(52, 211, 153);
   }
+  [data-theme="sepia"] .category-sleep-tips {
+    background: rgba(16, 185, 129, 0.12);
+    color: rgb(6, 95, 70);
+  }
 
+  /* Symbolism - Amber */
   .category-symbolism {
     background: rgba(245, 158, 11, 0.15);
     color: rgb(180, 83, 9);
-    border: 1px solid rgba(245, 158, 11, 0.25);
+    border: 1px solid rgba(245, 158, 11, 0.3);
   }
-
   [data-theme="dark"] .category-symbolism {
     color: rgb(251, 191, 36);
+  }
+  [data-theme="sepia"] .category-symbolism {
+    background: rgba(245, 158, 11, 0.12);
+    color: rgb(146, 64, 14);
   }
 
   /* ===========================================

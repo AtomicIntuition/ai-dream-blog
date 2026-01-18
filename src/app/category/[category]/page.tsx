@@ -87,7 +87,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to all posts
@@ -102,12 +102,12 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
               <Icon className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl md:text-5xl font-display font-bold text-white">
+              <h1 className="text-4xl md:text-5xl font-display font-bold text-[rgb(var(--text-primary))]">
                 {categoryName}
               </h1>
             </div>
           </div>
-          <p className="text-lg text-slate-400 max-w-2xl">{description}</p>
+          <p className="text-lg text-[rgb(var(--text-muted))] max-w-2xl">{description}</p>
         </header>
 
         {/* Posts grid */}
@@ -125,20 +125,20 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
                 {pagination.hasPrevPage && (
                   <Link
                     href={`/category/${category}?page=${page - 1}`}
-                    className="px-4 py-2 glass-card hover:bg-white/10 transition-colors"
+                    className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors"
                   >
                     Previous
                   </Link>
                 )}
 
-                <span className="px-4 py-2 text-slate-400">
+                <span className="px-4 py-2 text-[rgb(var(--text-muted))]">
                   Page {pagination.page} of {pagination.totalPages}
                 </span>
 
                 {pagination.hasNextPage && (
                   <Link
                     href={`/category/${category}?page=${page + 1}`}
-                    className="px-4 py-2 glass-card hover:bg-white/10 transition-colors"
+                    className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors"
                   >
                     Next
                   </Link>
@@ -148,11 +148,11 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
           </>
         ) : (
           <div className="text-center py-16 glass-card">
-            <Icon className="h-16 w-16 text-dream-500/50 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-white mb-2">
+            <Icon className="h-16 w-16 text-[rgb(var(--accent-primary))]/50 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-[rgb(var(--text-primary))] mb-2">
               No posts yet
             </h3>
-            <p className="text-slate-400">
+            <p className="text-[rgb(var(--text-muted))]">
               Posts in this category are being created. Check back soon!
             </p>
           </div>

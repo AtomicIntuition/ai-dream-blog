@@ -47,23 +47,23 @@ export default function SearchPage() {
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-display font-bold text-white mb-8">
+        <h1 className="text-3xl font-display font-bold text-[rgb(var(--text-primary))] mb-8">
           Search Articles
         </h1>
 
         {/* Search input */}
         <div className="relative mb-12">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[rgb(var(--text-muted))]" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for dreams, symbols, sleep tips..."
-            className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-dream-500/50 focus:ring-2 focus:ring-dream-500/20 transition-all"
+            className="w-full pl-12 pr-4 py-4 bg-[rgb(var(--glass-bg))] border border-[rgb(var(--border-color))] rounded-xl text-[rgb(var(--text-primary))] placeholder-[rgb(var(--text-muted))] focus:outline-none focus:border-[rgb(var(--accent-primary))]/50 focus:ring-2 focus:ring-[rgb(var(--accent-primary))]/20 transition-all"
             autoFocus
           />
           {isLoading && (
-            <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-dream-400 animate-spin" />
+            <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[rgb(var(--accent-primary))] animate-spin" />
           )}
         </div>
 
@@ -72,7 +72,7 @@ export default function SearchPage() {
           <>
             {results.length > 0 ? (
               <>
-                <p className="text-slate-400 mb-6">
+                <p className="text-[rgb(var(--text-muted))] mb-6">
                   Found {results.length} {results.length === 1 ? 'result' : 'results'} for &ldquo;{query}&rdquo;
                 </p>
                 <div className="space-y-6">
@@ -83,11 +83,11 @@ export default function SearchPage() {
               </>
             ) : (
               <div className="text-center py-16">
-                <Search className="h-16 w-16 text-slate-600 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <Search className="h-16 w-16 text-[rgb(var(--text-muted))]/50 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-[rgb(var(--text-primary))] mb-2">
                   No results found
                 </h3>
-                <p className="text-slate-400">
+                <p className="text-[rgb(var(--text-muted))]">
                   Try different keywords or browse our categories
                 </p>
               </div>
@@ -97,8 +97,8 @@ export default function SearchPage() {
 
         {!hasSearched && (
           <div className="text-center py-16">
-            <Search className="h-16 w-16 text-slate-600 mx-auto mb-4" />
-            <p className="text-slate-400">
+            <Search className="h-16 w-16 text-[rgb(var(--text-muted))]/50 mx-auto mb-4" />
+            <p className="text-[rgb(var(--text-muted))]">
               Start typing to search for articles
             </p>
           </div>
