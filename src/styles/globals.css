@@ -2,60 +2,299 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 10 10 20;
-    --foreground: 248 250 252;
+/* ============================================
+   PROFESSIONAL MULTI-THEME BLOG SYSTEM
+   Dark Aurora | Light Cloud | Sepia Reader
+   ============================================ */
 
-    /* Aurora theme colors */
-    --dream-500: 139 92 246;
-    --dream-600: 124 58 237;
-    --aurora-400: 232 121 249;
-    --aurora-500: 217 70 239;
-    --cosmic-400: 0 212 255;
-    --cosmic-500: 0 180 216;
+@layer base {
+  /* ===========================================
+     THEME: DARK AURORA (Default)
+     Elegant dark theme with aurora accents
+     =========================================== */
+  :root,
+  [data-theme="dark"] {
+    /* Core colors */
+    --bg-primary: 8 8 18;
+    --bg-secondary: 15 15 30;
+    --bg-tertiary: 22 22 42;
+    --bg-card: 18 18 35;
+
+    /* Text colors */
+    --text-primary: 248 250 252;
+    --text-secondary: 203 213 225;
+    --text-muted: 148 163 184;
+    --text-accent: 196 181 253;
+
+    /* Accent colors */
+    --accent-primary: 139 92 246;
+    --accent-secondary: 217 70 239;
+    --accent-tertiary: 6 182 212;
+
+    /* Component colors */
+    --border-color: 255 255 255 / 0.1;
+    --border-hover: 255 255 255 / 0.2;
+    --glass-bg: 255 255 255 / 0.05;
+    --glass-hover: 255 255 255 / 0.1;
+    --surface-hover: 255 255 255 / 0.05;
+
+    /* Shadows */
+    --shadow-color: 0 0 0 / 0.3;
+    --glow-color: 139 92 246 / 0.3;
+
+    /* Reading */
+    --article-text: 226 232 240;
+    --article-heading: 255 255 255;
+    --article-link: 167 139 250;
+    --article-link-hover: 196 181 253;
+
+    /* Callout backgrounds */
+    --callout-insight: 139 92 246 / 0.12;
+    --callout-science: 6 182 212 / 0.1;
+    --callout-tip: 251 191 36 / 0.1;
+    --callout-reflect: 217 70 239 / 0.1;
+    --callout-success: 16 185 129 / 0.08;
+    --callout-info: 96 165 250 / 0.1;
+
+    /* Mode identifier */
+    --is-dark: 1;
+    --is-light: 0;
+    --is-sepia: 0;
   }
 
+  /* ===========================================
+     THEME: LIGHT CLOUD
+     Warm, professional light theme
+     =========================================== */
+  [data-theme="light"] {
+    /* Core colors - warm off-white, not harsh */
+    --bg-primary: 252 251 248;
+    --bg-secondary: 247 245 240;
+    --bg-tertiary: 241 239 232;
+    --bg-card: 255 255 255;
+
+    /* Text colors - soft dark, not pure black */
+    --text-primary: 32 33 36;
+    --text-secondary: 60 64 72;
+    --text-muted: 107 114 128;
+    --text-accent: 109 40 217;
+
+    /* Accent colors - deeper for light bg */
+    --accent-primary: 124 58 237;
+    --accent-secondary: 192 38 211;
+    --accent-tertiary: 8 145 178;
+
+    /* Component colors */
+    --border-color: 0 0 0 / 0.08;
+    --border-hover: 0 0 0 / 0.15;
+    --glass-bg: 255 255 255 / 0.7;
+    --glass-hover: 255 255 255 / 0.9;
+    --surface-hover: 0 0 0 / 0.05;
+
+    /* Shadows */
+    --shadow-color: 0 0 0 / 0.08;
+    --glow-color: 124 58 237 / 0.15;
+
+    /* Reading - optimized for comfort */
+    --article-text: 55 65 81;
+    --article-heading: 17 24 39;
+    --article-link: 109 40 217;
+    --article-link-hover: 139 92 246;
+
+    /* Callout backgrounds - subtle for light */
+    --callout-insight: 139 92 246 / 0.08;
+    --callout-science: 6 182 212 / 0.08;
+    --callout-tip: 251 191 36 / 0.12;
+    --callout-reflect: 217 70 239 / 0.06;
+    --callout-success: 16 185 129 / 0.08;
+    --callout-info: 59 130 246 / 0.08;
+
+    /* Mode identifier */
+    --is-dark: 0;
+    --is-light: 1;
+    --is-sepia: 0;
+  }
+
+  /* ===========================================
+     THEME: SEPIA READER
+     Warm, cozy reading mode like Kindle
+     =========================================== */
+  [data-theme="sepia"] {
+    /* Core colors - warm cream tones */
+    --bg-primary: 253 246 227;
+    --bg-secondary: 250 240 215;
+    --bg-tertiary: 245 232 199;
+    --bg-card: 255 250 235;
+
+    /* Text colors - warm brown tones */
+    --text-primary: 68 51 34;
+    --text-secondary: 92 71 52;
+    --text-muted: 133 109 85;
+    --text-accent: 146 64 14;
+
+    /* Accent colors - warm, earthy */
+    --accent-primary: 180 83 9;
+    --accent-secondary: 161 98 7;
+    --accent-tertiary: 120 53 15;
+
+    /* Component colors */
+    --border-color: 120 90 60 / 0.15;
+    --border-hover: 120 90 60 / 0.25;
+    --glass-bg: 255 250 240 / 0.6;
+    --glass-hover: 255 250 240 / 0.8;
+    --surface-hover: 120 90 60 / 0.08;
+
+    /* Shadows */
+    --shadow-color: 120 80 40 / 0.1;
+    --glow-color: 180 83 9 / 0.2;
+
+    /* Reading - classic book feel */
+    --article-text: 75 58 42;
+    --article-heading: 55 40 28;
+    --article-link: 146 64 14;
+    --article-link-hover: 180 83 9;
+
+    /* Callout backgrounds - warm tints */
+    --callout-insight: 180 83 9 / 0.1;
+    --callout-science: 120 53 15 / 0.08;
+    --callout-tip: 161 98 7 / 0.12;
+    --callout-reflect: 146 64 14 / 0.08;
+    --callout-success: 101 163 13 / 0.1;
+    --callout-info: 180 83 9 / 0.08;
+
+    /* Mode identifier */
+    --is-dark: 0;
+    --is-light: 0;
+    --is-sepia: 1;
+  }
+
+  /* ===========================================
+     BASE STYLES
+     =========================================== */
   * {
-    @apply border-white/10;
+    border-color: rgb(var(--border-color));
   }
 
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-[rgb(10,10,20)] text-slate-100 antialiased;
+    background-color: rgb(var(--bg-primary));
+    color: rgb(var(--text-primary));
+    font-family: 'Source Serif 4', 'Georgia', 'Cambria', 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Dark theme background effects */
+  [data-theme="dark"] body {
     background-image:
-      radial-gradient(ellipse at 0% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 100% 0%, rgba(217, 70, 239, 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 100%, rgba(0, 180, 216, 0.1) 0%, transparent 50%);
+      radial-gradient(ellipse at 0% 0%, rgba(var(--accent-primary), 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 0%, rgba(var(--accent-secondary), 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(var(--accent-tertiary), 0.08) 0%, transparent 50%);
     background-attachment: fixed;
-    min-height: 100vh;
+  }
+
+  /* Light theme subtle texture */
+  [data-theme="light"] body {
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(var(--accent-primary), 0.03) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 100%, rgba(var(--accent-tertiary), 0.03) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  /* Sepia warm glow */
+  [data-theme="sepia"] body {
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(255, 240, 200, 0.5) 0%, transparent 60%);
+    background-attachment: fixed;
   }
 
   ::selection {
-    @apply bg-dream-500/30 text-white;
+    background-color: rgba(var(--accent-primary), 0.3);
+    color: rgb(var(--text-primary));
+  }
+
+  /* Typography scale */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-weight: 700;
+    color: rgb(var(--article-heading));
+    letter-spacing: -0.02em;
+  }
+
+  /* Links */
+  a {
+    color: rgb(var(--article-link));
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: rgb(var(--article-link-hover));
   }
 }
 
 @layer components {
-  /* Glass morphism */
+  /* ===========================================
+     GLASS MORPHISM
+     =========================================== */
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+    background-color: rgb(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgb(var(--border-color));
   }
 
   .glass-card {
     @apply glass rounded-2xl;
+    box-shadow: 0 4px 24px rgb(var(--shadow-color));
   }
 
   .glass-hover {
-    @apply transition-all duration-300 hover:bg-white/10 hover:border-white/20;
+    @apply transition-all duration-300;
   }
 
-  /* Blog-specific styles */
+  .glass-hover:hover {
+    background-color: rgb(var(--glass-hover));
+    border-color: rgb(var(--border-hover));
+  }
+
+  /* Header-specific glass - different treatments per theme */
+  .header-glass {
+    background-color: rgb(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  [data-theme="light"] .header-glass {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  [data-theme="sepia"] .header-glass {
+    background-color: rgba(253, 246, 227, 0.9);
+    box-shadow: 0 1px 3px rgba(120, 80, 40, 0.08);
+  }
+
+  /* Surface utility for hover states */
+  .surface-hover {
+    background-color: rgb(var(--glass-hover));
+  }
+
+  /* ===========================================
+     TYPOGRAPHY COMPONENTS
+     =========================================== */
   .blog-title {
-    @apply font-display text-4xl md:text-5xl lg:text-6xl font-bold;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+    color: rgb(var(--article-heading));
+  }
+
+  [data-theme="dark"] .blog-title {
     background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #f0abfc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -63,82 +302,134 @@
   }
 
   .blog-subtitle {
-    @apply text-lg md:text-xl text-slate-300 font-light;
+    @apply text-lg md:text-xl font-light;
+    color: rgb(var(--text-secondary));
   }
 
-  /* Dream block styling for dream narratives */
-  .dream-block {
-    @apply relative pl-6 py-4 my-8 italic;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(217, 70, 239, 0.05) 100%);
-    border-left: 3px solid rgb(139, 92, 246);
-    border-radius: 0 1rem 1rem 0;
-  }
-
-  .dream-block::before {
-    content: '"';
-    @apply absolute -top-4 left-2 text-6xl text-dream-500/30 font-serif;
-  }
-
-  /* Article content styling */
+  /* ===========================================
+     ARTICLE CONTENT - Professional Reading
+     =========================================== */
   .article-content {
-    @apply text-slate-200 leading-relaxed;
+    color: rgb(var(--article-text));
+    font-size: 1.125rem;
+    line-height: 1.8;
+    max-width: 72ch; /* Optimal reading width */
   }
 
   .article-content h1 {
-    @apply text-3xl font-display font-bold mt-12 mb-6 text-white;
+    @apply text-3xl md:text-4xl font-bold mt-14 mb-6;
+    color: rgb(var(--article-heading));
+    line-height: 1.2;
   }
 
   .article-content h2 {
-    @apply text-2xl font-display font-semibold mt-10 mb-4 text-white;
+    @apply text-2xl md:text-3xl font-bold mt-12 mb-5 relative;
+    color: rgb(var(--article-heading));
+    padding-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .article-content h2::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 rounded-full;
+    width: 60px;
+    background: linear-gradient(90deg, rgb(var(--accent-primary)), rgb(var(--accent-secondary)));
   }
 
   .article-content h3 {
-    @apply text-xl font-semibold mt-8 mb-3 text-slate-100;
+    @apply text-xl md:text-2xl font-semibold mt-10 mb-4;
+    color: rgb(var(--article-heading));
+    line-height: 1.4;
+  }
+
+  [data-theme="dark"] .article-content h3::before {
+    content: '◆';
+    @apply text-sm mr-2;
+    color: rgb(var(--accent-primary));
   }
 
   .article-content p {
-    @apply mb-6 text-lg leading-relaxed;
+    @apply mb-6;
+    text-align: left;
+    hyphens: auto;
   }
 
   .article-content ul,
   .article-content ol {
-    @apply mb-6 pl-6 space-y-2;
+    @apply mb-6 pl-6 space-y-3;
   }
 
   .article-content li {
     @apply text-lg;
+    line-height: 1.7;
   }
 
   .article-content ul li {
-    @apply list-disc;
+    list-style-type: disc;
+  }
+
+  .article-content ul li::marker {
+    color: rgb(var(--accent-primary));
   }
 
   .article-content ol li {
-    @apply list-decimal;
+    list-style-type: decimal;
   }
 
-  .article-content blockquote {
-    @apply dream-block;
+  .article-content ol li::marker {
+    color: rgb(var(--accent-primary));
+    font-weight: 600;
+  }
+
+  /* Blockquote / Dream Block */
+  .article-content blockquote,
+  .dream-block {
+    @apply relative pl-6 py-5 my-8 italic rounded-r-xl;
+    background: rgb(var(--callout-insight));
+    border-left: 4px solid rgb(var(--accent-primary));
+    color: rgb(var(--text-secondary));
+  }
+
+  .article-content blockquote::before,
+  .dream-block::before {
+    content: '"';
+    @apply absolute -top-2 left-2 text-5xl font-serif;
+    color: rgba(var(--accent-primary), 0.3);
+    line-height: 1;
   }
 
   .article-content a {
-    @apply text-dream-400 hover:text-dream-300 underline underline-offset-2 transition-colors;
+    color: rgb(var(--article-link));
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: all 0.2s ease;
+  }
+
+  .article-content a:hover {
+    color: rgb(var(--article-link-hover));
+    text-decoration-thickness: 2px;
   }
 
   .article-content strong {
-    @apply font-semibold text-white;
+    font-weight: 600;
+    color: rgb(var(--article-heading));
   }
 
   .article-content em {
-    @apply italic text-slate-300;
+    font-style: italic;
+    color: rgb(var(--text-secondary));
   }
 
   .article-content code {
-    @apply bg-white/10 px-2 py-0.5 rounded text-sm font-mono text-dream-300;
+    @apply px-2 py-1 rounded text-sm font-mono;
+    background: rgb(var(--glass-bg));
+    color: rgb(var(--text-accent));
   }
 
   .article-content pre {
-    @apply bg-black/40 p-4 rounded-xl overflow-x-auto my-6;
+    @apply p-5 rounded-xl overflow-x-auto my-8;
+    background: rgb(var(--bg-tertiary));
   }
 
   .article-content pre code {
@@ -146,23 +437,24 @@
   }
 
   .article-content hr {
-    @apply my-12 border-white/10;
+    @apply my-12;
+    border-color: rgb(var(--border-color));
   }
 
   .article-content img {
     @apply rounded-xl my-8;
+    box-shadow: 0 8px 32px rgb(var(--shadow-color));
   }
 
-  /* ========================================
-     PREMIUM BLOG CONTENT ELEMENTS
-     Expert-level visual components for engaging content
-     ======================================== */
+  /* ===========================================
+     PREMIUM CONTENT ELEMENTS
+     =========================================== */
 
-  /* Insight Callout - Key psychological insights */
+  /* Insight Callout */
   .article-content .insight-callout {
     @apply relative my-8 p-6 rounded-2xl;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(217, 70, 239, 0.1) 100%);
-    border-left: 4px solid rgb(139, 92, 246);
+    background: rgb(var(--callout-insight));
+    border-left: 4px solid rgb(var(--accent-primary));
   }
 
   .article-content .insight-callout::before {
@@ -171,41 +463,36 @@
   }
 
   .article-content .insight-callout strong {
-    @apply text-dream-300 block mb-2 text-sm uppercase tracking-wider;
+    @apply block mb-2 text-sm uppercase tracking-wider;
+    color: rgb(var(--accent-primary));
   }
 
-  /* Dream Narrative - Immersive dream presentation */
+  /* Dream Narrative */
   .article-content .dream-narrative,
   .article-content blockquote.dream-narrative {
     @apply relative my-10 p-8 rounded-2xl italic text-lg leading-relaxed;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(217, 70, 239, 0.08) 50%, rgba(0, 180, 216, 0.05) 100%);
-    border: 1px solid rgba(139, 92, 246, 0.3);
+    background: rgb(var(--callout-insight));
+    border: 1px solid rgba(var(--accent-primary), 0.2);
     border-left: none;
-    text-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
   }
 
   .article-content .dream-narrative::before {
     content: '"';
-    @apply absolute -top-6 left-4 text-8xl font-serif;
-    color: rgba(139, 92, 246, 0.3);
+    @apply absolute -top-4 left-4 text-7xl font-serif;
+    color: rgba(var(--accent-primary), 0.25);
     line-height: 1;
   }
 
-  .article-content .dream-narrative::after {
-    content: '';
-    @apply absolute inset-0 rounded-2xl pointer-events-none;
-    background: radial-gradient(ellipse at top left, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-  }
-
-  /* Psychology Box - Science/theory explanations */
+  /* Psychology Box */
   .article-content .psychology-box {
     @apply my-8 p-6 rounded-2xl;
-    background: linear-gradient(135deg, rgba(0, 180, 216, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
-    border: 1px solid rgba(0, 180, 216, 0.2);
+    background: rgb(var(--callout-science));
+    border: 1px solid rgba(var(--accent-tertiary), 0.2);
   }
 
   .article-content .psychology-box h4 {
-    @apply flex items-center gap-2 text-cosmic-300 text-sm uppercase tracking-wider mb-3 mt-0;
+    @apply flex items-center gap-2 text-sm uppercase tracking-wider mb-3 mt-0;
+    color: rgb(var(--accent-tertiary));
   }
 
   .article-content .psychology-box h4::before {
@@ -213,14 +500,15 @@
   }
 
   .article-content .psychology-box p {
-    @apply text-slate-300 mb-0;
+    @apply mb-0;
+    color: rgb(var(--text-secondary));
   }
 
-  /* Symbol Spotlight - Key dream symbols */
+  /* Symbol Spotlight */
   .article-content .symbol-spotlight {
     @apply flex items-start gap-4 my-6 p-5 rounded-xl;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgb(var(--glass-bg));
+    border: 1px solid rgb(var(--border-color));
   }
 
   .article-content .symbol-spotlight .symbol-icon {
@@ -228,22 +516,25 @@
   }
 
   .article-content .symbol-spotlight .symbol-content strong {
-    @apply text-white block mb-1;
+    @apply block mb-1;
+    color: rgb(var(--article-heading));
   }
 
   .article-content .symbol-spotlight .symbol-content p {
-    @apply text-slate-400 text-sm mb-0;
+    @apply text-sm mb-0;
+    color: rgb(var(--text-muted));
   }
 
-  /* Reflection Prompt - Reader engagement questions */
+  /* Reflection Prompt */
   .article-content .reflection-prompt {
     @apply my-8 p-6 rounded-2xl text-center;
-    background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-    border: 1px dashed rgba(217, 70, 239, 0.3);
+    background: rgb(var(--callout-reflect));
+    border: 1px dashed rgba(var(--accent-secondary), 0.3);
   }
 
   .article-content .reflection-prompt strong {
-    @apply text-aurora-300 block mb-2 text-sm uppercase tracking-wider;
+    @apply block mb-2 text-sm uppercase tracking-wider;
+    color: rgb(var(--accent-secondary));
   }
 
   .article-content .reflection-prompt::before {
@@ -251,11 +542,12 @@
     @apply block text-2xl mb-2;
   }
 
-  /* Takeaway List - Key points */
+  /* Takeaway List */
   .article-content .takeaway-list {
-    @apply my-8 p-6 rounded-2xl space-y-4 list-none;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.05) 100%);
+    @apply my-8 p-6 rounded-2xl space-y-4;
+    background: rgb(var(--callout-success));
     border: 1px solid rgba(16, 185, 129, 0.2);
+    list-style: none !important;
     padding-left: 1.5rem !important;
   }
 
@@ -266,32 +558,35 @@
 
   .article-content .takeaway-list li::before {
     content: '✓';
-    @apply text-emerald-400 font-bold flex-shrink-0;
+    @apply font-bold flex-shrink-0;
+    color: rgb(16, 185, 129);
   }
 
   .article-content .takeaway-list li strong {
-    @apply text-emerald-300;
+    color: rgb(5, 150, 105);
   }
 
-  /* Pull Quote - Impactful statements */
+  /* Pull Quote */
   .article-content .pull-quote {
-    @apply my-12 py-8 px-6 text-center text-2xl font-display italic;
-    color: rgba(255, 255, 255, 0.9);
-    border-top: 1px solid rgba(139, 92, 246, 0.3);
-    border-bottom: 1px solid rgba(139, 92, 246, 0.3);
-    background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.05) 50%, transparent 100%);
+    @apply my-12 py-8 px-6 text-center text-2xl italic;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    color: rgb(var(--article-heading));
+    border-top: 1px solid rgba(var(--accent-primary), 0.3);
+    border-bottom: 1px solid rgba(var(--accent-primary), 0.3);
+    background: linear-gradient(90deg, transparent 0%, rgb(var(--callout-insight)) 50%, transparent 100%);
   }
 
   .article-content .pull-quote::before {
     content: '"';
-    @apply text-dream-500/50 text-6xl font-serif block -mb-4;
+    @apply text-5xl font-serif block -mb-2;
+    color: rgba(var(--accent-primary), 0.4);
   }
 
-  /* Tip Box - Practical advice */
+  /* Tip Box */
   .article-content .tip-box {
     @apply my-8 p-6 rounded-2xl;
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
-    border: 1px solid rgba(251, 191, 36, 0.2);
+    background: rgb(var(--callout-tip));
+    border: 1px solid rgba(251, 191, 36, 0.25);
   }
 
   .article-content .tip-box::before {
@@ -300,14 +595,19 @@
   }
 
   .article-content .tip-box strong {
-    @apply text-amber-300 block mb-2;
+    @apply block mb-2;
+    color: rgb(180, 83, 9);
   }
 
-  /* Did You Know - Surprising facts */
+  [data-theme="dark"] .article-content .tip-box strong {
+    color: rgb(251, 191, 36);
+  }
+
+  /* Did You Know */
   .article-content .did-you-know {
     @apply my-8 p-6 rounded-2xl;
-    background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-    border: 1px solid rgba(96, 165, 250, 0.2);
+    background: rgb(var(--callout-info));
+    border: 1px solid rgba(96, 165, 250, 0.25);
   }
 
   .article-content .did-you-know::before {
@@ -316,72 +616,131 @@
   }
 
   .article-content .did-you-know strong {
-    @apply text-blue-300 block mb-2;
+    @apply block mb-2;
+    color: rgb(37, 99, 235);
   }
 
-  /* Enhanced heading styles with decorative elements */
-  .article-content h2 {
-    @apply text-2xl font-display font-semibold mt-12 mb-6 text-white relative;
-    padding-bottom: 0.75rem;
+  [data-theme="dark"] .article-content .did-you-know strong {
+    color: rgb(147, 197, 253);
   }
 
-  .article-content h2::after {
-    content: '';
-    @apply absolute bottom-0 left-0 h-0.5 rounded-full;
-    width: 60px;
-    background: linear-gradient(90deg, rgb(139, 92, 246), rgb(217, 70, 239));
-  }
-
-  .article-content h3 {
-    @apply text-xl font-semibold mt-10 mb-4 text-slate-100 flex items-center gap-2;
-  }
-
-  .article-content h3::before {
-    content: '◆';
-    @apply text-dream-500 text-sm;
-  }
-
-  /* Button styles */
+  /* ===========================================
+     BUTTONS
+     =========================================== */
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium transition-all duration-200;
+    font-family: system-ui, -apple-system, sans-serif;
   }
 
   .btn-primary {
-    @apply btn bg-gradient-to-r from-dream-600 to-aurora-600 text-white hover:from-dream-500 hover:to-aurora-500 shadow-lg shadow-dream-500/25;
+    @apply btn text-white shadow-lg;
+    background: linear-gradient(135deg, rgb(var(--accent-primary)), rgb(var(--accent-secondary)));
+    box-shadow: 0 4px 14px rgba(var(--accent-primary), 0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(var(--accent-primary), 0.45);
   }
 
   .btn-secondary {
-    @apply btn glass glass-hover text-white;
+    @apply btn glass glass-hover;
+    color: rgb(var(--text-primary));
   }
 
-  /* Category badges */
+  /* ===========================================
+     CATEGORY BADGES
+     =========================================== */
   .category-badge {
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium;
+    font-family: system-ui, -apple-system, sans-serif;
   }
 
   .category-dream-stories {
-    @apply bg-dream-500/20 text-dream-300 border border-dream-500/30;
+    background: rgba(var(--accent-primary), 0.15);
+    color: rgb(var(--accent-primary));
+    border: 1px solid rgba(var(--accent-primary), 0.25);
   }
 
   .category-dream-science {
-    @apply bg-cosmic-500/20 text-cosmic-300 border border-cosmic-500/30;
+    background: rgba(var(--accent-tertiary), 0.15);
+    color: rgb(var(--accent-tertiary));
+    border: 1px solid rgba(var(--accent-tertiary), 0.25);
   }
 
   .category-sleep-tips {
-    @apply bg-emerald-500/20 text-emerald-300 border border-emerald-500/30;
+    background: rgba(16, 185, 129, 0.15);
+    color: rgb(5, 150, 105);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+  }
+
+  [data-theme="dark"] .category-sleep-tips {
+    color: rgb(52, 211, 153);
   }
 
   .category-symbolism {
-    @apply bg-amber-500/20 text-amber-300 border border-amber-500/30;
+    background: rgba(245, 158, 11, 0.15);
+    color: rgb(180, 83, 9);
+    border: 1px solid rgba(245, 158, 11, 0.25);
   }
 
-  /* Reading progress bar */
+  [data-theme="dark"] .category-symbolism {
+    color: rgb(251, 191, 36);
+  }
+
+  /* ===========================================
+     THEME TOGGLE
+     =========================================== */
+  .theme-toggle-container {
+    @apply flex items-center;
+  }
+
+  .theme-toggle-group {
+    @apply flex items-center gap-1 p-1 rounded-full;
+    background: rgb(var(--glass-bg));
+    border: 1px solid rgb(var(--border-color));
+  }
+
+  .theme-toggle-btn {
+    @apply p-2 rounded-full transition-all duration-200;
+    color: rgb(var(--text-muted));
+  }
+
+  .theme-toggle-btn:hover {
+    color: rgb(var(--text-primary));
+    background: rgb(var(--glass-hover));
+  }
+
+  .theme-toggle-btn.active {
+    color: rgb(var(--text-primary));
+    background: rgb(var(--accent-primary));
+    color: white;
+  }
+
+  .theme-toggle-compact {
+    @apply p-2 rounded-full transition-all duration-200;
+    color: rgb(var(--text-muted));
+    background: rgb(var(--glass-bg));
+    border: 1px solid rgb(var(--border-color));
+  }
+
+  .theme-toggle-compact:hover {
+    color: rgb(var(--text-primary));
+    background: rgb(var(--glass-hover));
+  }
+
+  /* ===========================================
+     READING PROGRESS
+     =========================================== */
   .reading-progress {
-    @apply fixed top-0 left-0 h-1 bg-gradient-to-r from-dream-500 via-aurora-500 to-cosmic-500 z-50;
+    @apply fixed top-0 left-0 h-1 z-50;
+    background: linear-gradient(90deg, rgb(var(--accent-primary)), rgb(var(--accent-secondary)), rgb(var(--accent-tertiary)));
     transform-origin: left;
   }
 
-  /* Animations */
+  /* ===========================================
+     ANIMATIONS
+     =========================================== */
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
   }
@@ -391,12 +750,8 @@
   }
 
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   @keyframes slideUp {
@@ -411,23 +766,36 @@
   }
 }
 
-/* Scrollbar styling */
+/* ===========================================
+   SCROLLBAR STYLING
+   =========================================== */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(var(--bg-secondary));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 4px;
+  background: rgba(var(--accent-primary), 0.3);
+  border-radius: 5px;
+  border: 2px solid rgb(var(--bg-secondary));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.5);
+  background: rgba(var(--accent-primary), 0.5);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb,
+[data-theme="sepia"] ::-webkit-scrollbar-thumb {
+  background: rgba(var(--text-muted), 0.3);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover,
+[data-theme="sepia"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--text-muted), 0.5);
 }
 
 /* Hide scrollbar utility */
@@ -440,25 +808,106 @@
   display: none;
 }
 
-/* Font display fallback */
-@layer base {
-  .font-display {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    font-weight: 700;
-  }
-}
-
-/* Cosmic color utilities for Tailwind */
+/* ===========================================
+   UTILITY CLASSES
+   =========================================== */
 @layer utilities {
+  .text-primary {
+    color: rgb(var(--text-primary));
+  }
+
+  .text-secondary {
+    color: rgb(var(--text-secondary));
+  }
+
+  .text-muted {
+    color: rgb(var(--text-muted));
+  }
+
+  .text-accent {
+    color: rgb(var(--accent-primary));
+  }
+
+  .bg-primary {
+    background-color: rgb(var(--bg-primary));
+  }
+
+  .bg-secondary {
+    background-color: rgb(var(--bg-secondary));
+  }
+
+  .bg-card {
+    background-color: rgb(var(--bg-card));
+  }
+
+  .border-theme {
+    border-color: rgb(var(--border-color));
+  }
+
+  /* Legacy color utilities */
   .text-cosmic-300 {
-    color: rgb(100, 220, 255);
+    color: rgb(var(--accent-tertiary));
   }
 
   .text-aurora-300 {
-    color: rgb(240, 160, 255);
+    color: rgb(var(--accent-secondary));
   }
 
-  .border-cosmic-500\/30 {
-    border-color: rgba(0, 180, 216, 0.3);
+  .font-display {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-weight: 700;
+  }
+
+  .font-reading {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+  }
+
+  .font-ui {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+}
+
+/* ===========================================
+   RESPONSIVE TYPOGRAPHY
+   =========================================== */
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+
+  .article-content {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .article-content h1 {
+    @apply text-2xl;
+  }
+
+  .article-content h2 {
+    @apply text-xl;
+  }
+
+  .article-content h3 {
+    @apply text-lg;
+  }
+}
+
+/* ===========================================
+   PRINT STYLES
+   =========================================== */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .glass, .glass-card {
+    background: white !important;
+    border: 1px solid #ccc !important;
+  }
+
+  .article-content {
+    color: black !important;
   }
 }

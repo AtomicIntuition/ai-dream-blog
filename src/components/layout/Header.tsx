@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X, Moon, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ThemeToggle, ThemeToggleCompact } from '@/components/ui/ThemeToggle';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -18,7 +19,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      <div className="glass border-b border-white/10">
+      <div className="header-glass border-b border-[var(--border-color)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
@@ -27,7 +28,7 @@ export function Header() {
                 <Moon className="h-8 w-8 text-dream-400 transition-transform group-hover:scale-110" />
                 <div className="absolute inset-0 blur-lg bg-dream-500/30 group-hover:bg-dream-500/50 transition-colors" />
               </div>
-              <span className="text-xl font-display font-bold bg-gradient-to-r from-white to-dream-200 bg-clip-text text-transparent">
+              <span className="text-xl font-display font-bold text-[var(--text-primary)]">
                 Dream Insights
               </span>
             </Link>
@@ -38,7 +39,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] rounded-lg transition-colors"
                 >
                   {item.name}
                 </Link>
@@ -46,13 +47,23 @@ export function Header() {
             </nav>
 
             {/* Right side actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Link
                 href="/search"
-                className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] rounded-lg transition-colors"
               >
                 <Search className="h-5 w-5" />
               </Link>
+
+              {/* Theme toggle - desktop */}
+              <div className="hidden sm:block">
+                <ThemeToggle />
+              </div>
+
+              {/* Theme toggle - mobile */}
+              <div className="sm:hidden">
+                <ThemeToggleCompact />
+              </div>
 
               <Link
                 href="https://dreamanalysis.netlify.app"
@@ -64,7 +75,7 @@ export function Header() {
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                className="md:hidden p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] rounded-lg transition-colors"
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
@@ -75,7 +86,7 @@ export function Header() {
         {/* Mobile Navigation */}
         <div
           className={cn(
-            'md:hidden border-t border-white/10 overflow-hidden transition-all duration-300',
+            'md:hidden border-t border-[var(--border-color)] overflow-hidden transition-all duration-300',
             isMenuOpen ? 'max-h-96' : 'max-h-0'
           )}
         >
@@ -85,7 +96,7 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                className="block px-4 py-3 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] rounded-lg transition-colors"
               >
                 {item.name}
               </Link>
