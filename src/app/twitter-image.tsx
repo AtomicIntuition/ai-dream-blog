@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'Dream Insights - AI-Powered Dream Analysis Blog';
+export const alt = 'Dream Insights by Luna Vale - AI Dream Analysis';
 export const size = {
   width: 1200,
   height: 630,
@@ -18,176 +18,268 @@ export default async function Image() {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0f0a1e 0%, #1a1035 25%, #0d1f3c 50%, #1a1035 75%, #0f0a1e 100%)',
+          background: '#050510',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        {/* Aurora effect - top */}
+        {/* Dramatic aurora gradient background */}
         <div
           style={{
             position: 'absolute',
-            top: '-50%',
-            left: '-25%',
-            width: '150%',
-            height: '100%',
-            background: 'radial-gradient(ellipse at center, rgba(139, 92, 246, 0.3) 0%, transparent 60%)',
+            inset: 0,
+            background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.5) 0%, transparent 50%)',
+            display: 'flex',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(ellipse 60% 40% at 80% 50%, rgba(6, 182, 212, 0.3) 0%, transparent 50%)',
+            display: 'flex',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(ellipse 70% 50% at 20% 80%, rgba(217, 70, 239, 0.25) 0%, transparent 50%)',
             display: 'flex',
           }}
         />
 
-        {/* Aurora effect - right */}
+        {/* Subtle grid pattern */}
         <div
           style={{
             position: 'absolute',
-            top: '0%',
-            right: '-25%',
-            width: '80%',
-            height: '100%',
-            background: 'radial-gradient(ellipse at center, rgba(34, 211, 238, 0.25) 0%, transparent 55%)',
-            display: 'flex',
-          }}
-        />
-
-        {/* Aurora effect - bottom */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '-30%',
-            left: '10%',
-            width: '80%',
-            height: '80%',
-            background: 'radial-gradient(ellipse at center, rgba(244, 114, 182, 0.2) 0%, transparent 50%)',
+            inset: 0,
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
             display: 'flex',
           }}
         />
 
         {/* Stars */}
-        {[...Array(20)].map((_, i) => (
+        {[
+          { top: '10%', left: '15%', size: 3 },
+          { top: '20%', left: '80%', size: 2 },
+          { top: '30%', left: '10%', size: 2 },
+          { top: '15%', left: '60%', size: 4 },
+          { top: '60%', left: '85%', size: 3 },
+          { top: '70%', left: '20%', size: 2 },
+          { top: '80%', left: '70%', size: 3 },
+          { top: '25%', left: '40%', size: 2 },
+          { top: '45%', left: '5%', size: 2 },
+          { top: '55%', left: '95%', size: 2 },
+        ].map((star, i) => (
           <div
             key={i}
             style={{
               position: 'absolute',
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              backgroundColor: 'white',
               borderRadius: '50%',
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
+              top: star.top,
+              left: star.left,
+              boxShadow: `0 0 ${star.size * 3}px rgba(255,255,255,0.8)`,
               display: 'flex',
             }}
           />
         ))}
 
-        {/* Moon */}
+        {/* Glowing moon */}
         <div
           style={{
             position: 'absolute',
-            top: '60px',
-            right: '80px',
-            width: '80px',
-            height: '80px',
+            top: '40px',
+            right: '60px',
+            width: '120px',
+            height: '120px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle at 30% 30%, #fef3c7 0%, #fcd34d 50%, #f59e0b 100%)',
-            boxShadow: '0 0 60px rgba(251, 191, 36, 0.4)',
+            background: 'radial-gradient(circle at 35% 35%, #fef9c3 0%, #fde047 40%, #eab308 100%)',
+            boxShadow: '0 0 80px rgba(234, 179, 8, 0.6), 0 0 120px rgba(234, 179, 8, 0.3)',
             display: 'flex',
           }}
         />
 
-        {/* Content */}
+        {/* Main content container */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
             justifyContent: 'center',
+            alignItems: 'flex-start',
+            height: '100%',
+            padding: '60px 80px',
             zIndex: 10,
-            padding: '40px',
           }}
         >
-          {/* Logo/Icon */}
+          {/* Brand badge */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              width: '100px',
-              height: '100px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.8) 0%, rgba(34, 211, 238, 0.8) 100%)',
-              marginBottom: '30px',
-              boxShadow: '0 0 40px rgba(139, 92, 246, 0.5)',
+              gap: '12px',
+              marginBottom: '24px',
             }}
           >
-            <svg
-              width="60"
-              height="60"
-              viewBox="0 0 24 24"
-              fill="none"
-              style={{ display: 'flex' }}
+            <div
+              style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 0 30px rgba(139, 92, 246, 0.5)',
+              }}
             >
-              <path
-                d="M12 3C7.03 3 3 7.03 3 12C3 14.76 4.23 17.23 6.18 18.88C6.6 15.65 9.04 13 12 13C14.96 13 17.4 15.65 17.82 18.88C19.77 17.23 21 14.76 21 12C21 7.03 16.97 3 12 3Z"
-                fill="white"
-              />
-              <circle cx="12" cy="9" r="3" fill="white" />
-            </svg>
+              <span style={{ fontSize: '24px', display: 'flex' }}>🌙</span>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: '18px',
+                  fontWeight: 600,
+                  color: 'white',
+                  display: 'flex',
+                }}
+              >
+                Luna Vale
+              </span>
+              <span
+                style={{
+                  fontSize: '14px',
+                  color: 'rgba(255,255,255,0.6)',
+                  display: 'flex',
+                }}
+              >
+                AI Dream Analyst
+              </span>
+            </div>
           </div>
 
-          {/* Title */}
+          {/* Main title */}
           <div
             style={{
-              fontSize: '72px',
-              fontWeight: 700,
-              background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c4b5fd 100%)',
-              backgroundClip: 'text',
-              color: 'transparent',
-              marginBottom: '16px',
+              fontSize: '82px',
+              fontWeight: 800,
+              letterSpacing: '-2px',
+              lineHeight: 1,
+              marginBottom: '20px',
               display: 'flex',
+              flexDirection: 'column',
             }}
           >
-            Dream Insights
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)',
+                backgroundClip: 'text',
+                color: 'transparent',
+                display: 'flex',
+              }}
+            >
+              Dream Insights
+            </span>
           </div>
 
           {/* Tagline */}
           <div
             style={{
-              fontSize: '28px',
-              color: 'rgba(255, 255, 255, 0.8)',
-              textAlign: 'center',
-              maxWidth: '800px',
-              lineHeight: 1.4,
+              fontSize: '32px',
+              fontWeight: 500,
+              color: 'rgba(255,255,255,0.85)',
+              marginBottom: '40px',
               display: 'flex',
             }}
           >
-            AI-Powered Dream Analysis & Interpretation
+            Decode what your subconscious is telling you
           </div>
 
-          {/* Decorative line */}
+          {/* Feature pills */}
           <div
             style={{
-              width: '200px',
-              height: '3px',
-              background: 'linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.8), rgba(34, 211, 238, 0.8), transparent)',
-              marginTop: '30px',
-              borderRadius: '2px',
               display: 'flex',
+              gap: '16px',
             }}
-          />
+          >
+            {[
+              { icon: '🧠', text: 'AI Analysis' },
+              { icon: '🔮', text: 'Dream Symbols' },
+              { icon: '✨', text: 'Daily Insights' },
+            ].map((feature, i) => (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '12px 20px',
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: '100px',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                }}
+              >
+                <span style={{ fontSize: '18px', display: 'flex' }}>{feature.icon}</span>
+                <span
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: 'white',
+                    display: 'flex',
+                  }}
+                >
+                  {feature.text}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
 
-          {/* Bottom text */}
-          <div
+        {/* Bottom bar with handle */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: '60px',
+            background: 'linear-gradient(90deg, rgba(139, 92, 246, 0.3) 0%, rgba(6, 182, 212, 0.3) 100%)',
+            borderTop: '1px solid rgba(255,255,255,0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0 80px',
+          }}
+        >
+          <span
             style={{
               fontSize: '18px',
-              color: 'rgba(255, 255, 255, 0.5)',
-              marginTop: '30px',
+              color: 'rgba(255,255,255,0.8)',
+              fontWeight: 500,
               display: 'flex',
             }}
           >
-            Decode the language of your subconscious
-          </div>
+            ai-dream-blog.vercel.app
+          </span>
+          <span
+            style={{
+              fontSize: '18px',
+              color: 'rgba(255,255,255,0.8)',
+              fontWeight: 500,
+              display: 'flex',
+            }}
+          >
+            @CodeAI4Crypto
+          </span>
         </div>
       </div>
     ),
