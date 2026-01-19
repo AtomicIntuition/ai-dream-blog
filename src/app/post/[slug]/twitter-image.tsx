@@ -1,13 +1,19 @@
 import { ImageResponse } from 'next/og';
-import { getPost } from '@/lib/api';
 
-export const runtime = 'edge';
+// Use Node.js runtime for more reliable API fetching
+export const runtime = 'nodejs';
+// Force dynamic rendering - no caching
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const alt = 'Dream Insights Blog Post';
 export const size = {
   width: 1200,
   height: 630,
 };
 export const contentType = 'image/png';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://dream-analysis-t3ub.onrender.com';
 
 // Category styling
 const categoryStyles: Record<string, { icon: string; gradient: string; accentColor: string }> = {
@@ -46,12 +52,26 @@ export default async function Image({ params }: { params: { slug: string } }) {
   let subtitle = '';
 
   try {
-    const { post } = await getPost(params.slug);
-    title = post.title;
-    category = post.category;
-    subtitle = post.subtitle || post.excerpt?.substring(0, 100) || '';
+    // Direct fetch with no caching to ensure fresh data
+    const res = await fetch(`${API_URL}/api/blog/posts/${params.slug}`, {
+      cache: 'no-store',
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+
+    if (res.ok) {
+      const json = await res.json();
+      if (json.success && json.data?.post) {
+        const post = json.data.post;
+        title = post.title || title;
+        category = post.category || category;
+        subtitle = post.subtitle || post.excerpt?.substring(0, 100) || '';
+      }
+    }
   } catch (e) {
-    // Use defaults if post not found
+    // Log error but continue with defaults - image will still render
+    console.error('Twitter Image: Failed to fetch post data:', e);
   }
 
   const style = categoryStyles[category] || categoryStyles['dream-stories'];
@@ -318,6 +338,11 @@ export default async function Image({ params }: { params: { slug: string } }) {
     ),
     {
       ...size,
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      },
     }
   );
 }
