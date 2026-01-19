@@ -42,7 +42,8 @@ export default async function Image({ params }: { params: { slug: string } }) {
 
   const gradientColor = categoryColors[category] || categoryColors['dream-stories'];
   const categoryLabel = categoryLabels[category] || 'Dream Story';
-  const displayTitle = title.length > 70 ? title.substring(0, 67) + '...' : title;
+  // Shorter title limit to prevent overflow
+  const displayTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
 
   return new ImageResponse(
     (
@@ -81,19 +82,26 @@ export default async function Image({ params }: { params: { slug: string } }) {
           }}
         />
 
-        {/* Content */}
+        {/* Content wrapper with fixed sections */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
             height: '100%',
-            padding: '50px 70px',
+            padding: '40px 60px',
             zIndex: 10,
           }}
         >
-          {/* Top row */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          {/* Top row - fixed height */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              height: 60,
+              marginBottom: 30,
+            }}
+          >
             {/* Category badge */}
             <div
               style={{
@@ -103,10 +111,9 @@ export default async function Image({ params }: { params: { slug: string } }) {
                 border: '1px solid rgba(255,255,255,0.2)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
               }}
             >
-              <span style={{ fontSize: 16, fontWeight: 600, color: 'white', textTransform: 'uppercase', letterSpacing: 1 }}>
+              <span style={{ fontSize: 15, fontWeight: 600, color: 'white', textTransform: 'uppercase', letterSpacing: 1 }}>
                 {categoryLabel}
               </span>
             </div>
@@ -115,8 +122,8 @@ export default async function Image({ params }: { params: { slug: string } }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div
                 style={{
-                  width: 40,
-                  height: 40,
+                  width: 44,
+                  height: 44,
                   borderRadius: '50%',
                   background: 'linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%)',
                   display: 'flex',
@@ -124,7 +131,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
                   justifyContent: 'center',
                 }}
               >
-                <span style={{ fontSize: 20 }}>🌙</span>
+                <span style={{ fontSize: 22 }}>🌙</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: 16, fontWeight: 600, color: 'white' }}>Luna Vale</span>
@@ -133,33 +140,44 @@ export default async function Image({ params }: { params: { slug: string } }) {
             </div>
           </div>
 
-          {/* Title */}
+          {/* Title section - takes remaining space */}
           <div
             style={{
-              fontSize: title.length > 50 ? 48 : 56,
-              fontWeight: 800,
-              color: 'white',
-              lineHeight: 1.15,
               display: 'flex',
-              maxWidth: 1000,
+              flexDirection: 'column',
+              justifyContent: 'center',
+              flex: 1,
+              overflow: 'hidden',
             }}
           >
-            {displayTitle}
+            <div
+              style={{
+                fontSize: title.length > 45 ? 44 : 52,
+                fontWeight: 800,
+                color: 'white',
+                lineHeight: 1.2,
+                display: 'flex',
+              }}
+            >
+              {displayTitle}
+            </div>
           </div>
 
-          {/* Footer */}
+          {/* Footer - fixed height */}
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
+              height: 50,
               borderTop: '1px solid rgba(255,255,255,0.1)',
-              paddingTop: 20,
+              paddingTop: 15,
+              marginTop: 20,
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-              <span style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)' }}>ai-dream-blog.vercel.app</span>
-              <span style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)' }}>@CodeAI4Crypto</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+              <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)' }}>ai-dream-blog.vercel.app</span>
+              <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)' }}>@CodeAI4Crypto</span>
             </div>
             <div
               style={{
