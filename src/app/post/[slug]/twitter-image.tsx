@@ -1,10 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-// Use Node.js runtime for more reliable API fetching
-export const runtime = 'nodejs';
-// Force dynamic rendering - no caching
+export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 export const alt = 'Dream Insights Blog Post';
 export const size = {
@@ -13,7 +10,8 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://dream-analysis-t3ub.onrender.com';
+// Production API URL - must be hardcoded for edge runtime
+const API_URL = 'https://dream-analysis-t3ub.onrender.com';
 
 // Category styling
 const categoryStyles: Record<string, { icon: string; gradient: string; accentColor: string }> = {
@@ -338,11 +336,6 @@ export default async function Image({ params }: { params: { slug: string } }) {
     ),
     {
       ...size,
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0',
-      },
     }
   );
 }
