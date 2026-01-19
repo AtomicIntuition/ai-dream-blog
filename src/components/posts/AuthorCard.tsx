@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { AUTHOR } from '@/lib/author';
 import { Sparkles, Twitter } from 'lucide-react';
 
@@ -7,7 +8,7 @@ interface AuthorCardProps {
   variant?: 'compact' | 'full';
 }
 
-export function AuthorCard({ variant = 'compact' }: AuthorCardProps) {
+export const AuthorCard = memo(function AuthorCard({ variant = 'compact' }: AuthorCardProps) {
   if (variant === 'compact') {
     return (
       <div className="flex items-center gap-3">
@@ -59,4 +60,6 @@ export function AuthorCard({ variant = 'compact' }: AuthorCardProps) {
       </div>
     </div>
   );
-}
+});
+
+AuthorCard.displayName = 'AuthorCard';

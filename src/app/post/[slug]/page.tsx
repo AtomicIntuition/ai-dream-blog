@@ -77,11 +77,12 @@ export default async function PostPage({ params }: PageProps) {
   let relatedPosts: Awaited<ReturnType<typeof getRecentPosts>>['posts'] = [];
 
   try {
-    const data = await getPost(params.slug);
-    post = data.post;
-
-    // Get related posts
-    const recentData = await getRecentPosts(4);
+    // Parallelize API fetches for better performance
+    const [postData, recentData] = await Promise.all([
+      getPost(params.slug),
+      getRecentPosts(4),
+    ]);
+    post = postData.post;
     relatedPosts = recentData.posts.filter((p) => p.slug !== params.slug).slice(0, 3);
   } catch {
     notFound();

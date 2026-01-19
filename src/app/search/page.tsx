@@ -1,48 +1,72 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Search, Loader2 } from 'lucide-react';
 import { PostCard } from '@/components/posts/PostCard';
-import type { BlogPost } from '@/lib/api';
+import { searchPosts as searchPostsApi, type BlogPost } from '@/lib/api';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+// Search state type for consolidated state management
+interface SearchState {
+  results: BlogPost[];
+  isLoading: boolean;
+  hasSearched: boolean;
+}
+
+const initialState: SearchState = {
+  results: [],
+  isLoading: false,
+  hasSearched: false,
+};
 
 export default function SearchPage() {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
+  const [state, setState] = useState<SearchState>(initialState);
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Memoized search function
+  const performSearch = useCallback(async (searchQuery: string) => {
+    // Cancel any pending request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    if (searchQuery.length < 2) {
+      setState(initialState);
+      return;
+    }
+
+    // Create new abort controller for this request
+    abortControllerRef.current = new AbortController();
+
+    setState(prev => ({ ...prev, isLoading: true, hasSearched: true }));
+
+    try {
+      const data = await searchPostsApi(searchQuery);
+      setState({
+        results: data.posts || [],
+        isLoading: false,
+        hasSearched: true,
+      });
+    } catch (error) {
+      // Ignore abort errors
+      if (error instanceof Error && error.name === 'AbortError') return;
+      console.error('Search error:', error);
+      setState(prev => ({ ...prev, results: [], isLoading: false }));
+    }
+  }, []);
 
   useEffect(() => {
-    const searchPosts = async () => {
-      if (query.length < 2) {
-        setResults([]);
-        setHasSearched(false);
-        return;
-      }
-
-      setIsLoading(true);
-      setHasSearched(true);
-
-      try {
-        const res = await fetch(
-          `${API_URL}/api/blog/posts?search=${encodeURIComponent(query)}`
-        );
-        const data = await res.json();
-        if (data.success && data.data) {
-          setResults(data.data.posts || []);
-        }
-      } catch (error) {
-        console.error('Search error:', error);
-        setResults([]);
-      } finally {
-        setIsLoading(false);
+    const debounce = setTimeout(() => performSearch(query), 300);
+    return () => {
+      clearTimeout(debounce);
+      // Cleanup abort controller on unmount
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
     };
+  }, [query, performSearch]);
 
-    const debounce = setTimeout(searchPosts, 300);
-    return () => clearTimeout(debounce);
-  }, [query]);
+  const { results, isLoading, hasSearched } = state;
 
   return (
     <div className="min-h-screen py-12">

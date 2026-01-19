@@ -2,12 +2,14 @@
 
 import { Moon, Sun, BookOpen } from 'lucide-react';
 import { useTheme, Theme } from '@/contexts/ThemeContext';
+import { THEME_ORDER } from '@/lib/constants';
 
-const themes: { value: Theme; icon: React.ElementType; label: string }[] = [
+// Hoisted outside component to prevent recreation on each render
+const THEMES: readonly { value: Theme; icon: React.ElementType; label: string }[] = [
   { value: 'light', icon: Sun, label: 'Light' },
   { value: 'dark', icon: Moon, label: 'Dark' },
   { value: 'sepia', icon: BookOpen, label: 'Sepia' },
-];
+] as const;
 
 export function ThemeToggle() {
   const { theme, setTheme, isTransitioning } = useTheme();
@@ -15,7 +17,7 @@ export function ThemeToggle() {
   return (
     <div className="theme-toggle-container">
       <div className="theme-toggle-group">
-        {themes.map(({ value, icon: Icon, label }) => (
+        {THEMES.map(({ value, icon: Icon, label }) => (
           <button
             key={value}
             onClick={() => setTheme(value)}
@@ -43,13 +45,12 @@ export function ThemeToggleCompact() {
 
   const cycleTheme = () => {
     if (isTransitioning) return;
-    const order: Theme[] = ['light', 'dark', 'sepia'];
-    const currentIndex = order.indexOf(theme);
-    const nextIndex = (currentIndex + 1) % order.length;
-    setTheme(order[nextIndex]);
+    const currentIndex = THEME_ORDER.indexOf(theme);
+    const nextIndex = (currentIndex + 1) % THEME_ORDER.length;
+    setTheme(THEME_ORDER[nextIndex]);
   };
 
-  const currentTheme = themes.find(t => t.value === theme);
+  const currentTheme = THEMES.find(t => t.value === theme);
   const Icon = currentTheme?.icon || Moon;
 
   return (

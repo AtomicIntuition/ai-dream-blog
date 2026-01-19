@@ -1,33 +1,32 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Moon, Brain, Bed, Sparkles, TrendingUp, Clock, ChevronRight } from 'lucide-react';
+import { ArrowRight, Moon, TrendingUp, Clock, ChevronRight, Sparkles } from 'lucide-react';
 import { PostCard } from '@/components/posts/PostCard';
 import { AuthorCard } from '@/components/posts/AuthorCard';
 import { getPosts, getCategories, getFeaturedPosts } from '@/lib/api';
 import { formatDate, calculateReadingTime, getCategoryLabel } from '@/lib/utils';
 import { AUTHOR } from '@/lib/author';
+import { SITE_URL, CATEGORY_ICONS, CATEGORY_DESCRIPTIONS } from '@/lib/constants';
 
 // Revalidate every 60 seconds for fresh content
 export const revalidate = 60;
-
-const baseUrl = 'https://ai-dream-blog.vercel.app';
 
 export const metadata: Metadata = {
   title: 'Dream Insights | AI-Powered Dream Analysis Blog',
   description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides by Luna Vale.',
   alternates: {
-    canonical: baseUrl,
+    canonical: SITE_URL,
   },
   openGraph: {
     title: 'Dream Insights | AI-Powered Dream Analysis Blog',
     description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
-    url: baseUrl,
+    url: SITE_URL,
     type: 'website',
     siteName: 'Dream Insights',
     locale: 'en_US',
     images: [
       {
-        url: `${baseUrl}/opengraph-image`,
+        url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: 'Dream Insights by Luna Vale - AI Dream Analysis',
@@ -43,27 +42,13 @@ export const metadata: Metadata = {
     description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
     images: [
       {
-        url: `${baseUrl}/twitter-image`,
+        url: `${SITE_URL}/twitter-image`,
         width: 1200,
         height: 630,
         alt: 'Dream Insights by Luna Vale - AI Dream Analysis',
       },
     ],
   },
-};
-
-const categoryIcons: Record<string, React.ElementType> = {
-  'dream-stories': Moon,
-  'dream-science': Brain,
-  'sleep-tips': Bed,
-  'symbolism': Sparkles,
-};
-
-const categoryDescriptions: Record<string, string> = {
-  'dream-stories': 'AI-analyzed dreams with deep psychological insights',
-  'dream-science': 'The neuroscience and psychology behind dreaming',
-  'sleep-tips': 'Practical advice for better sleep and dream recall',
-  'symbolism': 'Decode the hidden meanings in your dreams',
 };
 
 export default async function HomePage() {
@@ -102,7 +87,7 @@ export default async function HomePage() {
           {/* Top Bar - Categories */}
           <nav className="flex items-center justify-center gap-1 mb-12 overflow-x-auto pb-2 scrollbar-hide">
             {categories.map((category) => {
-              const Icon = categoryIcons[category.slug] || Moon;
+              const Icon = CATEGORY_ICONS[category.slug] || Moon;
               return (
                 <Link
                   key={category.slug}
@@ -285,8 +270,8 @@ export default async function HomePage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-4">
             {categories.map((category) => {
-              const Icon = categoryIcons[category.slug] || Moon;
-              const description = categoryDescriptions[category.slug] || '';
+              const Icon = CATEGORY_ICONS[category.slug] || Moon;
+              const description = CATEGORY_DESCRIPTIONS[category.slug] || '';
 
               return (
                 <Link

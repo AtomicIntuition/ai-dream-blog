@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react';
 import Link from 'next/link';
 import { Calendar, Clock, Eye } from 'lucide-react';
 import { cn, formatDate, calculateReadingTime, getCategoryLabel } from '@/lib/utils';
@@ -8,7 +9,7 @@ interface PostCardProps {
   featured?: boolean;
 }
 
-export function PostCard({ post, featured = false }: PostCardProps) {
+export const PostCard = memo(function PostCard({ post, featured = false }: PostCardProps) {
   const readingTime = calculateReadingTime(post.content);
 
   return (
@@ -96,4 +97,6 @@ export function PostCard({ post, featured = false }: PostCardProps) {
       </Link>
     </article>
   );
-}
+});
+
+PostCard.displayName = 'PostCard';
