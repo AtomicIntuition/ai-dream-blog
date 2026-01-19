@@ -1,53 +1,75 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback, useRef, ReactNode } from 'react';
 
 export type Theme = 'dark' | 'light' | 'sepia';
 
 interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
+  isTransitioning: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+// Duration should match the CSS transition duration
+const TRANSITION_DURATION = 400;
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
+  const [theme, setThemeState] = useState<Theme>('dark');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Load theme from localStorage on mount
-  useEffect(() => {
-    setMounted(true);
-    const savedTheme = localStorage.getItem('blog-theme') as Theme;
-    if (savedTheme && ['dark', 'light', 'sepia'].includes(savedTheme)) {
-      setTheme(savedTheme);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(prefersDark ? 'dark' : 'light');
-    }
-  }, []);
-
-  // Apply theme to document
-  useEffect(() => {
-    if (!mounted) return;
+  // Wrapped setTheme that handles smooth transitions
+  const setTheme = useCallback((newTheme: Theme) => {
+    if (newTheme === theme || isTransitioning) return;
 
     const root = document.documentElement;
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('blog-theme', theme);
-  }, [theme, mounted]);
 
-  // Prevent flash of wrong theme
-  if (!mounted) {
-    return (
-      <div style={{ visibility: 'hidden' }}>
-        {children}
-      </div>
-    );
-  }
+    // Clear any existing timeout
+    if (transitionTimeoutRef.current) {
+      clearTimeout(transitionTimeoutRef.current);
+    }
 
+    // Enable transitions
+    setIsTransitioning(true);
+    root.classList.add('theme-transition');
+
+    // Use requestAnimationFrame to ensure the class is applied before changing theme
+    requestAnimationFrame(() => {
+      // Apply the new theme
+      root.setAttribute('data-theme', newTheme);
+      localStorage.setItem('blog-theme', newTheme);
+      setThemeState(newTheme);
+
+      // Remove transition class after animation completes
+      transitionTimeoutRef.current = setTimeout(() => {
+        root.classList.remove('theme-transition');
+        setIsTransitioning(false);
+      }, TRANSITION_DURATION);
+    });
+  }, [theme, isTransitioning]);
+
+  // Load theme from localStorage on mount (sync with inline script)
+  useEffect(() => {
+    // Read the theme that was already set by the inline script
+    const currentTheme = document.documentElement.getAttribute('data-theme') as Theme;
+    if (currentTheme && ['dark', 'light', 'sepia'].includes(currentTheme)) {
+      setThemeState(currentTheme);
+    }
+
+    // Cleanup timeout on unmount
+    return () => {
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // The inline script in layout.tsx already sets the theme before hydration,
+  // so we don't need to hide content - just sync React state with DOM
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, isTransitioning }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -60,6 +82,7 @@ export function useTheme() {
     return {
       theme: 'dark' as Theme,
       setTheme: () => {},
+      isTransitioning: false,
     };
   }
   return context;
