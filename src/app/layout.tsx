@@ -21,31 +21,63 @@ const sourceSerif = Source_Serif_4({
   weight: ['400', '500', '600', '700'],
 });
 
+const baseUrl = 'https://ai-dream-blog.vercel.app';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ai-dream-blog.vercel.app'),
+  metadataBase: new URL(baseUrl),
   title: {
     default: 'Dream Insights | AI-Powered Dream Analysis Blog',
     template: '%s | Dream Insights',
   },
   description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
   keywords: ['dreams', 'dream analysis', 'dream interpretation', 'sleep', 'psychology', 'symbolism'],
-  authors: [{ name: 'Dream Insights' }],
+  authors: [{ name: 'Luna Vale' }, { name: 'Dream Insights' }],
+  creator: 'Luna Vale',
+  publisher: 'Dream Insights',
+  alternates: {
+    canonical: baseUrl,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
+    url: baseUrl,
     siteName: 'Dream Insights',
     title: 'Dream Insights | AI-Powered Dream Analysis Blog',
     description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
+    images: [
+      {
+        url: `${baseUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: 'Dream Insights by Luna Vale - AI Dream Analysis',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@CodeAI4Crypto',
+    creator: '@CodeAI4Crypto',
     title: 'Dream Insights | AI-Powered Dream Analysis Blog',
     description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
-    creator: '@CodeAI4Crypto',
+    images: [
+      {
+        url: `${baseUrl}/twitter-image`,
+        width: 1200,
+        height: 630,
+        alt: 'Dream Insights by Luna Vale - AI Dream Analysis',
+      },
+    ],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

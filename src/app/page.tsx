@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Moon, Brain, Bed, Sparkles, TrendingUp, Clock, ChevronRight } from 'lucide-react';
 import { PostCard } from '@/components/posts/PostCard';
@@ -8,6 +9,48 @@ import { AUTHOR } from '@/lib/author';
 
 // Revalidate every 60 seconds for fresh content
 export const revalidate = 60;
+
+const baseUrl = 'https://ai-dream-blog.vercel.app';
+
+export const metadata: Metadata = {
+  title: 'Dream Insights | AI-Powered Dream Analysis Blog',
+  description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides by Luna Vale.',
+  alternates: {
+    canonical: baseUrl,
+  },
+  openGraph: {
+    title: 'Dream Insights | AI-Powered Dream Analysis Blog',
+    description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
+    url: baseUrl,
+    type: 'website',
+    siteName: 'Dream Insights',
+    locale: 'en_US',
+    images: [
+      {
+        url: `${baseUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: 'Dream Insights by Luna Vale - AI Dream Analysis',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@CodeAI4Crypto',
+    creator: '@CodeAI4Crypto',
+    title: 'Dream Insights | AI-Powered Dream Analysis Blog',
+    description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
+    images: [
+      {
+        url: `${baseUrl}/twitter-image`,
+        width: 1200,
+        height: 630,
+        alt: 'Dream Insights by Luna Vale - AI Dream Analysis',
+      },
+    ],
+  },
+};
 
 const categoryIcons: Record<string, React.ElementType> = {
   'dream-stories': Moon,
