@@ -156,7 +156,7 @@ export default async function HomePage() {
               <div className="lg:col-span-2 flex flex-col gap-4">
                 {secondaryPosts.map((post) => (
                   <Link key={post.id} href={`/post/${post.slug}`} className="group flex-1">
-                    <article className="h-full glass-card p-5 rounded-2xl hover:border-[rgb(var(--border-hover))] transition-all">
+                    <article className="h-full glass-card p-5 rounded-2xl hover:border-[rgb(var(--border-hover))]">
                       <span className={`category-badge category-${post.category} text-xs mb-3`}>
                         {getCategoryLabel(post.category)}
                       </span>

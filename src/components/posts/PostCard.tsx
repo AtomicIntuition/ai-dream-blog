@@ -15,7 +15,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
   return (
     <article
       className={cn(
-        'group glass-card overflow-hidden transition-all duration-300',
+        'group glass-card overflow-hidden',
         'hover:border-[rgb(var(--border-hover))] hover:shadow-lg hover:shadow-[rgb(var(--glow-color))]',
         featured && 'md:col-span-2'
       )}

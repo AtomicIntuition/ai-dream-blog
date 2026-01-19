@@ -339,6 +339,13 @@
   .glass-card {
     @apply glass rounded-2xl;
     box-shadow: 0 4px 24px rgb(var(--shadow-color));
+    /* Hover transitions - only for interactive states, not theme changes */
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  /* Disable component transitions during theme switch to prevent conflicts */
+  html.theme-transition .glass-card {
+    transition: none !important;
   }
 
   .glass-hover {
