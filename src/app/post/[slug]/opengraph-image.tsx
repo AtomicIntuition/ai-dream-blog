@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const alt = 'Dream Insights Blog Post';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
@@ -8,21 +8,29 @@ export const contentType = 'image/png';
 const API_URL = 'https://dream-analysis-t3ub.onrender.com';
 
 const categoryColors: Record<string, string> = {
-  'dream-stories': 'rgba(139, 92, 246, 0.5)',
-  'dream-science': 'rgba(6, 182, 212, 0.5)',
-  'sleep-tips': 'rgba(16, 185, 129, 0.5)',
-  'symbolism': 'rgba(245, 158, 11, 0.5)',
+  'dream-stories': '#8b5cf6',
+  'dream-science': '#06b6d4',
+  'sleep-tips': '#10b981',
+  'symbolism': '#f59e0b',
 };
 
 const categoryLabels: Record<string, string> = {
-  'dream-stories': 'Dream Story',
-  'dream-science': 'Dream Science',
-  'sleep-tips': 'Sleep Tips',
-  'symbolism': 'Dream Symbolism',
+  'dream-stories': '✨ Dream Story',
+  'dream-science': '🧠 Dream Science',
+  'sleep-tips': '😴 Sleep Tips',
+  'symbolism': '🔮 Dream Symbolism',
+};
+
+const categoryEmojis: Record<string, string> = {
+  'dream-stories': '✨',
+  'dream-science': '🧠',
+  'sleep-tips': '😴',
+  'symbolism': '🔮',
 };
 
 export default async function Image({ params }: { params: { slug: string } }) {
   let title = 'Dream Insights';
+  let excerpt = 'Explore the depths of your subconscious mind';
   let category = 'dream-stories';
 
   try {
@@ -33,6 +41,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
       const json = await res.json();
       if (json.success && json.data?.post) {
         title = json.data.post.title || title;
+        excerpt = json.data.post.excerpt || excerpt;
         category = json.data.post.category || category;
       }
     }
@@ -42,8 +51,11 @@ export default async function Image({ params }: { params: { slug: string } }) {
 
   const gradientColor = categoryColors[category] || categoryColors['dream-stories'];
   const categoryLabel = categoryLabels[category] || 'Dream Story';
-  // Shorter title limit to prevent overflow
-  const displayTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
+  const emoji = categoryEmojis[category] || '✨';
+  
+  // Determine text color based on background brightness
+  const isDarkBg = ['#06b6d4', '#8b5cf6', '#10b981'].includes(gradientColor);
+  const buttonTextColor = gradientColor === '#f59e0b' ? '#1a1a1a' : '#ffffff';
 
   return new ImageResponse(
     (
@@ -53,141 +65,218 @@ export default async function Image({ params }: { params: { slug: string } }) {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          background: '#050510',
+          background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%)',
           position: 'relative',
           overflow: 'hidden',
+          fontFamily: 'system-ui, -apple-system, sans-serif',
+          padding: '50px 60px',
         }}
       >
-        {/* Aurora gradient */}
+        {/* Animated background orbs */}
         <div
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: `radial-gradient(ellipse 80% 50% at 50% -20%, ${gradientColor} 0%, transparent 50%)`,
-            display: 'flex',
+            top: '-150px',
+            right: '-100px',
+            width: '500px',
+            height: '500px',
+            background: `radial-gradient(circle, ${gradientColor}30 0%, transparent 70%)`,
+            borderRadius: '50%',
           }}
         />
         <div
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'radial-gradient(ellipse 60% 40% at 90% 60%, rgba(217, 70, 239, 0.2) 0%, transparent 50%)',
-            display: 'flex',
+            bottom: '-200px',
+            left: '-100px',
+            width: '400px',
+            height: '400px',
+            background: 'radial-gradient(circle, #8b5cf630 0%, transparent 70%)',
+            borderRadius: '50%',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            right: '10%',
+            width: '200px',
+            height: '200px',
+            background: `radial-gradient(circle, ${gradientColor}20 0%, transparent 70%)`,
+            borderRadius: '50%',
           }}
         />
 
-        {/* Content wrapper with fixed sections */}
+        {/* Content container */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            height: '100%',
-            padding: '40px 60px',
+            position: 'relative',
             zIndex: 10,
+            height: '100%',
+            justifyContent: 'space-between',
           }}
         >
-          {/* Top row - fixed height */}
+          {/* Header: Category Badge and Author */}
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              height: 60,
-              marginBottom: 30,
+              marginBottom: '30px',
             }}
           >
-            {/* Category badge */}
+            {/* Category Badge */}
             <div
               style={{
-                padding: '10px 20px',
-                background: gradientColor,
-                borderRadius: 50,
-                border: '1px solid rgba(255,255,255,0.2)',
                 display: 'flex',
                 alignItems: 'center',
+                gap: '10px',
+                background: gradientColor,
+                color: buttonTextColor,
+                padding: '12px 24px',
+                borderRadius: '25px',
+                fontSize: '20px',
+                fontWeight: '700',
+                letterSpacing: '0.5px',
+                boxShadow: `0 8px 32px ${gradientColor}40`,
               }}
             >
-              <span style={{ fontSize: 15, fontWeight: 600, color: 'white', textTransform: 'uppercase', letterSpacing: 1 }}>
-                {categoryLabel}
-              </span>
+              {emoji}
+              {categoryLabel.replace(emoji, '').trim()}
             </div>
 
-            {/* Author */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            {/* Author Badge - LARGER - Matching app branding */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                position: 'relative',
+              }}
+            >
+              {/* Main author avatar with gradient */}
               <div
                 style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%)',
+                  position: 'relative',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%)',
+                  fontSize: '28px',
                 }}
               >
-                <span style={{ fontSize: 22 }}>🌙</span>
+                ✨
+                {/* AI Badge */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '-4px',
+                    right: '-4px',
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    background: '#10b981',
+                    border: '2px solid #0f0f23',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '10px',
+                    fontWeight: '900',
+                    color: '#ffffff',
+                  }}
+                >
+                  AI
+                </div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontSize: 16, fontWeight: 600, color: 'white' }}>Luna Vale</span>
-                <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>AI Dream Analyst</span>
+              {/* Name and title */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '2px',
+                }}
+              >
+                <div style={{ fontSize: '20px', fontWeight: '700', color: '#ffffff' }}>
+                  Luna Vale
+                </div>
+                <div style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.75)' }}>
+                  Dream Analyst
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Title section - takes remaining space */}
-          <div
+          {/* Main Title */}
+          <h1
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              flex: 1,
-              overflow: 'hidden',
+              fontSize: '52px',
+              fontWeight: '800',
+              color: '#ffffff',
+              margin: '0 0 20px 0',
+              lineHeight: '1.25',
+              letterSpacing: '-1px',
             }}
           >
-            <div
-              style={{
-                fontSize: title.length > 45 ? 44 : 52,
-                fontWeight: 800,
-                color: 'white',
-                lineHeight: 1.2,
-                display: 'flex',
-              }}
-            >
-              {displayTitle}
-            </div>
-          </div>
+            {title}
+          </h1>
 
-          {/* Footer - fixed height */}
+          {/* Subtitle/Excerpt */}
+          <p
+            style={{
+              fontSize: '20px',
+              color: 'rgba(255, 255, 255, 0.75)',
+              margin: '0 0 40px 0',
+              lineHeight: '1.6',
+              maxWidth: '90%',
+            }}
+          >
+            {excerpt}
+          </p>
+
+          {/* Footer - positioned at bottom */}
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              height: 50,
-              borderTop: '1px solid rgba(255,255,255,0.1)',
-              paddingTop: 15,
-              marginTop: 20,
+              paddingTop: '30px',
+              borderTop: `2px solid ${gradientColor}40`,
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-              <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)' }}>ai-dream-blog.vercel.app</span>
-              <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)' }}>@CodeAI4Crypto</span>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: gradientColor,
+                fontSize: '18px',
+                fontWeight: '700',
+                letterSpacing: '0.5px',
+              }}
+            >
+              𝕏
+              <span style={{ color: 'rgba(255, 255, 255, 0.9)' }}>@CodeAI4Crypto</span>
             </div>
             <div
               style={{
-                padding: '8px 16px',
-                background: 'rgba(255,255,255,0.1)',
-                borderRadius: 8,
                 display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: gradientColor,
+                color: buttonTextColor,
+                padding: '10px 20px',
+                borderRadius: '10px',
+                fontSize: '16px',
+                fontWeight: '700',
+                boxShadow: `0 4px 16px ${gradientColor}50`,
               }}
             >
-              <span style={{ fontSize: 14, color: 'white', fontWeight: 500 }}>Read Full Analysis →</span>
+              📖 Read Analysis
             </div>
           </div>
         </div>
