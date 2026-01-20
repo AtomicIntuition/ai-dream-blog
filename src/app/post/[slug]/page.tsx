@@ -9,9 +9,6 @@ import { PostContent } from '@/components/posts/PostContent';
 import { AuthorCard } from '@/components/posts/AuthorCard';
 import { AUTHOR } from '@/lib/author';
 
-// Force dynamic rendering to ensure fresh metadata on each request
-export const dynamic = 'force-dynamic';
-
 interface PageProps {
   params: { slug: string };
 }
