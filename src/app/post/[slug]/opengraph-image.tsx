@@ -4,7 +4,7 @@ export const runtime = 'edge';
 export const alt = 'Dream Insights Blog Post';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 60; // Revalidate every minute for fresh OG
 
 const API_URL = 'https://dream-analysis-t3ub.onrender.com';
 
