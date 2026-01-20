@@ -79,6 +79,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
         }}
       >
         {/* Animated background orbs */}
+        {/* MARKER: LUNA_VALE_V2_2026_01_20 */}
         <div
           style={{
             position: 'absolute',

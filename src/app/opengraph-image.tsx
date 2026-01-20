@@ -68,7 +68,7 @@ export default function Image() {
                 justifyContent: 'center',
               }}
             >
-              <span style={{ fontSize: 24 }}>🌙</span>
+              <span style={{ fontSize: 24 }}>✨</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span style={{ fontSize: 18, fontWeight: 600, color: 'white' }}>Luna Vale</span>
