@@ -35,15 +35,9 @@ export default async function Image({ params }: { params: { slug: string } }) {
   let category = 'dream-stories';
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
     const res = await fetch(`${API_URL}/api/blog/posts/${params.slug}`, {
       next: { revalidate: 60 },
-      signal: controller.signal,
     });
-    
-    clearTimeout(timeoutId);
     
     if (res.ok) {
       const json = await res.json();
@@ -54,8 +48,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
       }
     }
   } catch (e) {
-    // Use defaults - silently fall back to default title/excerpt
-    // This ensures OG image is generated even if API is slow
+    // Use defaults - silently fall back if API is slow/down
   }
 
   const gradientColor = categoryColors[category] || categoryColors['dream-stories'];
