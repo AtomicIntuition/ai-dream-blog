@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
     images: [
       {
-        url: `${SITE_URL}/twitter-image`,
+        url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: 'Dream Insights by Luna Vale - AI Dream Analysis',

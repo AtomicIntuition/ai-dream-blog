@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         site: '@CodeAI4Crypto',
         images: [
           {
-            url: `${postUrl}/twitter-image`,
+            url: `${postUrl}/opengraph-image`,
             width: 1200,
             height: 630,
             alt: post.title,

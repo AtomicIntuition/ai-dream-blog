@@ -14,12 +14,12 @@ export default function Image() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          background: '#050510',
+          background: 'linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #16213e 100%)',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        {/* Aurora gradient */}
+        {/* Aurora gradients */}
         <div
           style={{
             position: 'absolute',
@@ -43,6 +43,94 @@ export default function Image() {
           }}
         />
 
+        {/* Floating Stars */}
+        {[...Array(30)].map((_, i) => {
+          const size = Math.random() * 3 + 1;
+          const x = Math.random() * 1200;
+          const y = Math.random() * 630;
+          const opacity = Math.random() * 0.6 + 0.3;
+          return (
+            <div
+              key={`star-${i}`}
+              style={{
+                position: 'absolute',
+                left: `${x}px`,
+                top: `${y}px`,
+                width: `${size}px`,
+                height: `${size}px`,
+                background: '#ffffff',
+                borderRadius: '50%',
+                opacity: opacity,
+                boxShadow: `0 0 ${size * 2}px rgba(255, 255, 255, 0.8)`,
+              }}
+            />
+          );
+        })}
+
+        {/* Large Twinkling Stars */}
+        {[...Array(10)].map((_, i) => {
+          const x = Math.random() * 1200;
+          const y = Math.random() * 630;
+          return (
+            <div
+              key={`bigstar-${i}`}
+              style={{
+                position: 'absolute',
+                left: `${x}px`,
+                top: `${y}px`,
+                width: '4px',
+                height: '4px',
+                background: '#ffffff',
+                borderRadius: '50%',
+                opacity: 0.8,
+                boxShadow: `
+                  0 0 8px rgba(255, 255, 255, 0.9),
+                  0 0 16px rgba(139, 92, 246, 0.4),
+                  0 0 24px rgba(139, 92, 246, 0.2)
+                `,
+              }}
+            />
+          );
+        })}
+
+        {/* Cloud-like shapes */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '15%',
+            right: '10%',
+            width: '220px',
+            height: '90px',
+            background: 'rgba(255, 255, 255, 0.04)',
+            borderRadius: '100px',
+            filter: 'blur(45px)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '25%',
+            left: '10%',
+            width: '200px',
+            height: '80px',
+            background: 'rgba(139, 92, 246, 0.1)',
+            borderRadius: '100px',
+            filter: 'blur(40px)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '55%',
+            right: '20%',
+            width: '170px',
+            height: '70px',
+            background: 'rgba(6, 182, 212, 0.08)',
+            borderRadius: '100px',
+            filter: 'blur(35px)',
+          }}
+        />
+
         {/* Content */}
         <div
           style={{
@@ -53,6 +141,7 @@ export default function Image() {
             height: '100%',
             padding: '60px 80px',
             zIndex: 10,
+            position: 'relative',
           }}
         >
           {/* Brand */}
@@ -66,6 +155,7 @@ export default function Image() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)',
               }}
             >
               <span style={{ fontSize: 24 }}>✨</span>
@@ -84,6 +174,7 @@ export default function Image() {
               color: 'white',
               marginBottom: 16,
               display: 'flex',
+              textShadow: '0 4px 20px rgba(139, 92, 246, 0.4)',
             }}
           >
             Dream Insights
@@ -101,6 +192,31 @@ export default function Image() {
             Decode what your subconscious is telling you
           </div>
 
+          {/* Author & Twitter Info */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '20px',
+              marginBottom: '32px',
+              flexWrap: 'wrap',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: 'rgba(255, 255, 255, 0.8)',
+                fontSize: '18px',
+                fontWeight: '500',
+              }}
+            >
+              <span style={{ fontSize: '20px' }}>𝕏</span>
+              <span>@CodeAI4Crypto</span>
+            </div>
+          </div>
+
           {/* Features */}
           <div style={{ display: 'flex', gap: 16 }}>
             <div
@@ -112,6 +228,7 @@ export default function Image() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
+                backdropFilter: 'blur(10px)',
               }}
             >
               <span style={{ fontSize: 18 }}>🧠</span>
@@ -126,6 +243,7 @@ export default function Image() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
+                backdropFilter: 'blur(10px)',
               }}
             >
               <span style={{ fontSize: 18 }}>🔮</span>
@@ -140,36 +258,13 @@ export default function Image() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
+                backdropFilter: 'blur(10px)',
               }}
             >
               <span style={{ fontSize: 18 }}>✨</span>
               <span style={{ fontSize: 16, fontWeight: 500, color: 'white' }}>Daily Insights</span>
             </div>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 60,
-            background: 'linear-gradient(90deg, rgba(139, 92, 246, 0.3) 0%, rgba(6, 182, 212, 0.3) 100%)',
-            borderTop: '1px solid rgba(255,255,255,0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '0 80px',
-          }}
-        >
-          <span style={{ fontSize: 18, color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>
-            ai-dream-blog.vercel.app
-          </span>
-          <span style={{ fontSize: 18, color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>
-            @CodeAI4Crypto
-          </span>
         </div>
       </div>
     ),
