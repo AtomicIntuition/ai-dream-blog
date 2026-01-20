@@ -4,6 +4,7 @@ export const runtime = 'nodejs';
 export const alt = 'Dream Insights Blog Post';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
+export const revalidate = 60; // Revalidate every 60 seconds
 
 const API_URL = 'https://dream-analysis-t3ub.onrender.com';
 
@@ -35,7 +36,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
 
   try {
     const res = await fetch(`${API_URL}/api/blog/posts/${params.slug}`, {
-      cache: 'no-store',
+      next: { revalidate: 60 },
     });
     if (res.ok) {
       const json = await res.json();
@@ -47,6 +48,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
     }
   } catch (e) {
     // Use defaults
+    console.error('Error fetching post for OG:', e);
   }
 
   const gradientColor = categoryColors[category] || categoryColors['dream-stories'];
