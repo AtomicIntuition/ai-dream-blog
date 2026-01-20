@@ -1,10 +1,10 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 export const alt = 'Dream Insights Blog Post';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 3600; // Revalidate every hour
 
 const API_URL = 'https://dream-analysis-t3ub.onrender.com';
 
@@ -35,7 +35,8 @@ export default async function Image({ params }: { params: { slug: string } }) {
   let category = 'dream-stories';
 
   try {
-    const res = await fetch(`${API_URL}/api/blog/posts/${params.slug}`, {
+    const url = `${API_URL}/api/blog/posts/${params.slug}`;
+    const res = await fetch(url, {
       next: { revalidate: 60 },
     });
     
@@ -46,8 +47,11 @@ export default async function Image({ params }: { params: { slug: string } }) {
         excerpt = json.data.post.excerpt || excerpt;
         category = json.data.post.category || category;
       }
+    } else {
+      console.error(`[OG] API response not ok: ${res.status} for ${url}`);
     }
   } catch (e) {
+    console.error(`[OG] API fetch failed for ${params.slug}:`, e);
     // Use defaults - silently fall back if API is slow/down
   }
 
