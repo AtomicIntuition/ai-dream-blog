@@ -4,9 +4,11 @@ export const runtime = 'edge';
 export const alt = 'Dream Insights Blog Post';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const revalidate = 60; // Revalidate every minute for fresh OG
+// Keep this reasonably cacheable so Twitter/Discord re-fetches are reliable,
+// while still updating shortly after new posts publish.
+export const revalidate = 300; // 5 minutes
 
-const API_URL = 'https://dream-analysis-t3ub.onrender.com';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://dream-analysis-t3ub.onrender.com';
 
 const categoryColors: Record<string, string> = {
   'dream-stories': '#8b5cf6',
@@ -36,9 +38,17 @@ export default async function Image({ params }: { params: { slug: string } }) {
 
   try {
     const url = `${API_URL}/api/blog/posts/${params.slug}`;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2500);
     const res = await fetch(url, {
-      next: { revalidate: 60 },
-    });
+      // Use Next caching; the segment-level `revalidate` controls overall freshness.
+      next: { revalidate },
+      signal: controller.signal,
+      headers: {
+        // Some CDNs/backends behave better with an explicit UA.
+        'user-agent': 'DreamInsightsOGBot/1.0',
+      },
+    }).finally(() => clearTimeout(timeout));
     
     if (res.ok) {
       const json = await res.json();

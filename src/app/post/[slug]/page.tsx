@@ -8,14 +8,15 @@ import { PostCard } from '@/components/posts/PostCard';
 import { PostContent } from '@/components/posts/PostContent';
 import { AuthorCard } from '@/components/posts/AuthorCard';
 import { AUTHOR } from '@/lib/author';
+import { SITE_URL } from '@/lib/constants';
 
 interface PageProps {
   params: { slug: string };
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const baseUrl = 'https://ai-dream-blog.vercel.app';
-  const postUrl = `${baseUrl}/post/${params.slug}`;
+  // Keep metadata URLs environment-safe via `metadataBase` (set in `app/layout.tsx`).
+  const postUrl = `/post/${params.slug}`;
 
   try {
     const { post } = await getPost(params.slug);
@@ -149,7 +150,7 @@ export default async function PostPage({ params }: PageProps) {
             <span className="text-sm text-[rgb(var(--text-muted))]">Share:</span>
             <a
               href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                `https://ai-dream-blog.vercel.app/post/${post.slug}`
+                `${SITE_URL}/post/${post.slug}`
               )}&text=${encodeURIComponent(post.title)}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -159,7 +160,7 @@ export default async function PostPage({ params }: PageProps) {
             </a>
             <a
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                `https://ai-dream-blog.vercel.app/post/${post.slug}`
+                `${SITE_URL}/post/${post.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -169,7 +170,7 @@ export default async function PostPage({ params }: PageProps) {
             </a>
             <a
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                `https://ai-dream-blog.vercel.app/post/${post.slug}`
+                `${SITE_URL}/post/${post.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"

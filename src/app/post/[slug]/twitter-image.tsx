@@ -5,7 +5,8 @@ export const alt = 'Dream Insights Blog Post';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const API_URL = 'https://dream-analysis-t3ub.onrender.com';
+// Same API origin as the rest of the blog (`src/lib/api.ts`)
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://dream-analysis-t3ub.onrender.com';
 
 const categoryColors: Record<string, string> = {
   'dream-stories': 'rgba(139, 92, 246, 0.5)',
@@ -26,9 +27,17 @@ export default async function Image({ params }: { params: { slug: string } }) {
   let category = 'dream-stories';
 
   try {
-    const res = await fetch(`${API_URL}/api/blog/posts/${params.slug}`, {
-      cache: 'no-store',
-    });
+    const url = `${API_URL}/api/blog/posts/${params.slug}`;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2500);
+    const res = await fetch(url, {
+      // Avoid `no-store` here: Twitter will refetch, and `no-store` makes it flaky/slow under load.
+      next: { revalidate: 300 },
+      signal: controller.signal,
+      headers: {
+        'user-agent': 'DreamInsightsTwitterBot/1.0',
+      },
+    }).finally(() => clearTimeout(timeout));
     if (res.ok) {
       const json = await res.json();
       if (json.success && json.data?.post) {
