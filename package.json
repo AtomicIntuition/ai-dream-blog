@@ -13,6 +13,7 @@
     "@react-three/fiber": "^8.15.12",
     "@react-three/postprocessing": "^2.15.11",
     "@remotion/cli": "^4.0.242",
+    "@remotion/player": "^4.0.242",
     "@remotion/three": "^4.0.242",
     "clsx": "^2.1.0",
     "date-fns": "^3.3.0",
