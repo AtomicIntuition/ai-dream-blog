@@ -8,7 +8,7 @@ import { PostCard } from '@/components/posts/PostCard';
 import { PostContent } from '@/components/posts/PostContent';
 import { AuthorCard } from '@/components/posts/AuthorCard';
 import { AUTHOR } from '@/lib/author';
-import { SITE_URL } from '@/lib/constants';
+import { SITE_URL, getOgImageForCategory } from '@/lib/constants';
 
 interface PageProps {
   params: { slug: string };
@@ -20,6 +20,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   try {
     const { post } = await getPost(params.slug);
+
+    // Use static category-specific OG image
+    const ogImage = getOgImageForCategory(post.category);
 
     return {
       title: post.meta_title || post.title,
@@ -39,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         locale: 'en_US',
         images: [
           {
-            url: `${postUrl}/opengraph-image`,
+            url: ogImage,
             width: 1200,
             height: 630,
             alt: post.title,
@@ -54,7 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         site: '@CodeAI4Crypto',
         images: [
           {
-            url: `${postUrl}/opengraph-image`,
+            url: ogImage,
             width: 1200,
             height: 630,
             alt: post.title,

@@ -10,6 +10,7 @@ import {
   CATEGORY_DESCRIPTIONS_EXTENDED,
   CATEGORY_COLORS,
   VALID_CATEGORIES,
+  getOgImageForCategory,
 } from '@/lib/constants';
 
 // Force dynamic rendering to always fetch fresh data
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const title = getCategoryLabel(category);
   const description = CATEGORY_DESCRIPTIONS_EXTENDED[category];
+  const ogImage = getOgImageForCategory(category);
 
   return {
     title: `${title} | Dream Insights`,
@@ -37,6 +39,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: `${title} | Dream Insights`,
       description,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${title} - Dream Insights`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | Dream Insights`,
+      description,
+      site: '@CodeAI4Crypto',
+      creator: '@CodeAI4Crypto',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${title} - Dream Insights`,
+        },
+      ],
     },
   };
 }

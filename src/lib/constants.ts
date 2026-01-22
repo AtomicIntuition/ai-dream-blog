@@ -41,3 +41,18 @@ export const CATEGORY_COLORS: Record<string, string> = {
   'sleep-tips': 'from-emerald-500 to-emerald-600',
   'symbolism': 'from-amber-500 to-amber-600',
 } as const;
+
+// Static OG images for each category (located in /public/images/)
+export const OG_IMAGES = {
+  default: '/images/ai-dream-blog.png',
+  'dream-stories': '/images/dream-stories.png',
+  'dream-science': '/images/dream-science.png',
+  'sleep-tips': '/images/sleep-tips.png',
+  'symbolism': '/images/dream-symbolism.png',
+} as const;
+
+// Get OG image path for a category
+export function getOgImageForCategory(category?: string): string {
+  if (!category) return OG_IMAGES.default;
+  return OG_IMAGES[category as keyof typeof OG_IMAGES] || OG_IMAGES.default;
+}
