@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
     images: [
       {
-        url: `${baseUrl}/images/ai-dream-blog.png`,
+        url: `${baseUrl}/images/ai-dream-blog.jpg`,
         width: 1200,
         height: 630,
         alt: 'Dream Insights by Luna Vale - AI Dream Analysis',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     description: 'Explore the fascinating world of dreams through AI-powered analysis, dream interpretation, sleep science, and symbolism guides.',
     images: [
       {
-        url: `${baseUrl}/images/ai-dream-blog.png`,
+        url: `${baseUrl}/images/ai-dream-blog.jpg`,
         width: 1200,
         height: 630,
         alt: 'Dream Insights by Luna Vale - AI Dream Analysis',

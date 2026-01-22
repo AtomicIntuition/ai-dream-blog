@@ -43,12 +43,13 @@ export const CATEGORY_COLORS: Record<string, string> = {
 } as const;
 
 // Static OG images for each category (located in /public/images/)
+// Images are 1200x630 JPEG format for Twitter card compatibility
 export const OG_IMAGES = {
-  default: '/images/ai-dream-blog.png',
-  'dream-stories': '/images/dream-stories.png',
-  'dream-science': '/images/dream-science.png',
-  'sleep-tips': '/images/sleep-tips.png',
-  'symbolism': '/images/dream-symbolism.png',
+  default: '/images/ai-dream-blog.jpg',
+  'dream-stories': '/images/dream-stories.jpg',
+  'dream-science': '/images/dream-science.jpg',
+  'sleep-tips': '/images/sleep-tips.jpg',
+  'symbolism': '/images/dream-symbolism.jpg',
 } as const;
 
 // Get OG image path for a category
