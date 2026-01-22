@@ -20,8 +20,24 @@ export const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   'symbolism': 'Decode the hidden meanings in your dreams',
 } as const;
 
-// Theme order for cycling - hoisted to avoid array recreation
-export const THEME_ORDER = ['light', 'dark', 'sepia'] as const;
+// Theme order for cycling - Obsidian (night), Alabaster (day), Dusk (evening)
+export const THEME_ORDER = ['obsidian', 'alabaster', 'dusk'] as const;
+
+// Theme metadata for display
+export const THEME_META = {
+  obsidian: {
+    name: 'Obsidian',
+    description: 'Nighttime Sanctuary',
+  },
+  alabaster: {
+    name: 'Alabaster',
+    description: 'Gallery Space',
+  },
+  dusk: {
+    name: 'Dusk',
+    description: 'Evening Retreat',
+  },
+} as const;
 
 // Valid category slugs
 export const VALID_CATEGORIES = ['dream-stories', 'dream-science', 'sleep-tips', 'symbolism'] as const;

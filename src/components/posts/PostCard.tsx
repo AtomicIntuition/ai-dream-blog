@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import Link from 'next/link';
 import { Calendar, Clock, Eye } from 'lucide-react';
 import { cn, formatDate, calculateReadingTime, getCategoryLabel } from '@/lib/utils';
@@ -16,7 +16,6 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
     <article
       className={cn(
         'group glass-card overflow-hidden',
-        'hover:border-[rgb(var(--border-hover))] hover:shadow-lg hover:shadow-[rgb(var(--glow-color))]',
         featured && 'md:col-span-2'
       )}
     >
@@ -29,7 +28,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
               {getCategoryLabel(post.category)}
             </span>
             {post.generated_dream?.isLucid && (
-              <span className="px-2 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full">
+              <span className="px-2 py-1 text-xs font-ui bg-purple-500/15 text-purple-400 rounded-full border border-purple-500/20">
                 Lucid
               </span>
             )}
@@ -38,7 +37,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
           {/* Title */}
           <h2
             className={cn(
-              'font-display font-bold text-[rgb(var(--text-primary))] mb-3 group-hover:text-[rgb(var(--accent-primary))] transition-colors',
+              'font-display text-[rgb(var(--text-primary))] mb-3 group-hover:text-[rgb(var(--accent-primary))] transition-colors',
               featured ? 'text-2xl md:text-3xl' : 'text-xl'
             )}
           >
@@ -47,7 +46,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
 
           {/* Subtitle */}
           {post.subtitle && (
-            <p className="text-[rgb(var(--text-muted))] text-sm mb-3 line-clamp-1">
+            <p className="font-reading text-[rgb(var(--text-muted))] text-sm mb-3 line-clamp-1">
               {post.subtitle}
             </p>
           )}
@@ -55,7 +54,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
           {/* Excerpt */}
           <p
             className={cn(
-              'text-[rgb(var(--text-secondary))] mb-4',
+              'font-reading text-[rgb(var(--text-secondary))] mb-4',
               featured ? 'line-clamp-3' : 'line-clamp-2'
             )}
           >
@@ -63,7 +62,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
           </p>
 
           {/* Meta info */}
-          <div className="flex items-center gap-4 text-sm text-[rgb(var(--text-muted))]">
+          <div className="flex items-center gap-4 text-sm font-ui text-[rgb(var(--text-muted))]">
             <span className="flex items-center gap-1.5">
               <Calendar className="h-4 w-4" />
               {formatDate(post.published_at)}
@@ -86,7 +85,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
               {post.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 text-xs bg-[rgb(var(--glass-bg))] text-[rgb(var(--text-muted))] rounded border border-[rgb(var(--border-color))]"
+                  className="px-2 py-0.5 text-xs font-ui bg-[rgb(var(--bg-tertiary))] text-[rgb(var(--text-muted))] rounded border border-[rgb(var(--border-color))]"
                 >
                   {tag}
                 </span>

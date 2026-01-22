@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, useCallback, useRef, ReactNode } from 'react';
 
-export type Theme = 'dark' | 'light' | 'sepia';
+export type Theme = 'obsidian' | 'alabaster' | 'dusk';
 
 interface ThemeContextType {
   theme: Theme;
@@ -12,11 +12,11 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-// Duration should match the CSS transition duration
-const TRANSITION_DURATION = 400;
+// Duration should match the CSS transition duration (--transition-slow: 350ms)
+const TRANSITION_DURATION = 350;
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('dark');
+  const [theme, setThemeState] = useState<Theme>('obsidian');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -54,7 +54,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Read the theme that was already set by the inline script
     const currentTheme = document.documentElement.getAttribute('data-theme') as Theme;
-    if (currentTheme && ['dark', 'light', 'sepia'].includes(currentTheme)) {
+    if (currentTheme && ['obsidian', 'alabaster', 'dusk'].includes(currentTheme)) {
       setThemeState(currentTheme);
     }
 
@@ -80,7 +80,7 @@ export function useTheme() {
   // Return default values during SSR/SSG when context is not available
   if (context === undefined) {
     return {
-      theme: 'dark' as Theme,
+      theme: 'obsidian' as Theme,
       setTheme: () => {},
       isTransitioning: false,
     };

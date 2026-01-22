@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, Moon, Search } from 'lucide-react';
+import { Menu, X, Sparkles, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle, ThemeToggleCompact } from '@/components/ui/ThemeToggle';
 
@@ -19,27 +19,26 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      <div className="header-glass border-b border-[var(--border-color)]">
+      <div className="header-glass border-b border-[rgb(var(--border-color))]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="relative">
-                <Moon className="h-8 w-8 text-dream-400 transition-transform group-hover:scale-110" />
-                <div className="absolute inset-0 blur-lg bg-dream-500/30 group-hover:bg-dream-500/50 transition-colors" />
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-[rgb(var(--accent-primary))] bg-opacity-10">
+                <Sparkles className="h-5 w-5 text-[rgb(var(--accent-primary))] transition-transform group-hover:scale-110" />
               </div>
-              <span className="text-xl font-display font-bold text-[var(--text-primary)]">
+              <span className="text-lg font-display text-[rgb(var(--text-primary))]">
                 Dream Insights
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-0.5">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] rounded-lg transition-colors"
+                  className="px-3.5 py-2 text-sm font-ui font-medium text-[rgb(var(--text-secondary))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
                 >
                   {item.name}
                 </Link>
@@ -50,7 +49,8 @@ export function Header() {
             <div className="flex items-center gap-2">
               <Link
                 href="/search"
-                className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] rounded-lg transition-colors"
+                className="p-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
+                aria-label="Search"
               >
                 <Search className="h-5 w-5" />
               </Link>
@@ -67,7 +67,7 @@ export function Header() {
 
               <Link
                 href="https://dreamanalysis.netlify.app"
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-dream-600 to-aurora-600 hover:from-dream-500 hover:to-aurora-500 text-white text-sm font-medium rounded-lg transition-all shadow-lg shadow-dream-500/25"
+                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 btn-primary text-sm"
               >
                 Try the App
               </Link>
@@ -75,7 +75,8 @@ export function Header() {
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] rounded-lg transition-colors"
+                className="md:hidden p-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
@@ -86,7 +87,7 @@ export function Header() {
         {/* Mobile Navigation */}
         <div
           className={cn(
-            'md:hidden border-t border-[var(--border-color)] overflow-hidden transition-all duration-300',
+            'md:hidden border-t border-[rgb(var(--border-color))] overflow-hidden transition-all duration-300',
             isMenuOpen ? 'max-h-96' : 'max-h-0'
           )}
         >
@@ -96,14 +97,14 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-4 py-3 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] rounded-lg transition-colors"
+                className="block px-4 py-3 font-ui text-[rgb(var(--text-secondary))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
               >
                 {item.name}
               </Link>
             ))}
             <Link
               href="https://dreamanalysis.netlify.app"
-              className="block mt-3 px-4 py-3 bg-gradient-to-r from-dream-600 to-aurora-600 text-white text-center font-medium rounded-lg"
+              className="block mt-3 px-4 py-3 btn-primary text-center"
             >
               Try the App
             </Link>

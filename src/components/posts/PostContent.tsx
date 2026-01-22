@@ -47,50 +47,50 @@ export function PostContent({ content, analysis }: PostContentProps) {
         <div className="glass-card overflow-hidden">
           <button
             onClick={() => setShowAnalysis(!showAnalysis)}
-            className="w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors"
+            className="w-full flex items-center justify-between p-6 text-left hover:bg-[rgb(var(--surface-hover))] transition-colors"
           >
             <div>
-              <h3 className="text-xl font-semibold text-white">Dream Analysis Details</h3>
-              <p className="text-sm text-slate-400 mt-1">
+              <h3 className="text-xl font-display text-[rgb(var(--text-primary))]">Dream Analysis Details</h3>
+              <p className="text-sm font-reading text-[rgb(var(--text-muted))] mt-1">
                 AI-powered psychological interpretation
               </p>
             </div>
             {showAnalysis ? (
-              <ChevronUp className="h-6 w-6 text-slate-400" />
+              <ChevronUp className="h-6 w-6 text-[rgb(var(--text-muted))]" />
             ) : (
-              <ChevronDown className="h-6 w-6 text-slate-400" />
+              <ChevronDown className="h-6 w-6 text-[rgb(var(--text-muted))]" />
             )}
           </button>
 
           {showAnalysis && (
-            <div className="px-6 pb-6 space-y-8 border-t border-white/10 pt-6">
+            <div className="px-6 pb-6 space-y-8 border-t border-[rgb(var(--border-color))] pt-6">
               {/* Symbols */}
               {analysis.symbols && analysis.symbols.length > 0 && (
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4">
+                  <h4 className="text-lg font-display text-[rgb(var(--text-primary))] mb-4">
                     Key Symbols
                   </h4>
                   <div className="grid gap-4 md:grid-cols-2">
                     {analysis.symbols.map((symbol, index) => (
                       <div
                         key={index}
-                        className="bg-white/5 rounded-lg p-4 border border-white/5"
+                        className="bg-[rgb(var(--bg-tertiary))] rounded-lg p-4 border border-[rgb(var(--border-color))]"
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <h5 className="font-medium text-white">{symbol.name}</h5>
+                          <h5 className="font-ui font-medium text-[rgb(var(--text-primary))]">{symbol.name}</h5>
                           <span
-                            className={`px-2 py-0.5 text-xs rounded ${
+                            className={`px-2 py-0.5 text-xs font-ui rounded ${
                               symbol.significance === 'high'
-                                ? 'bg-dream-500/30 text-dream-300'
+                                ? 'bg-[rgba(var(--accent-primary),0.15)] text-[rgb(var(--accent-primary))]'
                                 : symbol.significance === 'medium'
-                                ? 'bg-amber-500/30 text-amber-300'
-                                : 'bg-slate-500/30 text-slate-300'
+                                ? 'bg-[rgba(var(--accent-secondary),0.15)] text-[rgb(var(--accent-secondary))]'
+                                : 'bg-[rgb(var(--bg-secondary))] text-[rgb(var(--text-muted))]'
                             }`}
                           >
                             {symbol.significance}
                           </span>
                         </div>
-                        <p className="text-sm text-slate-400">{symbol.meaning}</p>
+                        <p className="text-sm font-reading text-[rgb(var(--text-secondary))]">{symbol.meaning}</p>
                       </div>
                     ))}
                   </div>
@@ -100,25 +100,25 @@ export function PostContent({ content, analysis }: PostContentProps) {
               {/* Emotions */}
               {analysis.emotions && analysis.emotions.length > 0 && (
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4">
+                  <h4 className="text-lg font-display text-[rgb(var(--text-primary))] mb-4">
                     Emotional Landscape
                   </h4>
                   <div className="space-y-3">
                     {analysis.emotions.map((emotion, index) => (
                       <div key={index} className="flex items-center gap-4">
-                        <span className="w-24 text-sm text-slate-300">
+                        <span className="w-24 text-sm font-ui text-[rgb(var(--text-secondary))]">
                           {emotion.name}
                         </span>
-                        <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                        <div className="flex-1 h-2 bg-[rgb(var(--bg-tertiary))] rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all duration-500"
                             style={{
                               width: `${emotion.intensity}%`,
-                              backgroundColor: emotion.color || '#8b5cf6',
+                              backgroundColor: emotion.color || 'rgb(var(--accent-primary))',
                             }}
                           />
                         </div>
-                        <span className="text-sm text-slate-400 w-12 text-right">
+                        <span className="text-sm font-ui text-[rgb(var(--text-muted))] w-12 text-right">
                           {emotion.intensity}%
                         </span>
                       </div>
@@ -130,14 +130,14 @@ export function PostContent({ content, analysis }: PostContentProps) {
               {/* Themes */}
               {analysis.themes && analysis.themes.length > 0 && (
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4">
+                  <h4 className="text-lg font-display text-[rgb(var(--text-primary))] mb-4">
                     Themes
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {analysis.themes.map((theme, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1.5 bg-dream-500/20 text-dream-300 rounded-full text-sm"
+                        className="px-3 py-1.5 font-ui bg-[rgba(var(--accent-primary),0.12)] text-[rgb(var(--accent-primary))] rounded-full text-sm border border-[rgba(var(--accent-primary),0.2)]"
                       >
                         {theme}
                       </span>
@@ -148,11 +148,11 @@ export function PostContent({ content, analysis }: PostContentProps) {
 
               {/* Advice */}
               {analysis.advice && (
-                <div className="bg-gradient-to-r from-dream-500/10 to-aurora-500/10 rounded-lg p-6 border border-dream-500/20">
-                  <h4 className="text-lg font-semibold text-white mb-3">
+                <div className="rounded-lg p-6 border border-[rgb(var(--border-color))] bg-[rgb(var(--callout-insight))]">
+                  <h4 className="text-lg font-display text-[rgb(var(--text-primary))] mb-3">
                     Reflection & Advice
                   </h4>
-                  <p className="text-slate-300">{analysis.advice}</p>
+                  <p className="font-reading text-[rgb(var(--text-secondary))]">{analysis.advice}</p>
                 </div>
               )}
             </div>

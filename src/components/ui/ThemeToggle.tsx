@@ -1,14 +1,14 @@
 'use client';
 
-import { Moon, Sun, BookOpen } from 'lucide-react';
+import { Moon, Sun, Sunset } from 'lucide-react';
 import { useTheme, Theme } from '@/contexts/ThemeContext';
-import { THEME_ORDER } from '@/lib/constants';
+import { THEME_ORDER, THEME_META } from '@/lib/constants';
 
-// Hoisted outside component to prevent recreation on each render
-const THEMES: readonly { value: Theme; icon: React.ElementType; label: string }[] = [
-  { value: 'light', icon: Sun, label: 'Light' },
-  { value: 'dark', icon: Moon, label: 'Dark' },
-  { value: 'sepia', icon: BookOpen, label: 'Sepia' },
+// Theme configuration - icons represent the reading environment
+const THEMES: readonly { value: Theme; icon: React.ElementType; label: string; description: string }[] = [
+  { value: 'obsidian', icon: Moon, label: 'Obsidian', description: 'Night reading' },
+  { value: 'alabaster', icon: Sun, label: 'Alabaster', description: 'Day reading' },
+  { value: 'dusk', icon: Sunset, label: 'Dusk', description: 'Evening reading' },
 ] as const;
 
 export function ThemeToggle() {
@@ -17,18 +17,18 @@ export function ThemeToggle() {
   return (
     <div className="theme-toggle-container">
       <div className="theme-toggle-group">
-        {THEMES.map(({ value, icon: Icon, label }) => (
+        {THEMES.map(({ value, icon: Icon, label, description }) => (
           <button
             key={value}
             onClick={() => setTheme(value)}
             disabled={isTransitioning}
             className={`theme-toggle-btn ${theme === value ? 'active' : ''} ${isTransitioning ? 'pointer-events-none' : ''}`}
-            title={`${label} theme`}
+            title={`${label}: ${description}`}
             aria-label={`Switch to ${label} theme`}
             aria-pressed={theme === value}
           >
             <Icon
-              className={`h-4 w-4 transition-transform duration-300 ${
+              className={`h-4 w-4 transition-transform duration-200 ${
                 theme === value && isTransitioning ? 'scale-110' : ''
               }`}
             />
@@ -52,17 +52,18 @@ export function ThemeToggleCompact() {
 
   const currentTheme = THEMES.find(t => t.value === theme);
   const Icon = currentTheme?.icon || Moon;
+  const meta = THEME_META[theme];
 
   return (
     <button
       onClick={cycleTheme}
       disabled={isTransitioning}
       className={`theme-toggle-compact ${isTransitioning ? 'pointer-events-none' : ''}`}
-      title={`Current: ${currentTheme?.label}. Click to change.`}
-      aria-label="Toggle theme"
+      title={`${meta.name}: ${meta.description}`}
+      aria-label="Cycle through themes"
     >
       <Icon
-        className={`h-5 w-5 transition-transform duration-300 ${
+        className={`h-5 w-5 transition-transform duration-200 ${
           isTransitioning ? 'rotate-180 scale-110' : ''
         }`}
       />

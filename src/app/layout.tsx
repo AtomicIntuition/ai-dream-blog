@@ -1,24 +1,32 @@
 import type { Metadata } from 'next';
-import { Inter, Playfair_Display, Source_Serif_4 } from 'next/font/google';
+import { DM_Sans, DM_Serif_Display, Literata } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import '@/styles/globals.css';
 
-const inter = Inter({
+// Display font - elegant, modern serif for headlines
+const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: '400',
+  variable: '--font-display',
+  display: 'swap',
 });
 
-const playfair = Playfair_Display({
+// Reading font - designed specifically for digital reading
+const literata = Literata({
   subsets: ['latin'],
-  variable: '--font-playfair',
-});
-
-const sourceSerif = Source_Serif_4({
-  subsets: ['latin'],
-  variable: '--font-serif',
+  variable: '--font-reading',
   weight: ['400', '500', '600', '700'],
+  display: 'swap',
+});
+
+// UI font - clean, geometric sans-serif
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-ui',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
 });
 
 const baseUrl = 'https://ai-dream-blog.vercel.app';
@@ -87,7 +95,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${sourceSerif.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${dmSerifDisplay.variable} ${literata.variable} ${dmSans.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -95,12 +103,12 @@ export default function RootLayout({
               (function() {
                 try {
                   var theme = localStorage.getItem('blog-theme');
-                  if (theme && ['dark', 'light', 'sepia'].includes(theme)) {
+                  if (theme && ['obsidian', 'alabaster', 'dusk'].includes(theme)) {
                     document.documentElement.setAttribute('data-theme', theme);
                   } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-                    document.documentElement.setAttribute('data-theme', 'light');
+                    document.documentElement.setAttribute('data-theme', 'alabaster');
                   } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
+                    document.documentElement.setAttribute('data-theme', 'obsidian');
                   }
                 } catch (e) {}
               })();

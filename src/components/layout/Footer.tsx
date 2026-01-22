@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Moon, Github, Twitter } from 'lucide-react';
+import { Sparkles, Github, Twitter } from 'lucide-react';
 
 const footerLinks = {
   categories: [
@@ -29,22 +29,26 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Moon className="h-6 w-6 text-dream-400" />
-              <span className="font-display font-bold text-[rgb(var(--text-primary))]">Dream Insights</span>
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[rgba(var(--accent-primary),0.1)]">
+                <Sparkles className="h-4 w-4 text-[rgb(var(--accent-primary))]" />
+              </div>
+              <span className="font-display text-[rgb(var(--text-primary))]">Dream Insights</span>
             </Link>
-            <p className="text-sm text-[rgb(var(--text-muted))] mb-4">
+            <p className="text-sm font-reading text-[rgb(var(--text-muted))] mb-4 leading-relaxed">
               Explore the fascinating world of dreams through AI-powered analysis and expert insights.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <a
                 href="https://twitter.com/CodeAI4Crypto"
                 className="p-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
+                aria-label="Follow on Twitter"
               >
                 <Twitter className="h-5 w-5" />
               </a>
               <a
                 href="https://github.com"
                 className="p-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-lg transition-colors"
+                aria-label="View on GitHub"
               >
                 <Github className="h-5 w-5" />
               </a>
@@ -53,13 +57,13 @@ export function Footer() {
 
           {/* Categories */}
           <div>
-            <h3 className="font-semibold text-[rgb(var(--text-primary))] mb-4">Categories</h3>
-            <ul className="space-y-2">
+            <h3 className="font-ui font-semibold text-[rgb(var(--text-primary))] mb-4 text-sm">Categories</h3>
+            <ul className="space-y-2.5">
               {footerLinks.categories.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors"
+                    className="text-sm font-reading text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -70,13 +74,13 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold text-[rgb(var(--text-primary))] mb-4">Company</h3>
-            <ul className="space-y-2">
+            <h3 className="font-ui font-semibold text-[rgb(var(--text-primary))] mb-4 text-sm">Company</h3>
+            <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors"
+                    className="text-sm font-reading text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -87,13 +91,13 @@ export function Footer() {
 
           {/* App */}
           <div>
-            <h3 className="font-semibold text-[rgb(var(--text-primary))] mb-4">The App</h3>
-            <ul className="space-y-2">
+            <h3 className="font-ui font-semibold text-[rgb(var(--text-primary))] mb-4 text-sm">The App</h3>
+            <ul className="space-y-2.5">
               {footerLinks.app.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-sm text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors"
+                    className="text-sm font-reading text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors"
                   >
                     {link.name}
                   </a>
@@ -105,10 +109,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="py-6 border-t border-[rgb(var(--border-color))] flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[rgb(var(--text-muted))]">
+          <p className="text-sm font-ui text-[rgb(var(--text-muted))]">
             &copy; {new Date().getFullYear()} Dream Insights. All rights reserved.
           </p>
-          <p className="text-sm text-[rgb(var(--text-muted))]">
+          <p className="text-sm font-ui text-[rgb(var(--text-muted))]">
             Powered by AI dream analysis
           </p>
         </div>
