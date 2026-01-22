@@ -24,7 +24,7 @@ export function Header() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-[rgb(var(--accent-primary))] bg-opacity-10">
+              <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-[rgb(var(--accent-primary)/0.15)]">
                 <Sparkles className="h-5 w-5 text-[rgb(var(--accent-primary))] transition-transform group-hover:scale-110" />
               </div>
               <span className="text-lg font-display text-[rgb(var(--text-primary))]">
