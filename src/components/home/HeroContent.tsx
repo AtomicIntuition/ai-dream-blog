@@ -56,6 +56,19 @@ const itemVariants = {
   },
 };
 
+// Category badge component with icon and color coding
+function CategoryBadge({ category, size = 'default' }: { category: string; size?: 'default' | 'small' }) {
+  const Icon = CATEGORY_ICONS[category] || Moon;
+  const isSmall = size === 'small';
+
+  return (
+    <span className={`category-badge category-${category} ${isSmall ? 'text-xs' : ''}`}>
+      <Icon className={isSmall ? 'h-3 w-3' : 'h-3.5 w-3.5'} />
+      {getCategoryLabel(category)}
+    </span>
+  );
+}
+
 export function HeroContent({ heroPost, secondaryPosts, categories }: HeroContentProps) {
   const reducedMotion = useReducedMotion();
 
@@ -71,13 +84,13 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
   }
 
   return (
-    <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-12 md:pb-24">
+    <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-12 md:pt-8 md:pb-20">
       {/* Categories nav */}
       <motion.nav
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-center gap-1 mb-12 flex-wrap"
+        className="flex items-center justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-10 flex-wrap"
       >
         {categories.map((category, index) => {
           const Icon = CATEGORY_ICONS[category.slug] || Moon;
@@ -90,10 +103,10 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
             >
               <Link
                 href={`/category/${category.slug}`}
-                className="flex items-center gap-2 px-4 py-2 text-sm text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-full transition-all whitespace-nowrap"
+                className={`category-nav-link category-nav-${category.slug}`}
               >
                 <Icon className="h-4 w-4" />
-                {category.name}
+                <span className="hidden sm:inline">{category.name}</span>
               </Link>
             </motion.div>
           );
@@ -106,46 +119,46 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid lg:grid-cols-5 gap-6 lg:gap-8"
+          className="grid lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
         >
           {/* Main Featured Post */}
           <motion.div variants={itemVariants} className="lg:col-span-3">
             <Link href={`/post/${heroPost.slug}`} className="group block">
-              <article className="relative h-full min-h-[400px] lg:min-h-[500px] rounded-3xl overflow-hidden glass-card hero-card-overlay">
-                <div className="absolute inset-0 bg-gradient-to-br from-dream-500/20 via-aurora-500/10 to-cosmic-500/10" />
+              <article className="relative h-full min-h-[320px] sm:min-h-[380px] lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden glass-card hero-card-overlay">
+                {/* Gradient background based on category */}
+                <div className={`absolute inset-0 hero-gradient-${heroPost.category}`} />
 
-                <div className="absolute inset-0 z-20 flex flex-col justify-end p-5 pt-8 md:p-8">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className={`category-badge category-${heroPost.category}`}>
-                        {getCategoryLabel(heroPost.category)}
-                      </span>
+                <div className="absolute inset-0 z-20 flex flex-col justify-end p-4 sm:p-6 md:p-8">
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                      <CategoryBadge category={heroPost.category} />
                       {heroPost.generated_dream?.isLucid && (
-                        <span className="px-2 py-1 text-xs bg-purple-500/30 text-purple-300 rounded-full">
-                          Lucid
+                        <span className="px-2 py-1 text-xs font-medium bg-purple-500/30 text-purple-300 rounded-full border border-purple-400/30">
+                          Lucid Dream
                         </span>
                       )}
                     </div>
 
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[rgb(var(--hero-text))] leading-tight group-hover:text-[rgb(var(--accent-primary))] transition-colors">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[rgb(var(--hero-text))] leading-tight group-hover:text-[rgb(var(--accent-primary))] transition-colors">
                       {heroPost.title}
                     </h1>
 
                     {heroPost.subtitle && (
-                      <p className="text-lg md:text-xl text-[rgb(var(--hero-subtitle))] line-clamp-2">
+                      <p className="text-base sm:text-lg md:text-xl text-[rgb(var(--hero-subtitle))] line-clamp-2">
                         {heroPost.subtitle}
                       </p>
                     )}
 
-                    <div className="flex items-center gap-4 pt-2">
+                    <div className="flex items-center gap-3 sm:gap-4 pt-1 sm:pt-2 flex-wrap">
                       <AuthorCard variant="compact" />
-                      <span className="text-[rgb(var(--text-muted))]">·</span>
-                      <span className="text-sm text-[rgb(var(--hero-meta))]">
+                      <span className="text-[rgb(var(--text-muted))] hidden sm:inline">·</span>
+                      <span className="text-xs sm:text-sm text-[rgb(var(--hero-meta))]">
                         {formatDate(heroPost.published_at)}
                       </span>
-                      <span className="text-[rgb(var(--text-muted))]">·</span>
-                      <span className="text-sm text-[rgb(var(--hero-meta))]">
-                        {calculateReadingTime(heroPost.content)} min read
+                      <span className="text-[rgb(var(--text-muted))] hidden sm:inline">·</span>
+                      <span className="text-xs sm:text-sm text-[rgb(var(--hero-meta))] flex items-center gap-1">
+                        <Clock className="h-3.5 w-3.5" />
+                        {calculateReadingTime(heroPost.content)} min
                       </span>
                     </div>
                   </div>
@@ -155,7 +168,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
           </motion.div>
 
           {/* Secondary Posts */}
-          <motion.div variants={itemVariants} className="lg:col-span-2 flex flex-col gap-4">
+          <motion.div variants={itemVariants} className="lg:col-span-2 flex flex-col gap-3 sm:gap-4">
             {secondaryPosts.map((post, index) => (
               <motion.div
                 key={post.id}
@@ -163,11 +176,9 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                 custom={index}
               >
                 <Link href={`/post/${post.slug}`} className="group flex-1">
-                  <article className="h-full glass-card p-5 rounded-2xl hover:border-[rgb(var(--border-hover))]">
-                    <span className={`category-badge category-${post.category} text-xs mb-3`}>
-                      {getCategoryLabel(post.category)}
-                    </span>
-                    <h2 className="text-lg font-semibold text-[rgb(var(--text-primary))] mb-2 group-hover:text-[rgb(var(--accent-primary))] transition-colors line-clamp-2">
+                  <article className="h-full glass-card p-4 sm:p-5 rounded-xl sm:rounded-2xl hover:border-[rgb(var(--border-hover))] transition-all hover:shadow-lg">
+                    <CategoryBadge category={post.category} size="small" />
+                    <h2 className="text-base sm:text-lg font-semibold text-[rgb(var(--text-primary))] mt-2.5 mb-2 group-hover:text-[rgb(var(--accent-primary))] transition-colors line-clamp-2">
                       {post.title}
                     </h2>
                     <p className="text-sm text-[rgb(var(--text-muted))] line-clamp-2 mb-3">
@@ -184,16 +195,16 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
 
             {/* Mini CTA */}
             <motion.div variants={itemVariants}>
-              <div className="glass-card p-5 rounded-2xl bg-gradient-to-br from-dream-500/10 to-aurora-500/10">
+              <div className="glass-card p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-dream-500/10 to-aurora-500/10 border-dream-500/20">
                 <p className="text-sm text-[rgb(var(--text-secondary))] mb-3">
                   Decode your own dreams with AI
                 </p>
                 <Link
                   href="https://dreamanalysis.netlify.app"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[rgb(var(--accent-primary))] hover:opacity-80 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[rgb(var(--accent-primary))] hover:opacity-80 transition-colors group"
                 >
                   Try Dream Analysis
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               </div>
             </motion.div>
@@ -203,13 +214,13 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="text-center py-20 glass-card rounded-3xl"
+          className="text-center py-16 sm:py-20 glass-card rounded-2xl sm:rounded-3xl"
         >
-          <Moon className="h-16 w-16 text-dream-500/50 mx-auto mb-4" />
-          <h2 className="text-2xl font-display font-bold text-[rgb(var(--text-primary))] mb-2">
+          <Moon className="h-12 w-12 sm:h-16 sm:w-16 text-dream-500/50 mx-auto mb-4" />
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-[rgb(var(--text-primary))] mb-2">
             Dreams Loading...
           </h2>
-          <p className="text-[rgb(var(--text-muted))]">
+          <p className="text-[rgb(var(--text-muted))] text-sm sm:text-base">
             New dream stories and insights are being generated. Check back soon.
           </p>
         </motion.div>
@@ -221,41 +232,39 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
 // Static version without animations
 function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContentProps) {
   return (
-    <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-12 md:pb-24">
-      <nav className="flex items-center justify-center gap-1 mb-12 flex-wrap">
+    <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-12 md:pt-8 md:pb-20">
+      <nav className="flex items-center justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-10 flex-wrap">
         {categories.map((category) => {
           const Icon = CATEGORY_ICONS[category.slug] || Moon;
           return (
             <Link
               key={category.slug}
               href={`/category/${category.slug}`}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] rounded-full transition-all whitespace-nowrap"
+              className={`category-nav-link category-nav-${category.slug}`}
             >
               <Icon className="h-4 w-4" />
-              {category.name}
+              <span className="hidden sm:inline">{category.name}</span>
             </Link>
           );
         })}
       </nav>
 
       {heroPost ? (
-        <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
+        <div className="grid lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
           <div className="lg:col-span-3">
             <Link href={`/post/${heroPost.slug}`} className="group block">
-              <article className="relative h-full min-h-[400px] lg:min-h-[500px] rounded-3xl overflow-hidden glass-card hero-card-overlay">
-                <div className="absolute inset-0 bg-gradient-to-br from-dream-500/20 via-aurora-500/10 to-cosmic-500/10" />
-                <div className="absolute inset-0 z-20 flex flex-col justify-end p-5 pt-8 md:p-8">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className={`category-badge category-${heroPost.category}`}>
-                        {getCategoryLabel(heroPost.category)}
-                      </span>
+              <article className="relative h-full min-h-[320px] sm:min-h-[380px] lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden glass-card hero-card-overlay">
+                <div className={`absolute inset-0 hero-gradient-${heroPost.category}`} />
+                <div className="absolute inset-0 z-20 flex flex-col justify-end p-4 sm:p-6 md:p-8">
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <CategoryBadge category={heroPost.category} />
                     </div>
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[rgb(var(--hero-text))] leading-tight">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[rgb(var(--hero-text))] leading-tight">
                       {heroPost.title}
                     </h1>
                     {heroPost.subtitle && (
-                      <p className="text-lg md:text-xl text-[rgb(var(--hero-subtitle))] line-clamp-2">
+                      <p className="text-base sm:text-lg md:text-xl text-[rgb(var(--hero-subtitle))] line-clamp-2">
                         {heroPost.subtitle}
                       </p>
                     )}
@@ -264,14 +273,12 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
               </article>
             </Link>
           </div>
-          <div className="lg:col-span-2 flex flex-col gap-4">
+          <div className="lg:col-span-2 flex flex-col gap-3 sm:gap-4">
             {secondaryPosts.map((post) => (
               <Link key={post.id} href={`/post/${post.slug}`} className="group flex-1">
-                <article className="h-full glass-card p-5 rounded-2xl">
-                  <span className={`category-badge category-${post.category} text-xs mb-3`}>
-                    {getCategoryLabel(post.category)}
-                  </span>
-                  <h2 className="text-lg font-semibold text-[rgb(var(--text-primary))] mb-2 line-clamp-2">
+                <article className="h-full glass-card p-4 sm:p-5 rounded-xl sm:rounded-2xl">
+                  <CategoryBadge category={post.category} size="small" />
+                  <h2 className="text-base sm:text-lg font-semibold text-[rgb(var(--text-primary))] mt-2.5 mb-2 line-clamp-2">
                     {post.title}
                   </h2>
                   <p className="text-sm text-[rgb(var(--text-muted))] line-clamp-2">
@@ -283,9 +290,9 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
           </div>
         </div>
       ) : (
-        <div className="text-center py-20 glass-card rounded-3xl">
-          <Moon className="h-16 w-16 text-dream-500/50 mx-auto mb-4" />
-          <h2 className="text-2xl font-display font-bold">Dreams Loading...</h2>
+        <div className="text-center py-16 sm:py-20 glass-card rounded-2xl sm:rounded-3xl">
+          <Moon className="h-12 w-12 sm:h-16 sm:w-16 text-dream-500/50 mx-auto mb-4" />
+          <h2 className="text-xl sm:text-2xl font-display font-bold">Dreams Loading...</h2>
         </div>
       )}
     </div>

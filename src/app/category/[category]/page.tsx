@@ -8,7 +8,6 @@ import { getCategoryLabel } from '@/lib/utils';
 import {
   CATEGORY_ICONS,
   CATEGORY_DESCRIPTIONS_EXTENDED,
-  CATEGORY_COLORS,
   VALID_CATEGORIES,
   getOgImageForCategory,
 } from '@/lib/constants';
@@ -16,6 +15,14 @@ import {
 // Force dynamic rendering to always fetch fresh data
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+// Category colors with explicit hex values for reliability
+const CATEGORY_GRADIENT_COLORS: Record<string, { from: string; to: string }> = {
+  'dream-stories': { from: '#8b5cf6', to: '#7c3aed' },
+  'dream-science': { from: '#06b6d4', to: '#0891b2' },
+  'sleep-tips': { from: '#10b981', to: '#059669' },
+  'symbolism': { from: '#f59e0b', to: '#d97706' },
+};
 
 interface PageProps {
   params: { category: string };
@@ -88,40 +95,45 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   const Icon = CATEGORY_ICONS[category] || Moon;
   const categoryName = getCategoryLabel(category);
   const description = CATEGORY_DESCRIPTIONS_EXTENDED[category];
+  const gradientColors = CATEGORY_GRADIENT_COLORS[category] || { from: '#8b5cf6', to: '#7c3aed' };
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] transition-colors mb-6 sm:mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to all posts
         </Link>
 
         {/* Header */}
-        <header className="mb-12">
-          <div className="flex items-center gap-4 mb-4">
+        <header className="mb-8 sm:mb-12">
+          <div className="flex items-center gap-3 sm:gap-4 mb-4">
+            {/* Icon container with inline gradient for reliability */}
             <div
-              className={`p-4 rounded-2xl bg-gradient-to-br ${CATEGORY_COLORS[category]}`}
+              className="p-3 sm:p-4 rounded-xl sm:rounded-2xl"
+              style={{
+                background: `linear-gradient(135deg, ${gradientColors.from} 0%, ${gradientColors.to} 100%)`,
+              }}
             >
-              <Icon className="h-8 w-8 text-white" />
+              <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl md:text-5xl font-display font-bold text-[rgb(var(--text-primary))]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[rgb(var(--text-primary))]">
                 {categoryName}
               </h1>
             </div>
           </div>
-          <p className="text-lg text-[rgb(var(--text-muted))] max-w-2xl">{description}</p>
+          <p className="text-base sm:text-lg text-[rgb(var(--text-muted))] max-w-2xl">{description}</p>
         </header>
 
         {/* Posts grid */}
         {posts.length > 0 ? (
           <>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (
                 <PostCard key={post.id} post={post} />
               ))}
@@ -129,11 +141,11 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
             {/* Pagination */}
             {pagination && pagination.totalPages > 1 && (
-              <nav className="mt-12 flex justify-center gap-2">
+              <nav className="mt-8 sm:mt-12 flex justify-center gap-2">
                 {pagination.hasPrevPage && (
                   <Link
                     href={`/category/${category}?page=${page - 1}`}
-                    className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors"
+                    className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors rounded-lg"
                   >
                     Previous
                   </Link>
@@ -146,7 +158,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
                 {pagination.hasNextPage && (
                   <Link
                     href={`/category/${category}?page=${page + 1}`}
-                    className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors"
+                    className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors rounded-lg"
                   >
                     Next
                   </Link>
@@ -155,12 +167,12 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
             )}
           </>
         ) : (
-          <div className="text-center py-16 glass-card">
-            <Icon className="h-16 w-16 text-[rgb(var(--accent-primary))]/50 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-[rgb(var(--text-primary))] mb-2">
+          <div className="text-center py-12 sm:py-16 glass-card rounded-2xl">
+            <Icon className="h-12 w-12 sm:h-16 sm:w-16 text-[rgb(var(--accent-primary))]/50 mx-auto mb-4" />
+            <h3 className="text-lg sm:text-xl font-semibold text-[rgb(var(--text-primary))] mb-2">
               No posts yet
             </h3>
-            <p className="text-[rgb(var(--text-muted))]">
+            <p className="text-[rgb(var(--text-muted))] text-sm sm:text-base">
               Posts in this category are being created. Check back soon!
             </p>
           </div>

@@ -889,6 +889,169 @@
   }
 
   /* ===========================================
+     CATEGORY NAVIGATION LINKS - Color coded
+     =========================================== */
+  .category-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  /* Dream Stories - Purple/Violet */
+  .category-nav-dream-stories {
+    color: rgb(167, 139, 250);
+    background: rgba(139, 92, 246, 0.1);
+  }
+  .category-nav-dream-stories:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+  [data-theme="alabaster"] .category-nav-dream-stories {
+    color: rgb(109, 40, 217);
+    background: rgba(139, 92, 246, 0.08);
+  }
+  [data-theme="alabaster"] .category-nav-dream-stories:hover {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.25);
+  }
+
+  /* Dream Science - Cyan/Blue */
+  .category-nav-dream-science {
+    color: rgb(34, 211, 238);
+    background: rgba(6, 182, 212, 0.1);
+  }
+  .category-nav-dream-science:hover {
+    background: rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.3);
+  }
+  [data-theme="alabaster"] .category-nav-dream-science {
+    color: rgb(14, 116, 144);
+    background: rgba(6, 182, 212, 0.08);
+  }
+  [data-theme="alabaster"] .category-nav-dream-science:hover {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.25);
+  }
+
+  /* Sleep Tips - Green/Emerald */
+  .category-nav-sleep-tips {
+    color: rgb(52, 211, 153);
+    background: rgba(16, 185, 129, 0.1);
+  }
+  .category-nav-sleep-tips:hover {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+  [data-theme="alabaster"] .category-nav-sleep-tips {
+    color: rgb(5, 150, 105);
+    background: rgba(16, 185, 129, 0.08);
+  }
+  [data-theme="alabaster"] .category-nav-sleep-tips:hover {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.25);
+  }
+
+  /* Symbolism - Amber/Orange */
+  .category-nav-symbolism {
+    color: rgb(251, 191, 36);
+    background: rgba(245, 158, 11, 0.1);
+  }
+  .category-nav-symbolism:hover {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+  [data-theme="alabaster"] .category-nav-symbolism {
+    color: rgb(180, 83, 9);
+    background: rgba(245, 158, 11, 0.08);
+  }
+  [data-theme="alabaster"] .category-nav-symbolism:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.25);
+  }
+
+  /* ===========================================
+     HERO CARD GRADIENTS - Category specific
+     =========================================== */
+  .hero-gradient-dream-stories {
+    background: linear-gradient(135deg,
+      rgba(139, 92, 246, 0.25) 0%,
+      rgba(124, 58, 237, 0.15) 50%,
+      rgba(var(--bg-secondary), 0.9) 100%
+    );
+  }
+  .hero-gradient-dream-science {
+    background: linear-gradient(135deg,
+      rgba(6, 182, 212, 0.25) 0%,
+      rgba(14, 165, 233, 0.15) 50%,
+      rgba(var(--bg-secondary), 0.9) 100%
+    );
+  }
+  .hero-gradient-sleep-tips {
+    background: linear-gradient(135deg,
+      rgba(16, 185, 129, 0.25) 0%,
+      rgba(52, 211, 153, 0.15) 50%,
+      rgba(var(--bg-secondary), 0.9) 100%
+    );
+  }
+  .hero-gradient-symbolism {
+    background: linear-gradient(135deg,
+      rgba(245, 158, 11, 0.25) 0%,
+      rgba(251, 191, 36, 0.15) 50%,
+      rgba(var(--bg-secondary), 0.9) 100%
+    );
+  }
+
+  /* Light theme hero gradients - softer */
+  [data-theme="alabaster"] .hero-gradient-dream-stories {
+    background: linear-gradient(135deg,
+      rgba(139, 92, 246, 0.15) 0%,
+      rgba(124, 58, 237, 0.08) 50%,
+      rgba(var(--bg-secondary), 0.95) 100%
+    );
+  }
+  [data-theme="alabaster"] .hero-gradient-dream-science {
+    background: linear-gradient(135deg,
+      rgba(6, 182, 212, 0.15) 0%,
+      rgba(14, 165, 233, 0.08) 50%,
+      rgba(var(--bg-secondary), 0.95) 100%
+    );
+  }
+  [data-theme="alabaster"] .hero-gradient-sleep-tips {
+    background: linear-gradient(135deg,
+      rgba(16, 185, 129, 0.15) 0%,
+      rgba(52, 211, 153, 0.08) 50%,
+      rgba(var(--bg-secondary), 0.95) 100%
+    );
+  }
+  [data-theme="alabaster"] .hero-gradient-symbolism {
+    background: linear-gradient(135deg,
+      rgba(245, 158, 11, 0.15) 0%,
+      rgba(251, 191, 36, 0.08) 50%,
+      rgba(var(--bg-secondary), 0.95) 100%
+    );
+  }
+
+  /* ===========================================
+     CATEGORY PAGE ICON - Theme aware colors
+     =========================================== */
+  .category-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* In light theme, ensure icons on colored backgrounds remain visible */
+  [data-theme="alabaster"] .category-icon-white {
+    color: white;
+  }
+
+  /* ===========================================
      THEME TOGGLE - Refined
      =========================================== */
   .theme-toggle-container {
