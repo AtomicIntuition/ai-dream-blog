@@ -28,20 +28,25 @@ function FloatingObject({
   const { theme } = useTheme();
   const colors = getThemeColors(theme);
   const initialY = position[1];
+  const initialX = position[0];
   const timeOffset = useMemo(() => Math.random() * Math.PI * 2, []);
+  const timeRef = useRef(timeOffset);
 
-  useFrame(({ clock }) => {
+  useFrame((_, delta) => {
     if (meshRef.current) {
-      const t = clock.getElapsedTime() + timeOffset;
+      // Clamp delta for consistency
+      const dt = Math.min(delta, 0.1);
+      timeRef.current += dt * speed;
+      const t = timeRef.current;
 
-      // Gentle floating motion
-      meshRef.current.position.y = initialY + Math.sin(t * speed) * 0.5;
-      meshRef.current.position.x = position[0] + Math.cos(t * speed * 0.7) * 0.3;
+      // Smooth floating motion
+      meshRef.current.position.y = initialY + Math.sin(t) * 0.4;
+      meshRef.current.position.x = initialX + Math.cos(t * 0.7) * 0.25;
 
-      // Slow rotation
-      meshRef.current.rotation.x += rotationSpeed[0] * 0.01;
-      meshRef.current.rotation.y += rotationSpeed[1] * 0.01;
-      meshRef.current.rotation.z += rotationSpeed[2] * 0.01;
+      // Smooth rotation using delta time
+      meshRef.current.rotation.x += rotationSpeed[0] * dt * 0.3;
+      meshRef.current.rotation.y += rotationSpeed[1] * dt * 0.3;
+      meshRef.current.rotation.z += rotationSpeed[2] * dt * 0.3;
     }
   });
 
@@ -71,19 +76,19 @@ function FloatingObject({
       <MeshTransmissionMaterial
         backside
         backsideThickness={0.3}
-        samples={16}
+        samples={8}
         thickness={0.5}
-        chromaticAberration={0.1}
-        anisotropy={0.3}
-        distortion={0.2}
-        distortionScale={0.2}
-        temporalDistortion={0.1}
-        iridescence={1}
+        chromaticAberration={0.06}
+        anisotropy={0.2}
+        distortion={0.15}
+        distortionScale={0.15}
+        temporalDistortion={0.05}
+        iridescence={0.8}
         iridescenceIOR={1}
         iridescenceThicknessRange={[0, 1400]}
         color={new THREE.Color(colors.primaryHex)}
         transmission={0.95}
-        roughness={0.1}
+        roughness={0.05}
         ior={1.5}
       />
     </mesh>
@@ -94,7 +99,7 @@ interface FloatingObjectsProps {
   count?: number;
 }
 
-export function FloatingObjects({ count = 15 }: FloatingObjectsProps) {
+export function FloatingObjects({ count = 12 }: FloatingObjectsProps) {
   const objects = useMemo(() => {
     const geometries: FloatingObjectProps['geometry'][] = [
       'octahedron',
@@ -105,22 +110,22 @@ export function FloatingObjects({ count = 15 }: FloatingObjectsProps) {
 
     return Array.from({ length: count }, (_, i) => ({
       position: [
-        (Math.random() - 0.5) * 30,
-        (Math.random() - 0.5) * 15,
-        -10 - Math.random() * 20,
+        (Math.random() - 0.5) * 28,
+        (Math.random() - 0.5) * 12,
+        -8 - Math.random() * 18,
       ] as [number, number, number],
       rotation: [
         Math.random() * Math.PI,
         Math.random() * Math.PI,
         Math.random() * Math.PI,
       ] as [number, number, number],
-      scale: 0.3 + Math.random() * 0.7,
+      scale: 0.25 + Math.random() * 0.5,
       geometry: geometries[Math.floor(Math.random() * geometries.length)],
-      speed: 0.3 + Math.random() * 0.4,
+      speed: 0.4 + Math.random() * 0.3,
       rotationSpeed: [
-        (Math.random() - 0.5) * 2,
-        (Math.random() - 0.5) * 2,
-        (Math.random() - 0.5) * 2,
+        (Math.random() - 0.5) * 1.5,
+        (Math.random() - 0.5) * 1.5,
+        (Math.random() - 0.5) * 1.5,
       ] as [number, number, number],
     }));
   }, [count]);

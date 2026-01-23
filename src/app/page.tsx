@@ -3,7 +3,6 @@ import { getPosts, getCategories, getFeaturedPosts } from '@/lib/api';
 import { SITE_URL } from '@/lib/constants';
 import {
   HomeHero,
-  VideoSection,
   FeatureShowcase,
   TrendingSection,
   LatestPostsSection,
@@ -86,9 +85,6 @@ export default async function HomePage() {
         secondaryPosts={secondaryPosts}
         categories={categories}
       />
-
-      {/* Video Explainer Section */}
-      <VideoSection />
 
       {/* Feature Showcase */}
       <FeatureShowcase />

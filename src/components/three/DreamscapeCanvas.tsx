@@ -37,28 +37,32 @@ function Scene({ tier, reducedMotion }: DreamscapeCanvasProps) {
 
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.4} />
+      {/* Lighting - softer for smoother look */}
+      <ambientLight intensity={0.5} />
       <pointLight
         position={[10, 10, 10]}
-        intensity={0.8}
+        intensity={0.6}
         color={colors.primaryHex}
+        distance={50}
+        decay={2}
       />
       <pointLight
         position={[-10, -10, -10]}
-        intensity={0.4}
+        intensity={0.3}
         color={colors.secondaryHex}
+        distance={50}
+        decay={2}
       />
 
-      {/* Camera controls */}
-      {!reducedMotion && <CameraRig intensity={0.12} smoothing={0.04} />}
+      {/* Camera controls with smooth damping */}
+      {!reducedMotion && <CameraRig intensity={0.1} smoothing={4} />}
 
       {/* Background nebula */}
       <NebulaBackground />
 
-      {/* Particle field */}
+      {/* Particle field - smooth stars */}
       {particleCount > 0 && (
-        <ParallaxGroup intensity={0.3}>
+        <ParallaxGroup intensity={0.25} smoothing={3}>
           <ParticleField count={particleCount} />
         </ParallaxGroup>
       )}
@@ -66,24 +70,24 @@ function Scene({ tier, reducedMotion }: DreamscapeCanvasProps) {
       {/* Floating glass objects */}
       {floatingCount > 0 && !reducedMotion && (
         <Suspense fallback={null}>
-          <ParallaxGroup intensity={0.5}>
+          <ParallaxGroup intensity={0.35} smoothing={3}>
             <FloatingObjects count={floatingCount} />
           </ParallaxGroup>
         </Suspense>
       )}
 
-      {/* Post-processing effects */}
+      {/* Post-processing effects - subtle bloom */}
       {enableBloom && !reducedMotion && (
-        <EffectComposer>
+        <EffectComposer multisampling={0}>
           <Bloom
-            intensity={0.5}
-            luminanceThreshold={0.2}
-            luminanceSmoothing={0.9}
+            intensity={0.4}
+            luminanceThreshold={0.3}
+            luminanceSmoothing={0.95}
             mipmapBlur
           />
           <Vignette
-            offset={0.3}
-            darkness={0.5}
+            offset={0.35}
+            darkness={0.4}
             blendFunction={BlendFunction.NORMAL}
           />
         </EffectComposer>
@@ -109,9 +113,11 @@ export function DreamscapeCanvas({ tier, reducedMotion }: DreamscapeCanvasProps)
       }}
       dpr={[1, tier === 'high' ? 2 : 1.5]}
       gl={{
-        antialias: tier === 'high',
+        antialias: true,
         alpha: true,
-        powerPreference: tier === 'high' ? 'high-performance' : 'default',
+        powerPreference: 'high-performance',
+        stencil: false,
+        depth: true,
       }}
       style={{
         position: 'absolute',
@@ -121,6 +127,8 @@ export function DreamscapeCanvas({ tier, reducedMotion }: DreamscapeCanvasProps)
         height: '100%',
         pointerEvents: 'none',
       }}
+      frameloop="always"
+      performance={{ min: 0.5 }}
     >
       <color attach="background" args={[colors.backgroundStartHex]} />
       <fog attach="fog" args={[colors.fogColorHex, colors.fogNear, colors.fogFar]} />

@@ -7,45 +7,57 @@ import * as THREE from 'three';
 interface CameraRigProps {
   /** Intensity of the mouse parallax effect (0-1) */
   intensity?: number;
-  /** Smoothing factor for camera movement (lower = smoother) */
+  /** Smoothing factor - higher = smoother but more lag (0.01-0.1 recommended) */
   smoothing?: number;
   /** Whether to enable the effect */
   enabled?: boolean;
 }
 
+// Utility for smooth interpolation that's frame-rate independent
+function damp(current: number, target: number, smoothing: number, delta: number): number {
+  return THREE.MathUtils.lerp(current, target, 1 - Math.exp(-smoothing * delta * 60));
+}
+
 export function CameraRig({
-  intensity = 0.15,
-  smoothing = 0.05,
+  intensity = 0.12,
+  smoothing = 3,
   enabled = true,
 }: CameraRigProps) {
   const { camera } = useThree();
-  const mouseRef = useRef({ x: 0, y: 0 });
-  const targetRef = useRef({ x: 0, y: 0 });
+  const currentRef = useRef({ x: 0, y: 0, rotX: 0, rotY: 0 });
 
-  // Track mouse position
-  useFrame(({ pointer }) => {
+  useFrame(({ pointer }, delta) => {
     if (!enabled) return;
 
-    // Update target based on mouse position
-    targetRef.current.x = pointer.x * intensity;
-    targetRef.current.y = pointer.y * intensity;
+    // Clamp delta to prevent huge jumps after tab switch
+    const dt = Math.min(delta, 0.1);
 
-    // Smoothly interpolate current position towards target
-    mouseRef.current.x += (targetRef.current.x - mouseRef.current.x) * smoothing;
-    mouseRef.current.y += (targetRef.current.y - mouseRef.current.y) * smoothing;
+    // Target position based on mouse
+    const targetX = pointer.x * intensity * 2;
+    const targetY = pointer.y * intensity * 1.5;
 
-    // Apply subtle camera movement
-    camera.position.x = mouseRef.current.x * 2;
-    camera.position.y = mouseRef.current.y * 1.5;
+    // Smooth interpolation using exponential decay (frame-rate independent)
+    currentRef.current.x = damp(currentRef.current.x, targetX, smoothing, dt);
+    currentRef.current.y = damp(currentRef.current.y, targetY, smoothing, dt);
 
-    // Subtle camera rotation for depth effect
-    camera.rotation.y = mouseRef.current.x * 0.1;
-    camera.rotation.x = -mouseRef.current.y * 0.1;
+    // Apply position
+    camera.position.x = currentRef.current.x;
+    camera.position.y = currentRef.current.y;
 
-    // Always look slightly towards center
+    // Smooth rotation
+    const targetRotY = pointer.x * 0.08;
+    const targetRotX = -pointer.y * 0.06;
+
+    currentRef.current.rotY = damp(currentRef.current.rotY, targetRotY, smoothing, dt);
+    currentRef.current.rotX = damp(currentRef.current.rotX, targetRotX, smoothing, dt);
+
+    camera.rotation.y = currentRef.current.rotY;
+    camera.rotation.x = currentRef.current.rotX;
+
+    // Look toward center with subtle offset
     camera.lookAt(
-      mouseRef.current.x * 0.5,
-      mouseRef.current.y * 0.3,
+      currentRef.current.x * 0.3,
+      currentRef.current.y * 0.2,
       -10
     );
   });
@@ -54,13 +66,12 @@ export function CameraRig({
 }
 
 /**
- * Component that provides gentle auto-animation when mouse is not moving
- * Can be used as a fallback or in combination with CameraRig
+ * Gentle auto-animation for idle state
  */
 export function AutoCameraAnimation({
   enabled = true,
-  speed = 0.3,
-  amplitude = 0.5,
+  speed = 0.2,
+  amplitude = 0.3,
 }: {
   enabled?: boolean;
   speed?: number;
@@ -68,27 +79,30 @@ export function AutoCameraAnimation({
 }) {
   const { camera } = useThree();
   const timeOffset = useRef(Math.random() * Math.PI * 2);
+  const timeRef = useRef(0);
 
-  useFrame(({ clock }) => {
+  useFrame((_, delta) => {
     if (!enabled) return;
 
-    const t = clock.getElapsedTime() * speed + timeOffset.current;
+    // Clamp delta
+    const dt = Math.min(delta, 0.1);
+    timeRef.current += dt * speed;
+    const t = timeRef.current + timeOffset.current;
 
     // Gentle figure-8 motion
     camera.position.x = Math.sin(t) * amplitude;
-    camera.position.y = Math.sin(t * 2) * amplitude * 0.5;
+    camera.position.y = Math.sin(t * 2) * amplitude * 0.4;
 
     // Very subtle rotation
-    camera.rotation.y = Math.sin(t * 0.5) * 0.05;
-    camera.rotation.x = Math.cos(t * 0.3) * 0.03;
+    camera.rotation.y = Math.sin(t * 0.5) * 0.03;
+    camera.rotation.x = Math.cos(t * 0.3) * 0.02;
   });
 
   return null;
 }
 
 /**
- * Floating group that responds to mouse movement
- * Can be used to wrap objects for parallax effect
+ * Floating group for parallax effect on child objects
  */
 interface ParallaxGroupProps {
   children: React.ReactNode;
@@ -98,22 +112,28 @@ interface ParallaxGroupProps {
 
 export function ParallaxGroup({
   children,
-  intensity = 0.5,
-  smoothing = 0.08,
+  intensity = 0.4,
+  smoothing = 2.5,
 }: ParallaxGroupProps) {
   const groupRef = useRef<THREE.Group>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const currentRef = useRef({ x: 0, y: 0 });
 
-  useFrame(({ pointer }) => {
+  useFrame(({ pointer }, delta) => {
     if (!groupRef.current) return;
 
-    // Smooth mouse tracking
-    mouseRef.current.x += (pointer.x * intensity - mouseRef.current.x) * smoothing;
-    mouseRef.current.y += (pointer.y * intensity - mouseRef.current.y) * smoothing;
+    const dt = Math.min(delta, 0.1);
 
-    // Apply to group rotation
-    groupRef.current.rotation.y = mouseRef.current.x * 0.3;
-    groupRef.current.rotation.x = -mouseRef.current.y * 0.2;
+    // Target rotation
+    const targetX = pointer.x * intensity;
+    const targetY = pointer.y * intensity;
+
+    // Smooth damping
+    currentRef.current.x = damp(currentRef.current.x, targetX, smoothing, dt);
+    currentRef.current.y = damp(currentRef.current.y, targetY, smoothing, dt);
+
+    // Apply rotation
+    groupRef.current.rotation.y = currentRef.current.x * 0.25;
+    groupRef.current.rotation.x = -currentRef.current.y * 0.15;
   });
 
   return <group ref={groupRef}>{children}</group>;
