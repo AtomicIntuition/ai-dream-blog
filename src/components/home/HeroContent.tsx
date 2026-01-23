@@ -176,9 +176,9 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${heroConfig.gradient}`} />
 
                 {/* Content */}
-                <div className="relative z-10 flex flex-col justify-between h-full p-5 sm:p-6 lg:p-8 min-h-[280px] sm:min-h-[320px] lg:min-h-[360px]">
-                  {/* Top section */}
-                  <div className="flex items-center justify-between">
+                <div className="relative z-10 p-5 sm:p-6 lg:p-8">
+                  {/* Top section - badges */}
+                  <div className="flex items-center justify-between mb-4 sm:mb-5">
                     <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                       {/* Category badge */}
                       <span
@@ -203,7 +203,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                     </div>
                   </div>
 
-                  {/* Bottom section */}
+                  {/* Main content */}
                   <div className="space-y-3 sm:space-y-4">
                     <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-[rgb(var(--text-primary))] leading-tight group-hover:text-[rgb(var(--accent-primary))] transition-colors">
                       {heroPost.title}
@@ -215,7 +215,11 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                       </p>
                     )}
 
-                    <div className="flex items-center gap-3 sm:gap-4 flex-wrap text-xs sm:text-sm text-[rgb(var(--text-muted))]">
+                    <p className="text-sm text-[rgb(var(--text-muted))] line-clamp-3 leading-relaxed">
+                      {heroPost.excerpt}
+                    </p>
+
+                    <div className="flex items-center gap-3 sm:gap-4 flex-wrap text-xs sm:text-sm text-[rgb(var(--text-muted))] pt-2">
                       <AuthorCard variant="compact" />
                       <span className="hidden sm:inline">·</span>
                       <span>{formatDate(heroPost.published_at)}</span>
@@ -362,18 +366,24 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg-primary))]/90 via-[rgb(var(--bg-primary))]/50 to-transparent" />
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${heroConfig.gradient}`} />
 
-                <div className="relative z-10 flex flex-col justify-between h-full p-5 sm:p-6 lg:p-8 min-h-[280px] sm:min-h-[320px] lg:min-h-[360px]">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full text-white"
-                      style={{ background: `linear-gradient(135deg, ${heroConfig.accentColor}, ${heroConfig.accentColor}dd)` }}
-                    >
-                      <HeroIcon className="h-3.5 w-3.5" />
-                      {getCategoryLabel(heroPost.category)}
-                    </span>
+                <div className="relative z-10 p-5 sm:p-6 lg:p-8">
+                  <div className="flex items-center justify-between mb-4 sm:mb-5">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full text-white"
+                        style={{ background: `linear-gradient(135deg, ${heroConfig.accentColor}, ${heroConfig.accentColor}dd)` }}
+                      >
+                        <HeroIcon className="h-3.5 w-3.5" />
+                        {getCategoryLabel(heroPost.category)}
+                      </span>
+                    </div>
+                    <div className="hidden sm:flex items-center gap-1.5 text-xs text-[rgb(var(--text-muted))]">
+                      <TrendingUp className="h-3.5 w-3.5" />
+                      Featured
+                    </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-3 sm:space-y-4">
                     <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-[rgb(var(--text-primary))] leading-tight">
                       {heroPost.title}
                     </h1>
@@ -382,6 +392,9 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
                         {heroPost.subtitle}
                       </p>
                     )}
+                    <p className="text-sm text-[rgb(var(--text-muted))] line-clamp-3 leading-relaxed">
+                      {heroPost.excerpt}
+                    </p>
                   </div>
                 </div>
               </article>
