@@ -244,6 +244,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   /* Global theme transition */
@@ -294,6 +295,8 @@
     font-size: var(--text-base);
     line-height: var(--line-height-body);
     letter-spacing: var(--letter-spacing-body);
+    overflow-x: hidden;
+    position: relative;
   }
 
   /* Theme background effects */

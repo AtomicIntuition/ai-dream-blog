@@ -77,7 +77,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-center gap-1 mb-12 overflow-x-auto pb-2 scrollbar-hide"
+        className="flex items-center justify-center gap-1 mb-12 flex-wrap"
       >
         {categories.map((category, index) => {
           const Icon = CATEGORY_ICONS[category.slug] || Moon;
@@ -222,7 +222,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
 function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContentProps) {
   return (
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-12 md:pb-24">
-      <nav className="flex items-center justify-center gap-1 mb-12 overflow-x-auto pb-2 scrollbar-hide">
+      <nav className="flex items-center justify-center gap-1 mb-12 flex-wrap">
         {categories.map((category) => {
           const Icon = CATEGORY_ICONS[category.slug] || Moon;
           return (
