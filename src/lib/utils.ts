@@ -46,15 +46,7 @@ export function slugify(text: string): string {
     .replace(/-+/g, '-');
 }
 
-export function getCategoryColor(category: string): string {
-  const colors: Record<string, string> = {
-    'dream-stories': 'dream',
-    'dream-science': 'cosmic',
-    'sleep-tips': 'emerald',
-    'symbolism': 'amber',
-  };
-  return colors[category] || 'dream';
-}
+// Category colors removed - now using unified theme accent
 
 export function getCategoryLabel(category: string): string {
   const labels: Record<string, string> = {

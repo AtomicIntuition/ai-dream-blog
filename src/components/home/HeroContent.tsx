@@ -32,55 +32,15 @@ interface HeroContentProps {
   categories: Category[];
 }
 
-// Category configuration with colors
-const CATEGORY_CONFIG: Record<string, {
-  icon: React.ElementType;
-  gradient: string;
-  bgGradient: string;
-  accentColor: string;
-  borderColor: string;
-  textColor: string;
-  lightTextColor: string;
-}> = {
-  'dream-stories': {
-    icon: Moon,
-    gradient: 'from-violet-500 to-purple-600',
-    bgGradient: 'from-violet-500/20 via-purple-500/10 to-transparent',
-    accentColor: 'rgb(139, 92, 246)',
-    borderColor: 'rgba(139, 92, 246, 0.3)',
-    textColor: 'text-violet-400',
-    lightTextColor: 'text-violet-300',
-  },
-  'dream-science': {
-    icon: Brain,
-    gradient: 'from-cyan-500 to-blue-600',
-    bgGradient: 'from-cyan-500/20 via-blue-500/10 to-transparent',
-    accentColor: 'rgb(6, 182, 212)',
-    borderColor: 'rgba(6, 182, 212, 0.3)',
-    textColor: 'text-cyan-400',
-    lightTextColor: 'text-cyan-300',
-  },
-  'sleep-tips': {
-    icon: Bed,
-    gradient: 'from-emerald-500 to-green-600',
-    bgGradient: 'from-emerald-500/20 via-green-500/10 to-transparent',
-    accentColor: 'rgb(16, 185, 129)',
-    borderColor: 'rgba(16, 185, 129, 0.3)',
-    textColor: 'text-emerald-400',
-    lightTextColor: 'text-emerald-300',
-  },
-  'symbolism': {
-    icon: Sparkles,
-    gradient: 'from-amber-500 to-orange-600',
-    bgGradient: 'from-amber-500/20 via-orange-500/10 to-transparent',
-    accentColor: 'rgb(245, 158, 11)',
-    borderColor: 'rgba(245, 158, 11, 0.3)',
-    textColor: 'text-amber-400',
-    lightTextColor: 'text-amber-300',
-  },
+// Category icons only - colors come from theme accent
+const CATEGORY_ICONS: Record<string, React.ElementType> = {
+  'dream-stories': Moon,
+  'dream-science': Brain,
+  'sleep-tips': Bed,
+  'symbolism': Sparkles,
 };
 
-const defaultConfig = CATEGORY_CONFIG['dream-stories'];
+const defaultIcon = Moon;
 
 // Animation variants
 const containerVariants = {
@@ -113,12 +73,11 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
     );
   }
 
-  const heroConfig = heroPost ? (CATEGORY_CONFIG[heroPost.category] || defaultConfig) : defaultConfig;
-  const HeroIcon = heroConfig.icon;
+  const HeroIcon = heroPost ? (CATEGORY_ICONS[heroPost.category] || defaultIcon) : defaultIcon;
 
   return (
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
-      {/* Category Navigation */}
+      {/* Category Navigation - unified accent color */}
       <motion.nav
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -126,8 +85,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
         className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 flex-wrap"
       >
         {categories.map((category, index) => {
-          const config = CATEGORY_CONFIG[category.slug] || defaultConfig;
-          const Icon = config.icon;
+          const Icon = CATEGORY_ICONS[category.slug] || defaultIcon;
           return (
             <motion.div
               key={category.slug}
@@ -137,13 +95,9 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
             >
               <Link
                 href={`/category/${category.slug}`}
-                className="group flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-medium rounded-full border transition-all duration-300 hover:scale-105"
-                style={{
-                  borderColor: config.borderColor,
-                  background: `linear-gradient(135deg, ${config.accentColor}15, transparent)`,
-                }}
+                className="group flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-medium rounded-full border border-[rgba(var(--accent-primary),0.2)] bg-[rgba(var(--accent-primary),0.06)] transition-all duration-300 hover:scale-105 hover:bg-[rgba(var(--accent-primary),0.12)] hover:border-[rgba(var(--accent-primary),0.3)]"
               >
-                <Icon className={`h-4 w-4 ${config.textColor}`} />
+                <Icon className="h-4 w-4 text-[rgb(var(--accent-primary))]" />
                 <span className="text-[rgb(var(--text-secondary))] group-hover:text-[rgb(var(--text-primary))] transition-colors">
                   {category.name}
                 </span>
@@ -164,16 +118,13 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
           {/* Featured Post - Large Card */}
           <motion.div variants={itemVariants} className="lg:col-span-2">
             <Link href={`/post/${heroPost.slug}`} className="group block">
-              <article
-                className="relative rounded-2xl sm:rounded-3xl overflow-hidden border transition-all duration-500 hover:shadow-2xl"
-                style={{ borderColor: heroConfig.borderColor }}
-              >
-                {/* Category gradient background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${heroConfig.bgGradient}`} />
+              <article className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[rgba(var(--accent-primary),0.2)] transition-all duration-500 hover:shadow-2xl hover:border-[rgba(var(--accent-primary),0.3)]">
+                {/* Subtle accent gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--accent-primary),0.08)] via-transparent to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg-primary))]/90 via-[rgb(var(--bg-primary))]/50 to-transparent" />
 
                 {/* Accent line at top */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${heroConfig.gradient}`} />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-[rgb(var(--accent-primary))]" />
 
                 {/* Content */}
                 <div className="relative z-10 p-5 sm:p-6 lg:p-8">
@@ -181,18 +132,12 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                   <div className="flex items-center justify-between mb-4 sm:mb-5">
                     <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                       {/* Category badge */}
-                      <span
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full"
-                        style={{
-                          background: `linear-gradient(135deg, ${heroConfig.accentColor}, ${heroConfig.accentColor}dd)`,
-                          color: 'white',
-                        }}
-                      >
+                      <span className="category-badge">
                         <HeroIcon className="h-3.5 w-3.5" />
                         {getCategoryLabel(heroPost.category)}
                       </span>
                       {heroPost.generated_dream?.isLucid && (
-                        <span className="px-2.5 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded-full border border-purple-400/30">
+                        <span className="px-2.5 py-1 text-xs font-medium bg-[rgba(var(--accent-primary),0.15)] text-[rgb(var(--accent-primary))] rounded-full border border-[rgba(var(--accent-primary),0.25)]">
                           Lucid
                         </span>
                       )}
@@ -233,12 +178,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                 </div>
 
                 {/* Hover glow effect */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background: `radial-gradient(circle at 50% 100%, ${heroConfig.accentColor}15, transparent 60%)`,
-                  }}
-                />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_100%,rgba(var(--accent-primary),0.1),transparent_60%)]" />
               </article>
             </Link>
           </motion.div>
@@ -246,29 +186,18 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
           {/* Secondary Posts Column */}
           <motion.div variants={itemVariants} className="flex flex-col gap-4 sm:gap-5">
             {secondaryPosts.map((post) => {
-              const config = CATEGORY_CONFIG[post.category] || defaultConfig;
-              const Icon = config.icon;
+              const Icon = CATEGORY_ICONS[post.category] || defaultIcon;
 
               return (
                 <Link key={post.id} href={`/post/${post.slug}`} className="group flex-1">
-                  <article
-                    className="h-full rounded-xl sm:rounded-2xl overflow-hidden border bg-[rgb(var(--bg-secondary))]/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ borderColor: config.borderColor }}
-                  >
+                  <article className="h-full rounded-xl sm:rounded-2xl overflow-hidden border border-[rgba(var(--accent-primary),0.15)] bg-[rgb(var(--bg-secondary))]/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:border-[rgba(var(--accent-primary),0.25)]">
                     {/* Accent line */}
-                    <div className={`h-0.5 w-full bg-gradient-to-r ${config.gradient}`} />
+                    <div className="h-0.5 w-full bg-[rgb(var(--accent-primary))]" />
 
                     <div className="p-4 sm:p-5">
                       {/* Category badge */}
                       <div className="flex items-center gap-2 mb-3">
-                        <span
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full"
-                          style={{
-                            background: `${config.accentColor}18`,
-                            color: config.accentColor,
-                            border: `1px solid ${config.borderColor}`,
-                          }}
-                        >
+                        <span className="category-badge">
                           <Icon className="h-3 w-3" />
                           {getCategoryLabel(post.category)}
                         </span>
@@ -299,9 +228,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
 
             {/* Explore More Card */}
             <Link href="/archive" className="group">
-              <div
-                className="rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-dashed border-[rgb(var(--border-color))] hover:border-[rgb(var(--accent-primary))] bg-[rgb(var(--bg-secondary))]/30 transition-all duration-300 hover:bg-[rgb(var(--accent-primary))]/5"
-              >
+              <div className="rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-dashed border-[rgb(var(--border-color))] hover:border-[rgb(var(--accent-primary))] bg-[rgb(var(--bg-secondary))]/30 transition-all duration-300 hover:bg-[rgba(var(--accent-primary),0.05)]">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-[rgb(var(--text-primary))] mb-1">
@@ -326,27 +253,21 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
 
 // Static version for reduced motion
 function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContentProps) {
-  const heroConfig = heroPost ? (CATEGORY_CONFIG[heroPost.category] || defaultConfig) : defaultConfig;
-  const HeroIcon = heroConfig.icon;
+  const HeroIcon = heroPost ? (CATEGORY_ICONS[heroPost.category] || defaultIcon) : defaultIcon;
 
   return (
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
-      {/* Category Navigation */}
+      {/* Category Navigation - unified accent */}
       <nav className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 flex-wrap">
         {categories.map((category) => {
-          const config = CATEGORY_CONFIG[category.slug] || defaultConfig;
-          const Icon = config.icon;
+          const Icon = CATEGORY_ICONS[category.slug] || defaultIcon;
           return (
             <Link
               key={category.slug}
               href={`/category/${category.slug}`}
-              className="group flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-medium rounded-full border transition-all"
-              style={{
-                borderColor: config.borderColor,
-                background: `linear-gradient(135deg, ${config.accentColor}15, transparent)`,
-              }}
+              className="group flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-medium rounded-full border border-[rgba(var(--accent-primary),0.2)] bg-[rgba(var(--accent-primary),0.06)] transition-all hover:bg-[rgba(var(--accent-primary),0.12)]"
             >
-              <Icon className={`h-4 w-4 ${config.textColor}`} />
+              <Icon className="h-4 w-4 text-[rgb(var(--accent-primary))]" />
               <span className="text-[rgb(var(--text-secondary))]">{category.name}</span>
             </Link>
           );
@@ -358,21 +279,15 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
           {/* Featured Post */}
           <div className="lg:col-span-2">
             <Link href={`/post/${heroPost.slug}`} className="group block">
-              <article
-                className="relative rounded-2xl sm:rounded-3xl overflow-hidden border"
-                style={{ borderColor: heroConfig.borderColor }}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${heroConfig.bgGradient}`} />
+              <article className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[rgba(var(--accent-primary),0.2)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--accent-primary),0.08)] via-transparent to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg-primary))]/90 via-[rgb(var(--bg-primary))]/50 to-transparent" />
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${heroConfig.gradient}`} />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-[rgb(var(--accent-primary))]" />
 
                 <div className="relative z-10 p-5 sm:p-6 lg:p-8">
                   <div className="flex items-center justify-between mb-4 sm:mb-5">
                     <div className="flex items-center gap-2">
-                      <span
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full text-white"
-                        style={{ background: `linear-gradient(135deg, ${heroConfig.accentColor}, ${heroConfig.accentColor}dd)` }}
-                      >
+                      <span className="category-badge">
                         <HeroIcon className="h-3.5 w-3.5" />
                         {getCategoryLabel(heroPost.category)}
                       </span>
@@ -404,24 +319,13 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
           {/* Secondary Posts */}
           <div className="flex flex-col gap-4 sm:gap-5">
             {secondaryPosts.map((post) => {
-              const config = CATEGORY_CONFIG[post.category] || defaultConfig;
-              const Icon = config.icon;
+              const Icon = CATEGORY_ICONS[post.category] || defaultIcon;
               return (
                 <Link key={post.id} href={`/post/${post.slug}`} className="group flex-1">
-                  <article
-                    className="h-full rounded-xl sm:rounded-2xl overflow-hidden border bg-[rgb(var(--bg-secondary))]/50"
-                    style={{ borderColor: config.borderColor }}
-                  >
-                    <div className={`h-0.5 w-full bg-gradient-to-r ${config.gradient}`} />
+                  <article className="h-full rounded-xl sm:rounded-2xl overflow-hidden border border-[rgba(var(--accent-primary),0.15)] bg-[rgb(var(--bg-secondary))]/50">
+                    <div className="h-0.5 w-full bg-[rgb(var(--accent-primary))]" />
                     <div className="p-4 sm:p-5">
-                      <span
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full mb-3"
-                        style={{
-                          background: `${config.accentColor}18`,
-                          color: config.accentColor,
-                          border: `1px solid ${config.borderColor}`,
-                        }}
-                      >
+                      <span className="category-badge mb-3">
                         <Icon className="h-3 w-3" />
                         {getCategoryLabel(post.category)}
                       </span>

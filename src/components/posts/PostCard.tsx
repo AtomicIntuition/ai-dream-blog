@@ -30,14 +30,8 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
       )}
     >
       <Link href={`/post/${post.slug}`} className="block h-full">
-        {/* Top accent line based on category */}
-        <div className={cn(
-          'h-1 w-full',
-          post.category === 'dream-stories' && 'bg-gradient-to-r from-violet-500 to-purple-500',
-          post.category === 'dream-science' && 'bg-gradient-to-r from-cyan-500 to-blue-500',
-          post.category === 'sleep-tips' && 'bg-gradient-to-r from-emerald-500 to-green-500',
-          post.category === 'symbolism' && 'bg-gradient-to-r from-amber-500 to-orange-500',
-        )} />
+        {/* Top accent line - uses theme accent */}
+        <div className="h-1 w-full bg-[rgb(var(--accent-primary))]" />
 
         {/* Card content */}
         <div className={cn('p-5 sm:p-6', featured && 'md:p-8')}>
@@ -48,7 +42,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
               {getCategoryLabel(post.category)}
             </span>
             {post.generated_dream?.isLucid && (
-              <span className="px-2.5 py-1 text-xs font-medium bg-purple-500/15 text-purple-400 rounded-full border border-purple-500/20">
+              <span className="px-2.5 py-1 text-xs font-medium bg-[rgba(var(--accent-primary),0.12)] text-[rgb(var(--accent-primary))] rounded-full border border-[rgba(var(--accent-primary),0.2)]">
                 Lucid
               </span>
             )}

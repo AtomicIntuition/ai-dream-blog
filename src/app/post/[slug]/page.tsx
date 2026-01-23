@@ -111,7 +111,7 @@ export default async function PostPage({ params }: PageProps) {
               {getCategoryLabel(post.category)}
             </span>
             {post.generated_dream?.isLucid && (
-              <span className="px-3 py-1 text-sm bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-full">
+              <span className="px-3 py-1 text-sm bg-[rgba(var(--accent-primary),0.15)] text-[rgb(var(--accent-primary))] border border-[rgba(var(--accent-primary),0.25)] rounded-full">
                 Lucid Dream
               </span>
             )}

@@ -122,13 +122,8 @@ export function CategoriesSection({ categories }: CategoriesSectionProps) {
                 href={`/category/${category.slug}`}
                 className="group glass-card p-6 rounded-2xl hover:border-[rgb(var(--border-hover))] transition-all flex items-start gap-4"
               >
-                <div className={`p-3 rounded-xl bg-gradient-to-br ${
-                  category.slug === 'dream-stories' ? 'from-dream-500/20 to-dream-600/20' :
-                  category.slug === 'dream-science' ? 'from-cyan-500/20 to-cyan-600/20' :
-                  category.slug === 'sleep-tips' ? 'from-emerald-500/20 to-emerald-600/20' :
-                  'from-amber-500/20 to-amber-600/20'
-                }`}>
-                  <Icon className="h-6 w-6 text-[rgb(var(--text-primary))]" />
+                <div className="p-3 rounded-xl bg-[rgba(var(--accent-primary),0.12)]">
+                  <Icon className="h-6 w-6 text-[rgb(var(--accent-primary))]" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-1">
