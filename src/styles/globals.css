@@ -74,12 +74,6 @@
     --cta-heading: 250 248 244;
     --cta-text: 200 196 188;
 
-    /* Category colors - muted for harmony */
-    --cat-stories: 167 139 250;
-    --cat-science: 125 211 252;
-    --cat-tips: 134 239 172;
-    --cat-symbols: 253 186 116;
-
     /* Mode identifiers */
     --is-dark: 1;
     --is-light: 0;
@@ -146,12 +140,6 @@
     --cta-heading: 15 15 14;
     --cta-text: 60 58 54;
 
-    /* Category colors - deeper for light bg */
-    --cat-stories: 109 40 217;
-    --cat-science: 8 145 178;
-    --cat-tips: 22 163 74;
-    --cat-symbols: 217 119 6;
-
     /* Mode identifiers */
     --is-dark: 0;
     --is-light: 1;
@@ -217,12 +205,6 @@
     --hero-meta: 150 144 134;
     --cta-heading: 248 245 239;
     --cta-text: 210 204 192;
-
-    /* Category colors - warm tinted */
-    --cat-stories: 192 168 252;
-    --cat-science: 147 220 252;
-    --cat-tips: 167 243 195;
-    --cat-symbols: 253 207 142;
 
     /* Mode identifiers */
     --is-dark: 1;
@@ -848,7 +830,8 @@
   }
 
   /* ===========================================
-     CATEGORY BADGES - Harmonious with themes
+     CATEGORY BADGES - Unified accent color
+     Distinguished by icon + label, not color
      =========================================== */
   .category-badge {
     display: inline-flex;
@@ -861,38 +844,28 @@
     font-weight: 500;
     letter-spacing: 0.01em;
     transition: all var(--transition-base) var(--ease-out);
+    background: rgba(var(--accent-primary), 0.10);
+    color: rgb(var(--accent-primary));
+    border: 1px solid rgba(var(--accent-primary), 0.15);
   }
 
-  /* Dream Stories - Purple/Violet */
-  .category-dream-stories {
-    background: rgba(var(--cat-stories), 0.12);
-    color: rgb(var(--cat-stories));
-    border: 1px solid rgba(var(--cat-stories), 0.18);
+  .category-badge:hover {
+    background: rgba(var(--accent-primary), 0.15);
+    border-color: rgba(var(--accent-primary), 0.25);
   }
 
-  /* Dream Science - Cyan/Blue */
-  .category-dream-science {
-    background: rgba(var(--cat-science), 0.12);
-    color: rgb(var(--cat-science));
-    border: 1px solid rgba(var(--cat-science), 0.18);
-  }
-
-  /* Sleep Tips - Green/Emerald */
-  .category-sleep-tips {
-    background: rgba(var(--cat-tips), 0.12);
-    color: rgb(var(--cat-tips));
-    border: 1px solid rgba(var(--cat-tips), 0.18);
-  }
-
-  /* Symbolism - Amber/Orange */
+  /* Legacy class names - all use unified accent now */
+  .category-dream-stories,
+  .category-dream-science,
+  .category-sleep-tips,
   .category-symbolism {
-    background: rgba(var(--cat-symbols), 0.12);
-    color: rgb(var(--cat-symbols));
-    border: 1px solid rgba(var(--cat-symbols), 0.18);
+    background: rgba(var(--accent-primary), 0.10);
+    color: rgb(var(--accent-primary));
+    border: 1px solid rgba(var(--accent-primary), 0.15);
   }
 
   /* ===========================================
-     CATEGORY NAVIGATION LINKS - Unified system
+     CATEGORY NAVIGATION LINKS - Unified accent
      =========================================== */
   .category-nav-link {
     display: flex;
@@ -904,106 +877,56 @@
     border-radius: 9999px;
     transition: all 0.2s ease;
     border: 1px solid transparent;
+    color: rgb(var(--text-secondary));
+    background: rgba(var(--accent-primary), 0.06);
   }
 
-  /* Dream Stories - Purple */
-  .category-nav-dream-stories {
-    color: rgb(var(--cat-stories));
-    background: rgba(var(--cat-stories), 0.08);
-  }
-  .category-nav-dream-stories:hover {
-    background: rgba(var(--cat-stories), 0.16);
-    border-color: rgba(var(--cat-stories), 0.24);
+  .category-nav-link:hover {
+    color: rgb(var(--accent-primary));
+    background: rgba(var(--accent-primary), 0.12);
+    border-color: rgba(var(--accent-primary), 0.18);
   }
 
-  /* Dream Science - Cyan */
-  .category-nav-dream-science {
-    color: rgb(var(--cat-science));
-    background: rgba(var(--cat-science), 0.08);
-  }
-  .category-nav-dream-science:hover {
-    background: rgba(var(--cat-science), 0.16);
-    border-color: rgba(var(--cat-science), 0.24);
-  }
-
-  /* Sleep Tips - Green */
-  .category-nav-sleep-tips {
-    color: rgb(var(--cat-tips));
-    background: rgba(var(--cat-tips), 0.08);
-  }
-  .category-nav-sleep-tips:hover {
-    background: rgba(var(--cat-tips), 0.16);
-    border-color: rgba(var(--cat-tips), 0.24);
-  }
-
-  /* Symbolism - Amber */
+  /* Legacy class names - all use unified styles now */
+  .category-nav-dream-stories,
+  .category-nav-dream-science,
+  .category-nav-sleep-tips,
   .category-nav-symbolism {
-    color: rgb(var(--cat-symbols));
-    background: rgba(var(--cat-symbols), 0.08);
+    color: rgb(var(--text-secondary));
+    background: rgba(var(--accent-primary), 0.06);
   }
+
+  .category-nav-dream-stories:hover,
+  .category-nav-dream-science:hover,
+  .category-nav-sleep-tips:hover,
   .category-nav-symbolism:hover {
-    background: rgba(var(--cat-symbols), 0.16);
-    border-color: rgba(var(--cat-symbols), 0.24);
+    color: rgb(var(--accent-primary));
+    background: rgba(var(--accent-primary), 0.12);
+    border-color: rgba(var(--accent-primary), 0.18);
   }
 
   /* ===========================================
-     HERO CARD GRADIENTS - Category specific
+     HERO CARD GRADIENTS - Unified accent
      =========================================== */
-  .hero-gradient-dream-stories {
-    background: linear-gradient(135deg,
-      rgba(var(--cat-stories), 0.20) 0%,
-      rgba(var(--cat-stories), 0.10) 50%,
-      rgba(var(--bg-secondary), 0.95) 100%
-    );
-  }
-  .hero-gradient-dream-science {
-    background: linear-gradient(135deg,
-      rgba(var(--cat-science), 0.20) 0%,
-      rgba(var(--cat-science), 0.10) 50%,
-      rgba(var(--bg-secondary), 0.95) 100%
-    );
-  }
-  .hero-gradient-sleep-tips {
-    background: linear-gradient(135deg,
-      rgba(var(--cat-tips), 0.20) 0%,
-      rgba(var(--cat-tips), 0.10) 50%,
-      rgba(var(--bg-secondary), 0.95) 100%
-    );
-  }
+  .hero-gradient-dream-stories,
+  .hero-gradient-dream-science,
+  .hero-gradient-sleep-tips,
   .hero-gradient-symbolism {
     background: linear-gradient(135deg,
-      rgba(var(--cat-symbols), 0.20) 0%,
-      rgba(var(--cat-symbols), 0.10) 50%,
+      rgba(var(--accent-primary), 0.12) 0%,
+      rgba(var(--accent-primary), 0.05) 50%,
       rgba(var(--bg-secondary), 0.95) 100%
     );
   }
 
   /* Light theme hero gradients - softer */
-  [data-theme="alabaster"] .hero-gradient-dream-stories {
-    background: linear-gradient(135deg,
-      rgba(var(--cat-stories), 0.12) 0%,
-      rgba(var(--cat-stories), 0.05) 50%,
-      rgba(var(--bg-secondary), 0.98) 100%
-    );
-  }
-  [data-theme="alabaster"] .hero-gradient-dream-science {
-    background: linear-gradient(135deg,
-      rgba(var(--cat-science), 0.12) 0%,
-      rgba(var(--cat-science), 0.05) 50%,
-      rgba(var(--bg-secondary), 0.98) 100%
-    );
-  }
-  [data-theme="alabaster"] .hero-gradient-sleep-tips {
-    background: linear-gradient(135deg,
-      rgba(var(--cat-tips), 0.12) 0%,
-      rgba(var(--cat-tips), 0.05) 50%,
-      rgba(var(--bg-secondary), 0.98) 100%
-    );
-  }
+  [data-theme="alabaster"] .hero-gradient-dream-stories,
+  [data-theme="alabaster"] .hero-gradient-dream-science,
+  [data-theme="alabaster"] .hero-gradient-sleep-tips,
   [data-theme="alabaster"] .hero-gradient-symbolism {
     background: linear-gradient(135deg,
-      rgba(var(--cat-symbols), 0.12) 0%,
-      rgba(var(--cat-symbols), 0.05) 50%,
+      rgba(var(--accent-primary), 0.08) 0%,
+      rgba(var(--accent-primary), 0.03) 50%,
       rgba(var(--bg-secondary), 0.98) 100%
     );
   }
