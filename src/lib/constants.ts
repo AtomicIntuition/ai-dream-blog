@@ -27,15 +27,15 @@ export const THEME_ORDER = ['obsidian', 'alabaster', 'dusk'] as const;
 export const THEME_META = {
   obsidian: {
     name: 'Obsidian',
-    description: 'Nighttime Sanctuary',
+    description: 'Midnight Library',
   },
   alabaster: {
     name: 'Alabaster',
-    description: 'Gallery Space',
+    description: 'Editorial White',
   },
   dusk: {
     name: 'Dusk',
-    description: 'Evening Retreat',
+    description: 'Candlelit Study',
   },
 } as const;
 

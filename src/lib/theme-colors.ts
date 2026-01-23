@@ -3,18 +3,23 @@ import type { Theme } from '@/contexts/ThemeContext';
 /**
  * 3D Scene color palettes for each theme
  * These are used in Three.js shaders and materials
+ *
+ * Updated to match the $100M theme overhaul:
+ * - Obsidian: Midnight Library (warm charcoal + gold)
+ * - Alabaster: Editorial White (paper + indigo)
+ * - Dusk: Candlelit Study (espresso + copper)
  */
 
 export interface ThemeColors {
-  // Primary accent color (gold/indigo/sienna)
+  // Primary accent color
   primary: string;
   primaryHex: number;
 
-  // Secondary accent (steel blue/slate/amber)
+  // Secondary accent
   secondary: string;
   secondaryHex: number;
 
-  // Tertiary (purple nebula/light fog/warm brown)
+  // Tertiary accent
   tertiary: string;
   tertiaryHex: number;
 
@@ -41,89 +46,89 @@ export interface ThemeColors {
 }
 
 export const themeColors: Record<Theme, ThemeColors> = {
+  // Obsidian - Midnight Library
+  // Warm charcoal backgrounds, refined gold accents
   obsidian: {
-    // Gold & Steel blue & Purple nebula
-    primary: '#c9a87c',
-    primaryHex: 0xc9a87c,
-    secondary: '#8b9dc3',
-    secondaryHex: 0x8b9dc3,
-    tertiary: '#7c3aed',
-    tertiaryHex: 0x7c3aed,
+    primary: '#d4b896',
+    primaryHex: 0xd4b896,
+    secondary: '#9ca3af',
+    secondaryHex: 0x9ca3af,
+    tertiary: '#a78bfa',
+    tertiaryHex: 0xa78bfa,
 
-    // Near-black backgrounds
-    backgroundStart: '#0a0a0f',
-    backgroundStartHex: 0x0a0a0f,
-    backgroundEnd: '#12121a',
-    backgroundEndHex: 0x12121a,
+    backgroundStart: '#0d0d0d',
+    backgroundStartHex: 0x0d0d0d,
+    backgroundEnd: '#141414',
+    backgroundEndHex: 0x141414,
 
-    // Particle colors - warm gold and cool blue
-    particlePrimary: '#e8c4a0',
-    particlePrimaryHex: 0xe8c4a0,
-    particleSecondary: '#aab8d8',
-    particleSecondaryHex: 0xaab8d8,
+    // Particle colors - warm gold and soft steel
+    particlePrimary: '#d4b896',
+    particlePrimaryHex: 0xd4b896,
+    particleSecondary: '#b9a07d',
+    particleSecondaryHex: 0xb9a07d,
 
-    glowIntensity: 1.0,
+    glowIntensity: 0.8,
 
-    fogColor: '#0a0a0f',
-    fogColorHex: 0x0a0a0f,
+    fogColor: '#0d0d0d',
+    fogColorHex: 0x0d0d0d,
     fogNear: 15,
     fogFar: 50,
   },
 
+  // Alabaster - Editorial White
+  // Warm paper whites, sophisticated indigo accents
   alabaster: {
-    // Indigo & Slate & Light fog
-    primary: '#5a67d8',
-    primaryHex: 0x5a67d8,
-    secondary: '#4a5568',
-    secondaryHex: 0x4a5568,
-    tertiary: '#a0aec0',
-    tertiaryHex: 0xa0aec0,
+    primary: '#4f46e5',
+    primaryHex: 0x4f46e5,
+    secondary: '#64748b',
+    secondaryHex: 0x64748b,
+    tertiary: '#6366f1',
+    tertiaryHex: 0x6366f1,
 
-    // Light backgrounds
-    backgroundStart: '#fafafa',
-    backgroundStartHex: 0xfafafa,
-    backgroundEnd: '#f0f0f0',
-    backgroundEndHex: 0xf0f0f0,
+    backgroundStart: '#fcfbf9',
+    backgroundStartHex: 0xfcfbf9,
+    backgroundEnd: '#f7f6f3',
+    backgroundEndHex: 0xf7f6f3,
 
     // Particle colors - subtle indigo tints
     particlePrimary: '#818cf8',
     particlePrimaryHex: 0x818cf8,
-    particleSecondary: '#94a3b8',
-    particleSecondaryHex: 0x94a3b8,
+    particleSecondary: '#a5b4fc',
+    particleSecondaryHex: 0xa5b4fc,
 
-    glowIntensity: 0.5,
+    glowIntensity: 0.4,
 
-    fogColor: '#fafafa',
-    fogColorHex: 0xfafafa,
+    fogColor: '#fcfbf9',
+    fogColorHex: 0xfcfbf9,
     fogNear: 20,
     fogFar: 60,
   },
 
+  // Dusk - Candlelit Study
+  // Rich espresso with purple undertone, copper/amber accents
   dusk: {
-    // Sienna & Amber & Warm brown
-    primary: '#c2410c',
-    primaryHex: 0xc2410c,
-    secondary: '#a16207',
-    secondaryHex: 0xa16207,
-    tertiary: '#78350f',
-    tertiaryHex: 0x78350f,
+    primary: '#c9956c',
+    primaryHex: 0xc9956c,
+    secondary: '#d9af5f',
+    secondaryHex: 0xd9af5f,
+    tertiary: '#a78bfa',
+    tertiaryHex: 0xa78bfa,
 
-    // Warm dark backgrounds
-    backgroundStart: '#1c1917',
-    backgroundStartHex: 0x1c1917,
-    backgroundEnd: '#26221f',
-    backgroundEndHex: 0x26221f,
+    backgroundStart: '#16141a',
+    backgroundStartHex: 0x16141a,
+    backgroundEnd: '#1e1c21',
+    backgroundEndHex: 0x1e1c21,
 
-    // Particle colors - warm embers
-    particlePrimary: '#fb923c',
-    particlePrimaryHex: 0xfb923c,
-    particleSecondary: '#fbbf24',
-    particleSecondaryHex: 0xfbbf24,
+    // Particle colors - warm copper and amber
+    particlePrimary: '#c9956c',
+    particlePrimaryHex: 0xc9956c,
+    particleSecondary: '#d9af5f',
+    particleSecondaryHex: 0xd9af5f,
 
-    glowIntensity: 0.8,
+    glowIntensity: 0.7,
 
-    fogColor: '#1c1917',
-    fogColorHex: 0x1c1917,
+    fogColor: '#16141a',
+    fogColorHex: 0x16141a,
     fogNear: 15,
     fogFar: 45,
   },

@@ -4,69 +4,81 @@
 
 /* ============================================
    WORLD-CLASS BLOG THEME SYSTEM
-   Obsidian | Alabaster | Dusk
+   Three $100M Premium Reading Experiences
+
+   Obsidian  - Midnight Library (Dark)
+   Alabaster - Editorial White (Light)
+   Dusk      - Candlelit Study (Warm)
    ============================================ */
 
 @layer base {
   /* ===========================================
-     THEME: OBSIDIAN (Default)
-     The Nighttime Sanctuary - Luxury dark for deep reading
-     Philosophy: Luxury watch meets rare book collection
+     THEME: OBSIDIAN
+     Midnight Library - The Ultimate Dark Reading Experience
+
+     Philosophy: Warm charcoal backgrounds, ivory cream text,
+     refined gold accents. Like reading in a luxury private library.
      =========================================== */
   :root,
   [data-theme="obsidian"] {
-    /* Core backgrounds - near-black with subtle blue undertone */
-    --bg-primary: 10 10 15;
-    --bg-secondary: 18 18 26;
-    --bg-tertiary: 26 26 36;
-    --bg-card: 20 20 28;
+    /* Core backgrounds - warm charcoal, not cold blue-black */
+    --bg-primary: 13 13 13;
+    --bg-secondary: 20 20 20;
+    --bg-tertiary: 28 28 28;
+    --bg-card: 23 23 23;
 
-    /* Text colors - soft whites, not harsh */
-    --text-primary: 240 240 245;
-    --text-secondary: 160 160 176;
-    --text-muted: 106 106 122;
-    --text-accent: 201 168 124;
+    /* Text colors - ivory cream, easy on the eyes */
+    --text-primary: 232 228 221;
+    --text-secondary: 168 163 154;
+    --text-muted: 115 111 105;
+    --text-accent: 212 184 150;
 
-    /* Accent colors - champagne gold & steel blue */
-    --accent-primary: 201 168 124;
-    --accent-secondary: 232 196 160;
-    --accent-tertiary: 139 157 195;
+    /* Accent colors - refined gold & steel */
+    --accent-primary: 212 184 150;
+    --accent-secondary: 185 160 125;
+    --accent-tertiary: 156 163 175;
 
     /* Component colors */
-    --border-color: 200 180 150 / 0.12;
-    --border-hover: 200 180 150 / 0.24;
-    --glass-bg: 20 20 30 / 0.85;
-    --glass-hover: 30 30 42 / 0.9;
-    --surface-hover: 255 255 255 / 0.05;
-    --glass-solid: 22 22 32;
-    --glass-solid-hover: 30 30 42;
+    --border-color: 255 250 245 / 0.06;
+    --border-hover: 255 250 245 / 0.12;
+    --glass-bg: 20 20 20 / 0.92;
+    --glass-hover: 28 28 28 / 0.95;
+    --surface-hover: 255 255 255 / 0.04;
+    --glass-solid: 22 22 22;
+    --glass-solid-hover: 30 30 30;
 
-    /* Shadows & Glows */
-    --shadow-color: 0 0 0 / 0.4;
-    --shadow-lg: 0 8px 32px rgb(0 0 0 / 0.5);
-    --glow-color: 201 168 124 / 0.2;
-    --card-glow: 201 168 124 / 0.08;
+    /* Shadows & Glows - subtle and warm */
+    --shadow-color: 0 0 0 / 0.5;
+    --shadow-lg: 0 8px 32px rgb(0 0 0 / 0.6);
+    --glow-color: 212 184 150 / 0.12;
+    --card-glow: 212 184 150 / 0.04;
 
-    /* Reading - optimized for night */
-    --article-text: 226 226 236;
-    --article-heading: 250 250 255;
-    --article-link: 139 157 195;
-    --article-link-hover: 170 186 220;
+    /* Reading - optimized for extended sessions */
+    --article-text: 220 216 208;
+    --article-heading: 245 242 237;
+    --article-link: 180 190 210;
+    --article-link-hover: 210 218 232;
 
-    /* Callout backgrounds */
-    --callout-insight: 201 168 124 / 0.1;
-    --callout-science: 139 157 195 / 0.1;
-    --callout-tip: 232 196 160 / 0.1;
-    --callout-reflect: 180 140 200 / 0.08;
-    --callout-success: 120 180 140 / 0.08;
-    --callout-info: 139 157 195 / 0.1;
+    /* Callout backgrounds - warm and subtle */
+    --callout-insight: 212 184 150 / 0.08;
+    --callout-science: 156 163 175 / 0.08;
+    --callout-tip: 185 160 125 / 0.08;
+    --callout-reflect: 160 140 180 / 0.06;
+    --callout-success: 140 170 145 / 0.06;
+    --callout-info: 156 163 175 / 0.08;
 
     /* Hero & CTA */
-    --hero-text: 255 255 255;
-    --hero-subtitle: 200 200 210;
-    --hero-meta: 140 140 155;
-    --cta-heading: 255 255 255;
-    --cta-text: 200 200 210;
+    --hero-text: 250 248 244;
+    --hero-subtitle: 200 196 188;
+    --hero-meta: 140 136 128;
+    --cta-heading: 250 248 244;
+    --cta-text: 200 196 188;
+
+    /* Category colors - muted for harmony */
+    --cat-stories: 167 139 250;
+    --cat-science: 125 211 252;
+    --cat-tips: 134 239 172;
+    --cat-symbols: 253 186 116;
 
     /* Mode identifiers */
     --is-dark: 1;
@@ -75,62 +87,70 @@
 
   /* ===========================================
      THEME: ALABASTER
-     The Gallery Space - Clean daytime clarity
-     Philosophy: Museum catalog meets architectural digest
+     Editorial White - Museum Quality Reading
+
+     Philosophy: Warm paper whites, rich ink blacks,
+     sophisticated indigo accents. Like a premium magazine.
      =========================================== */
   [data-theme="alabaster"] {
-    /* Core backgrounds - warm white progression */
-    --bg-primary: 250 250 250;
-    --bg-secondary: 245 245 245;
-    --bg-tertiary: 238 238 238;
-    --bg-card: 255 255 255;
+    /* Core backgrounds - warm paper, not clinical */
+    --bg-primary: 252 251 249;
+    --bg-secondary: 247 246 243;
+    --bg-tertiary: 240 239 235;
+    --bg-card: 255 255 253;
 
-    /* Text colors - soft blacks with warmth */
-    --text-primary: 26 26 31;
-    --text-secondary: 74 74 85;
-    --text-muted: 122 122 133;
-    --text-accent: 74 85 104;
+    /* Text colors - rich ink with warmth */
+    --text-primary: 28 28 26;
+    --text-secondary: 82 80 75;
+    --text-muted: 130 127 120;
+    --text-accent: 79 70 229;
 
-    /* Accent colors - sophisticated slate & indigo */
-    --accent-primary: 74 85 104;
-    --accent-secondary: 45 55 72;
-    --accent-tertiary: 90 103 216;
+    /* Accent colors - sophisticated indigo & slate */
+    --accent-primary: 79 70 229;
+    --accent-secondary: 99 102 241;
+    --accent-tertiary: 100 116 139;
 
     /* Component colors */
-    --border-color: 0 0 0 / 0.06;
-    --border-hover: 0 0 0 / 0.12;
-    --glass-bg: 255 255 255 / 0.95;
+    --border-color: 0 0 0 / 0.05;
+    --border-hover: 0 0 0 / 0.10;
+    --glass-bg: 255 255 253 / 0.97;
     --glass-hover: 255 255 255 / 1;
-    --surface-hover: 0 0 0 / 0.03;
-    --glass-solid: 252 252 252;
+    --surface-hover: 0 0 0 / 0.025;
+    --glass-solid: 252 251 249;
     --glass-solid-hover: 255 255 255;
 
-    /* Shadows */
-    --shadow-color: 0 0 0 / 0.06;
-    --shadow-lg: 0 4px 20px rgb(0 0 0 / 0.08);
-    --glow-color: 74 85 104 / 0.1;
-    --card-glow: 0 0 0 / 0.04;
+    /* Shadows - minimal and refined */
+    --shadow-color: 0 0 0 / 0.04;
+    --shadow-lg: 0 4px 24px rgb(0 0 0 / 0.06);
+    --glow-color: 79 70 229 / 0.08;
+    --card-glow: 0 0 0 / 0.02;
 
     /* Reading - maximum clarity */
-    --article-text: 55 65 81;
-    --article-heading: 17 24 39;
-    --article-link: 90 103 216;
+    --article-text: 45 45 42;
+    --article-heading: 15 15 14;
+    --article-link: 79 70 229;
     --article-link-hover: 67 56 202;
 
-    /* Callout backgrounds - subtle for light */
-    --callout-insight: 90 103 216 / 0.06;
-    --callout-science: 59 130 246 / 0.06;
-    --callout-tip: 245 158 11 / 0.08;
-    --callout-reflect: 168 85 247 / 0.05;
-    --callout-success: 34 197 94 / 0.06;
-    --callout-info: 59 130 246 / 0.06;
+    /* Callout backgrounds - whisper-light */
+    --callout-insight: 79 70 229 / 0.05;
+    --callout-science: 59 130 246 / 0.05;
+    --callout-tip: 234 179 8 / 0.06;
+    --callout-reflect: 168 85 247 / 0.04;
+    --callout-success: 34 197 94 / 0.05;
+    --callout-info: 59 130 246 / 0.05;
 
     /* Hero & CTA */
-    --hero-text: 26 26 31;
-    --hero-subtitle: 74 74 85;
-    --hero-meta: 122 122 133;
-    --cta-heading: 26 26 31;
-    --cta-text: 74 74 85;
+    --hero-text: 15 15 14;
+    --hero-subtitle: 60 58 54;
+    --hero-meta: 115 112 106;
+    --cta-heading: 15 15 14;
+    --cta-text: 60 58 54;
+
+    /* Category colors - deeper for light bg */
+    --cat-stories: 109 40 217;
+    --cat-science: 8 145 178;
+    --cat-tips: 22 163 74;
+    --cat-symbols: 217 119 6;
 
     /* Mode identifiers */
     --is-dark: 0;
@@ -139,62 +159,70 @@
 
   /* ===========================================
      THEME: DUSK
-     The Evening Retreat - Warm, comfortable extended reading
-     Philosophy: Private library at golden hour
+     Candlelit Study - Warm Evening Reading
+
+     Philosophy: Rich espresso backgrounds with subtle purple,
+     warm parchment text, copper/amber accents. Cozy yet refined.
      =========================================== */
   [data-theme="dusk"] {
-    /* Core backgrounds - warm dark brown-gray */
-    --bg-primary: 28 25 23;
-    --bg-secondary: 38 34 32;
-    --bg-tertiary: 48 43 39;
-    --bg-card: 36 32 25;
+    /* Core backgrounds - espresso with purple undertone */
+    --bg-primary: 22 20 24;
+    --bg-secondary: 30 28 33;
+    --bg-tertiary: 40 37 44;
+    --bg-card: 28 25 30;
 
-    /* Text colors - warm cream tones */
-    --text-primary: 245 240 232;
-    --text-secondary: 196 189 176;
-    --text-muted: 138 132 120;
-    --text-accent: 194 65 12;
+    /* Text colors - warm parchment */
+    --text-primary: 237 232 223;
+    --text-secondary: 186 178 166;
+    --text-muted: 128 122 112;
+    --text-accent: 201 149 108;
 
-    /* Accent colors - burnt sienna, amber, forest */
-    --accent-primary: 194 65 12;
-    --accent-secondary: 161 98 7;
-    --accent-tertiary: 77 124 15;
+    /* Accent colors - polished copper & amber */
+    --accent-primary: 201 149 108;
+    --accent-secondary: 217 175 95;
+    --accent-tertiary: 167 139 250;
 
     /* Component colors */
-    --border-color: 180 160 140 / 0.15;
-    --border-hover: 180 160 140 / 0.28;
-    --glass-bg: 35 30 25 / 0.9;
-    --glass-hover: 45 40 35 / 0.95;
-    --surface-hover: 180 160 140 / 0.08;
-    --glass-solid: 38 34 30;
-    --glass-solid-hover: 48 44 38;
+    --border-color: 200 180 160 / 0.08;
+    --border-hover: 200 180 160 / 0.16;
+    --glass-bg: 28 25 30 / 0.94;
+    --glass-hover: 38 35 42 / 0.96;
+    --surface-hover: 200 180 160 / 0.05;
+    --glass-solid: 30 27 32;
+    --glass-solid-hover: 40 36 44;
 
-    /* Shadows */
-    --shadow-color: 0 0 0 / 0.35;
-    --shadow-lg: 0 8px 32px rgb(0 0 0 / 0.4);
-    --glow-color: 194 65 12 / 0.2;
-    --card-glow: 194 65 12 / 0.06;
+    /* Shadows - warm and enveloping */
+    --shadow-color: 0 0 0 / 0.45;
+    --shadow-lg: 0 8px 32px rgb(0 0 0 / 0.5);
+    --glow-color: 201 149 108 / 0.15;
+    --card-glow: 201 149 108 / 0.05;
 
-    /* Reading - warm and easy on eyes */
-    --article-text: 230 222 210;
-    --article-heading: 250 245 238;
-    --article-link: 194 65 12;
-    --article-link-hover: 220 100 50;
+    /* Reading - warm and comfortable */
+    --article-text: 225 218 206;
+    --article-heading: 248 245 239;
+    --article-link: 217 175 95;
+    --article-link-hover: 235 200 130;
 
-    /* Callout backgrounds - warm tints */
-    --callout-insight: 194 65 12 / 0.1;
-    --callout-science: 77 124 15 / 0.1;
-    --callout-tip: 161 98 7 / 0.12;
-    --callout-reflect: 194 65 12 / 0.08;
-    --callout-success: 77 124 15 / 0.1;
-    --callout-info: 161 98 7 / 0.08;
+    /* Callout backgrounds - cozy warmth */
+    --callout-insight: 201 149 108 / 0.10;
+    --callout-science: 167 139 250 / 0.08;
+    --callout-tip: 217 175 95 / 0.10;
+    --callout-reflect: 200 160 180 / 0.08;
+    --callout-success: 160 190 150 / 0.08;
+    --callout-info: 167 139 250 / 0.08;
 
     /* Hero & CTA */
-    --hero-text: 250 245 238;
-    --hero-subtitle: 220 212 200;
-    --hero-meta: 170 162 150;
-    --cta-heading: 250 245 238;
-    --cta-text: 220 212 200;
+    --hero-text: 248 245 239;
+    --hero-subtitle: 210 204 192;
+    --hero-meta: 150 144 134;
+    --cta-heading: 248 245 239;
+    --cta-text: 210 204 192;
+
+    /* Category colors - warm tinted */
+    --cat-stories: 192 168 252;
+    --cat-science: 147 220 252;
+    --cat-tips: 167 243 195;
+    --cat-symbols: 253 207 142;
 
     /* Mode identifiers */
     --is-dark: 1;
@@ -202,7 +230,7 @@
   }
 
   /* ===========================================
-     TYPOGRAPHY SYSTEM
+     TYPOGRAPHY SYSTEM - Premium Reading
      =========================================== */
   :root {
     /* Font stacks */
@@ -210,7 +238,7 @@
     --font-reading: 'Literata', Georgia, serif;
     --font-ui: 'DM Sans', system-ui, sans-serif;
 
-    /* Fluid type scale */
+    /* Fluid type scale - optimized for reading */
     --text-base: clamp(17px, 1.1vw + 14px, 19px);
     --text-lg: clamp(19px, 1.2vw + 15px, 22px);
     --text-xl: clamp(22px, 1.5vw + 16px, 28px);
@@ -220,9 +248,9 @@
 
     /* Reading metrics */
     --line-height-body: 1.75;
-    --line-height-heading: 1.2;
-    --letter-spacing-body: -0.01em;
-    --letter-spacing-heading: -0.02em;
+    --line-height-heading: 1.15;
+    --letter-spacing-body: -0.005em;
+    --letter-spacing-heading: -0.025em;
     --max-reading-width: 68ch;
 
     /* Interaction timing */
@@ -299,7 +327,7 @@
     position: relative;
   }
 
-  /* Theme background effects */
+  /* Theme background effects - subtle ambient gradients */
   body::before {
     content: '';
     position: fixed;
@@ -310,30 +338,28 @@
     transition: opacity var(--transition-slow) var(--ease-out);
   }
 
-  /* Obsidian - subtle blue aurora */
+  /* Obsidian - warm glow from corners */
   [data-theme="obsidian"] body::before {
     background:
-      radial-gradient(ellipse at 0% 0%, rgba(139, 157, 195, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 100% 0%, rgba(201, 168, 124, 0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 100%, rgba(139, 157, 195, 0.04) 0%, transparent 50%);
+      radial-gradient(ellipse at 0% 0%, rgba(212, 184, 150, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(156, 163, 175, 0.02) 0%, transparent 50%);
   }
 
-  /* Alabaster - minimal, clean */
+  /* Alabaster - clean with subtle warmth */
   [data-theme="alabaster"] body::before {
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(90, 103, 216, 0.02) 0%, transparent 40%),
-      radial-gradient(ellipse at 80% 100%, rgba(74, 85, 104, 0.02) 0%, transparent 40%);
+      radial-gradient(ellipse at 50% 0%, rgba(79, 70, 229, 0.015) 0%, transparent 50%);
   }
 
-  /* Dusk - warm golden glow */
+  /* Dusk - ambient candlelight glow */
   [data-theme="dusk"] body::before {
     background:
-      radial-gradient(ellipse at 30% 0%, rgba(194, 65, 12, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 100%, rgba(161, 98, 7, 0.06) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 0%, rgba(201, 149, 108, 0.05) 0%, transparent 45%),
+      radial-gradient(ellipse at 80% 100%, rgba(167, 139, 250, 0.03) 0%, transparent 45%);
   }
 
   ::selection {
-    background-color: rgba(var(--accent-primary), 0.25);
+    background-color: rgba(var(--accent-primary), 0.20);
     color: rgb(var(--text-primary));
   }
 
@@ -368,18 +394,18 @@
 
 @layer components {
   /* ===========================================
-     GLASS MORPHISM - Refined
+     GLASS MORPHISM - Premium
      =========================================== */
   .glass {
     background-color: rgb(var(--glass-bg));
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgb(var(--border-color));
   }
 
   .glass-card {
     @apply glass;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: 0 2px 12px rgb(var(--shadow-color));
     transition:
       border-color var(--transition-base) var(--ease-out),
@@ -389,7 +415,7 @@
 
   .glass-card:hover {
     border-color: rgb(var(--border-hover));
-    box-shadow: 0 4px 24px rgb(var(--shadow-color)), 0 0 0 1px rgb(var(--card-glow));
+    box-shadow: 0 8px 32px rgb(var(--shadow-color)), 0 0 0 1px rgb(var(--card-glow));
     transform: translateY(-2px);
   }
 
@@ -412,18 +438,18 @@
   /* Header glass - theme-specific */
   .header-glass {
     background-color: rgb(var(--glass-bg));
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
   }
 
   [data-theme="alabaster"] .header-glass {
-    background-color: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+    background-color: rgba(252, 251, 249, 0.95);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
   }
 
   [data-theme="dusk"] .header-glass {
-    background-color: rgba(35, 30, 25, 0.92);
-    box-shadow: 0 1px 0 rgba(180, 160, 140, 0.08);
+    background-color: rgba(28, 25, 30, 0.95);
+    box-shadow: 0 1px 0 rgba(200, 180, 160, 0.06);
   }
 
   /* Hero card overlay */
@@ -436,15 +462,15 @@
   }
 
   [data-theme="obsidian"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(10 10 15) 0%, rgb(10 10 15 / 0.7) 40%, transparent 100%);
+    background: linear-gradient(to top, rgb(13 13 13) 0%, rgb(13 13 13 / 0.75) 40%, transparent 100%);
   }
 
   [data-theme="alabaster"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(250 250 250) 0%, rgb(250 250 250 / 0.8) 40%, transparent 100%);
+    background: linear-gradient(to top, rgb(252 251 249) 0%, rgb(252 251 249 / 0.85) 40%, transparent 100%);
   }
 
   [data-theme="dusk"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(28 25 23) 0%, rgb(28 25 23 / 0.75) 40%, transparent 100%);
+    background: linear-gradient(to top, rgb(22 20 24) 0%, rgb(22 20 24 / 0.8) 40%, transparent 100%);
   }
 
   /* CTA card styling */
@@ -454,15 +480,15 @@
   }
 
   [data-theme="obsidian"] .cta-card {
-    background: linear-gradient(135deg, rgb(18 18 26) 0%, rgb(26 26 36) 100%);
+    background: linear-gradient(135deg, rgb(18 18 18) 0%, rgb(26 26 26) 100%);
   }
 
   [data-theme="alabaster"] .cta-card {
-    background: linear-gradient(135deg, rgb(245 245 245) 0%, rgb(255 255 255) 100%);
+    background: linear-gradient(135deg, rgb(247 246 243) 0%, rgb(255 255 253) 100%);
   }
 
   [data-theme="dusk"] .cta-card {
-    background: linear-gradient(135deg, rgb(38 34 32) 0%, rgb(48 43 39) 100%);
+    background: linear-gradient(135deg, rgb(28 25 30) 0%, rgb(38 35 42) 100%);
   }
 
   /* ===========================================
@@ -477,6 +503,13 @@
 
   [data-theme="obsidian"] .blog-title {
     background: linear-gradient(135deg, rgb(var(--text-primary)) 0%, rgb(var(--accent-primary)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  [data-theme="dusk"] .blog-title {
+    background: linear-gradient(135deg, rgb(var(--text-primary)) 0%, rgb(var(--accent-secondary)) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -525,7 +558,7 @@
     width: 48px;
     border-radius: 1px;
     background: rgb(var(--accent-primary));
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .article-content h3 {
@@ -581,7 +614,7 @@
     padding: 1.5rem 1.5rem 1.5rem 2rem;
     border-left: 3px solid rgb(var(--accent-primary));
     background: rgb(var(--callout-insight));
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 12px 12px 0;
     font-style: italic;
     color: rgb(var(--text-secondary));
   }
@@ -611,16 +644,16 @@
 
   .article-content code {
     padding: 0.2em 0.4em;
-    border-radius: 4px;
+    border-radius: 6px;
     font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-    font-size: 0.9em;
+    font-size: 0.875em;
     background: rgb(var(--bg-tertiary));
     color: rgb(var(--text-accent));
   }
 
   .article-content pre {
     padding: 1.25rem;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow-x: auto;
     margin: 2rem 0;
     background: rgb(var(--bg-tertiary));
@@ -641,7 +674,7 @@
   }
 
   .article-content img {
-    border-radius: 8px;
+    border-radius: 12px;
     margin: 2rem 0;
     box-shadow: var(--shadow-lg);
   }
@@ -655,7 +688,7 @@
     position: relative;
     margin: 2rem 0;
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     background: rgb(var(--callout-insight));
     border-left: 3px solid rgb(var(--accent-primary));
   }
@@ -673,9 +706,9 @@
   .article-content .psychology-box {
     margin: 2rem 0;
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     background: rgb(var(--callout-science));
-    border: 1px solid rgba(var(--accent-tertiary), 0.2);
+    border: 1px solid rgba(var(--accent-tertiary), 0.15);
   }
 
   .article-content .psychology-box h4 {
@@ -701,10 +734,10 @@
   .article-content .reflection-prompt {
     margin: 2rem 0;
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     background: rgb(var(--callout-reflect));
-    border: 1px dashed rgba(var(--accent-secondary), 0.3);
+    border: 1px dashed rgba(var(--accent-secondary), 0.25);
   }
 
   .article-content .reflection-prompt strong {
@@ -726,17 +759,17 @@
     font-size: var(--text-xl);
     font-style: italic;
     color: rgb(var(--article-heading));
-    border-top: 1px solid rgba(var(--accent-primary), 0.2);
-    border-bottom: 1px solid rgba(var(--accent-primary), 0.2);
+    border-top: 1px solid rgba(var(--accent-primary), 0.15);
+    border-bottom: 1px solid rgba(var(--accent-primary), 0.15);
   }
 
   /* Tip Box */
   .article-content .tip-box {
     margin: 2rem 0;
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     background: rgb(var(--callout-tip));
-    border: 1px solid rgba(var(--accent-secondary), 0.2);
+    border: 1px solid rgba(var(--accent-secondary), 0.15);
   }
 
   .article-content .tip-box strong {
@@ -749,9 +782,9 @@
   .article-content .takeaway-list {
     margin: 2rem 0;
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     background: rgb(var(--callout-success));
-    border: 1px solid rgba(var(--accent-tertiary), 0.2);
+    border: 1px solid rgba(var(--accent-tertiary), 0.15);
     list-style: none;
   }
 
@@ -767,14 +800,14 @@
   }
 
   /* ===========================================
-     BUTTONS - Refined
+     BUTTONS - Premium
      =========================================== */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    border-radius: 10px;
     font-family: var(--font-ui);
     font-weight: 500;
     font-size: 0.9375rem;
@@ -787,21 +820,20 @@
   .btn-primary {
     background: rgb(var(--accent-primary));
     color: white;
-    box-shadow: 0 2px 8px rgba(var(--accent-primary), 0.3);
+    box-shadow: 0 2px 8px rgba(var(--accent-primary), 0.25);
   }
 
-  [data-theme="alabaster"] .btn-primary {
-    background: rgb(var(--accent-tertiary));
-    box-shadow: 0 2px 8px rgba(var(--accent-tertiary), 0.25);
+  [data-theme="obsidian"] .btn-primary {
+    color: rgb(15 15 15);
+  }
+
+  [data-theme="dusk"] .btn-primary {
+    color: rgb(15 15 15);
   }
 
   .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(var(--accent-primary), 0.4);
-  }
-
-  [data-theme="alabaster"] .btn-primary:hover {
-    box-shadow: 0 4px 16px rgba(var(--accent-tertiary), 0.35);
+    box-shadow: 0 4px 16px rgba(var(--accent-primary), 0.35);
   }
 
   .btn-secondary {
@@ -816,80 +848,51 @@
   }
 
   /* ===========================================
-     CATEGORY BADGES - Theme-aware
+     CATEGORY BADGES - Harmonious with themes
      =========================================== */
   .category-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.375rem 0.75rem;
+    padding: 0.375rem 0.875rem;
     border-radius: 9999px;
     font-family: var(--font-ui);
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.01em;
+    transition: all var(--transition-base) var(--ease-out);
   }
 
-  /* Dream Stories - themed accent */
+  /* Dream Stories - Purple/Violet */
   .category-dream-stories {
-    background: rgba(var(--accent-primary), 0.12);
-    color: rgb(var(--accent-primary));
-    border: 1px solid rgba(var(--accent-primary), 0.2);
+    background: rgba(var(--cat-stories), 0.12);
+    color: rgb(var(--cat-stories));
+    border: 1px solid rgba(var(--cat-stories), 0.18);
   }
 
-  [data-theme="alabaster"] .category-dream-stories {
-    background: rgba(124, 58, 237, 0.08);
-    color: rgb(109, 40, 217);
-    border: 1px solid rgba(124, 58, 237, 0.2);
-  }
-
-  /* Dream Science - cool accent */
+  /* Dream Science - Cyan/Blue */
   .category-dream-science {
-    background: rgba(var(--accent-tertiary), 0.12);
-    color: rgb(var(--accent-tertiary));
-    border: 1px solid rgba(var(--accent-tertiary), 0.2);
+    background: rgba(var(--cat-science), 0.12);
+    color: rgb(var(--cat-science));
+    border: 1px solid rgba(var(--cat-science), 0.18);
   }
 
-  [data-theme="alabaster"] .category-dream-science {
-    background: rgba(6, 182, 212, 0.08);
-    color: rgb(14, 116, 144);
-    border: 1px solid rgba(6, 182, 212, 0.2);
-  }
-
-  /* Sleep Tips - green */
+  /* Sleep Tips - Green/Emerald */
   .category-sleep-tips {
-    background: rgba(34, 197, 94, 0.12);
-    color: rgb(34, 197, 94);
-    border: 1px solid rgba(34, 197, 94, 0.2);
+    background: rgba(var(--cat-tips), 0.12);
+    color: rgb(var(--cat-tips));
+    border: 1px solid rgba(var(--cat-tips), 0.18);
   }
 
-  [data-theme="alabaster"] .category-sleep-tips {
-    background: rgba(22, 163, 74, 0.08);
-    color: rgb(22, 101, 52);
-    border: 1px solid rgba(22, 163, 74, 0.2);
-  }
-
-  [data-theme="dusk"] .category-sleep-tips {
-    background: rgba(77, 124, 15, 0.15);
-    color: rgb(132, 204, 22);
-    border: 1px solid rgba(77, 124, 15, 0.25);
-  }
-
-  /* Symbolism - warm accent */
+  /* Symbolism - Amber/Orange */
   .category-symbolism {
-    background: rgba(var(--accent-secondary), 0.12);
-    color: rgb(var(--accent-secondary));
-    border: 1px solid rgba(var(--accent-secondary), 0.2);
-  }
-
-  [data-theme="alabaster"] .category-symbolism {
-    background: rgba(245, 158, 11, 0.08);
-    color: rgb(180, 83, 9);
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    background: rgba(var(--cat-symbols), 0.12);
+    color: rgb(var(--cat-symbols));
+    border: 1px solid rgba(var(--cat-symbols), 0.18);
   }
 
   /* ===========================================
-     CATEGORY NAVIGATION LINKS - Color coded
+     CATEGORY NAVIGATION LINKS - Unified system
      =========================================== */
   .category-nav-link {
     display: flex;
@@ -903,76 +906,44 @@
     border: 1px solid transparent;
   }
 
-  /* Dream Stories - Purple/Violet */
+  /* Dream Stories - Purple */
   .category-nav-dream-stories {
-    color: rgb(167, 139, 250);
-    background: rgba(139, 92, 246, 0.1);
+    color: rgb(var(--cat-stories));
+    background: rgba(var(--cat-stories), 0.08);
   }
   .category-nav-dream-stories:hover {
-    background: rgba(139, 92, 246, 0.2);
-    border-color: rgba(139, 92, 246, 0.3);
-  }
-  [data-theme="alabaster"] .category-nav-dream-stories {
-    color: rgb(109, 40, 217);
-    background: rgba(139, 92, 246, 0.08);
-  }
-  [data-theme="alabaster"] .category-nav-dream-stories:hover {
-    background: rgba(139, 92, 246, 0.15);
-    border-color: rgba(139, 92, 246, 0.25);
+    background: rgba(var(--cat-stories), 0.16);
+    border-color: rgba(var(--cat-stories), 0.24);
   }
 
-  /* Dream Science - Cyan/Blue */
+  /* Dream Science - Cyan */
   .category-nav-dream-science {
-    color: rgb(34, 211, 238);
-    background: rgba(6, 182, 212, 0.1);
+    color: rgb(var(--cat-science));
+    background: rgba(var(--cat-science), 0.08);
   }
   .category-nav-dream-science:hover {
-    background: rgba(6, 182, 212, 0.2);
-    border-color: rgba(6, 182, 212, 0.3);
-  }
-  [data-theme="alabaster"] .category-nav-dream-science {
-    color: rgb(14, 116, 144);
-    background: rgba(6, 182, 212, 0.08);
-  }
-  [data-theme="alabaster"] .category-nav-dream-science:hover {
-    background: rgba(6, 182, 212, 0.15);
-    border-color: rgba(6, 182, 212, 0.25);
+    background: rgba(var(--cat-science), 0.16);
+    border-color: rgba(var(--cat-science), 0.24);
   }
 
-  /* Sleep Tips - Green/Emerald */
+  /* Sleep Tips - Green */
   .category-nav-sleep-tips {
-    color: rgb(52, 211, 153);
-    background: rgba(16, 185, 129, 0.1);
+    color: rgb(var(--cat-tips));
+    background: rgba(var(--cat-tips), 0.08);
   }
   .category-nav-sleep-tips:hover {
-    background: rgba(16, 185, 129, 0.2);
-    border-color: rgba(16, 185, 129, 0.3);
-  }
-  [data-theme="alabaster"] .category-nav-sleep-tips {
-    color: rgb(5, 150, 105);
-    background: rgba(16, 185, 129, 0.08);
-  }
-  [data-theme="alabaster"] .category-nav-sleep-tips:hover {
-    background: rgba(16, 185, 129, 0.15);
-    border-color: rgba(16, 185, 129, 0.25);
+    background: rgba(var(--cat-tips), 0.16);
+    border-color: rgba(var(--cat-tips), 0.24);
   }
 
-  /* Symbolism - Amber/Orange */
+  /* Symbolism - Amber */
   .category-nav-symbolism {
-    color: rgb(251, 191, 36);
-    background: rgba(245, 158, 11, 0.1);
+    color: rgb(var(--cat-symbols));
+    background: rgba(var(--cat-symbols), 0.08);
   }
   .category-nav-symbolism:hover {
-    background: rgba(245, 158, 11, 0.2);
-    border-color: rgba(245, 158, 11, 0.3);
-  }
-  [data-theme="alabaster"] .category-nav-symbolism {
-    color: rgb(180, 83, 9);
-    background: rgba(245, 158, 11, 0.08);
-  }
-  [data-theme="alabaster"] .category-nav-symbolism:hover {
-    background: rgba(245, 158, 11, 0.15);
-    border-color: rgba(245, 158, 11, 0.25);
+    background: rgba(var(--cat-symbols), 0.16);
+    border-color: rgba(var(--cat-symbols), 0.24);
   }
 
   /* ===========================================
@@ -980,60 +951,60 @@
      =========================================== */
   .hero-gradient-dream-stories {
     background: linear-gradient(135deg,
-      rgba(139, 92, 246, 0.25) 0%,
-      rgba(124, 58, 237, 0.15) 50%,
-      rgba(var(--bg-secondary), 0.9) 100%
+      rgba(var(--cat-stories), 0.20) 0%,
+      rgba(var(--cat-stories), 0.10) 50%,
+      rgba(var(--bg-secondary), 0.95) 100%
     );
   }
   .hero-gradient-dream-science {
     background: linear-gradient(135deg,
-      rgba(6, 182, 212, 0.25) 0%,
-      rgba(14, 165, 233, 0.15) 50%,
-      rgba(var(--bg-secondary), 0.9) 100%
+      rgba(var(--cat-science), 0.20) 0%,
+      rgba(var(--cat-science), 0.10) 50%,
+      rgba(var(--bg-secondary), 0.95) 100%
     );
   }
   .hero-gradient-sleep-tips {
     background: linear-gradient(135deg,
-      rgba(16, 185, 129, 0.25) 0%,
-      rgba(52, 211, 153, 0.15) 50%,
-      rgba(var(--bg-secondary), 0.9) 100%
+      rgba(var(--cat-tips), 0.20) 0%,
+      rgba(var(--cat-tips), 0.10) 50%,
+      rgba(var(--bg-secondary), 0.95) 100%
     );
   }
   .hero-gradient-symbolism {
     background: linear-gradient(135deg,
-      rgba(245, 158, 11, 0.25) 0%,
-      rgba(251, 191, 36, 0.15) 50%,
-      rgba(var(--bg-secondary), 0.9) 100%
+      rgba(var(--cat-symbols), 0.20) 0%,
+      rgba(var(--cat-symbols), 0.10) 50%,
+      rgba(var(--bg-secondary), 0.95) 100%
     );
   }
 
   /* Light theme hero gradients - softer */
   [data-theme="alabaster"] .hero-gradient-dream-stories {
     background: linear-gradient(135deg,
-      rgba(139, 92, 246, 0.15) 0%,
-      rgba(124, 58, 237, 0.08) 50%,
-      rgba(var(--bg-secondary), 0.95) 100%
+      rgba(var(--cat-stories), 0.12) 0%,
+      rgba(var(--cat-stories), 0.05) 50%,
+      rgba(var(--bg-secondary), 0.98) 100%
     );
   }
   [data-theme="alabaster"] .hero-gradient-dream-science {
     background: linear-gradient(135deg,
-      rgba(6, 182, 212, 0.15) 0%,
-      rgba(14, 165, 233, 0.08) 50%,
-      rgba(var(--bg-secondary), 0.95) 100%
+      rgba(var(--cat-science), 0.12) 0%,
+      rgba(var(--cat-science), 0.05) 50%,
+      rgba(var(--bg-secondary), 0.98) 100%
     );
   }
   [data-theme="alabaster"] .hero-gradient-sleep-tips {
     background: linear-gradient(135deg,
-      rgba(16, 185, 129, 0.15) 0%,
-      rgba(52, 211, 153, 0.08) 50%,
-      rgba(var(--bg-secondary), 0.95) 100%
+      rgba(var(--cat-tips), 0.12) 0%,
+      rgba(var(--cat-tips), 0.05) 50%,
+      rgba(var(--bg-secondary), 0.98) 100%
     );
   }
   [data-theme="alabaster"] .hero-gradient-symbolism {
     background: linear-gradient(135deg,
-      rgba(245, 158, 11, 0.15) 0%,
-      rgba(251, 191, 36, 0.08) 50%,
-      rgba(var(--bg-secondary), 0.95) 100%
+      rgba(var(--cat-symbols), 0.12) 0%,
+      rgba(var(--cat-symbols), 0.05) 50%,
+      rgba(var(--bg-secondary), 0.98) 100%
     );
   }
 
@@ -1052,7 +1023,7 @@
   }
 
   /* ===========================================
-     THEME TOGGLE - Refined
+     THEME TOGGLE - Premium
      =========================================== */
   .theme-toggle-container {
     display: flex;
@@ -1093,8 +1064,12 @@
     background: rgb(var(--accent-primary));
   }
 
-  [data-theme="alabaster"] .theme-toggle-btn.active {
-    background: rgb(var(--accent-tertiary));
+  [data-theme="obsidian"] .theme-toggle-btn.active {
+    color: rgb(15 15 15);
+  }
+
+  [data-theme="dusk"] .theme-toggle-btn.active {
+    color: rgb(15 15 15);
   }
 
   .theme-toggle-btn:disabled {
@@ -1134,10 +1109,6 @@
     background: rgb(var(--accent-primary));
     transform-origin: left;
     transition: width 100ms linear;
-  }
-
-  [data-theme="alabaster"] .reading-progress {
-    background: rgb(var(--accent-tertiary));
   }
 
   /* ===========================================
@@ -1220,10 +1191,10 @@
 
   @keyframes glowPulse {
     0%, 100% {
-      box-shadow: 0 0 20px rgba(var(--accent-primary), 0.3);
+      box-shadow: 0 0 20px rgba(var(--accent-primary), 0.2);
     }
     50% {
-      box-shadow: 0 0 40px rgba(var(--accent-primary), 0.5);
+      box-shadow: 0 0 40px rgba(var(--accent-primary), 0.4);
     }
   }
 
@@ -1291,11 +1262,11 @@
 }
 
 /* ===========================================
-   SCROLLBAR STYLING
+   SCROLLBAR STYLING - Premium
    =========================================== */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -1303,13 +1274,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(var(--text-muted), 0.3);
-  border-radius: 4px;
+  background: rgba(var(--text-muted), 0.25);
+  border-radius: 5px;
   border: 2px solid rgb(var(--bg-secondary));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--text-muted), 0.5);
+  background: rgba(var(--text-muted), 0.4);
 }
 
 .scrollbar-hide {
