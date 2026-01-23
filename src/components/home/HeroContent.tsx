@@ -159,13 +159,13 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6"
+          className="grid lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 items-start"
         >
           {/* Featured Post - Large Card */}
           <motion.div variants={itemVariants} className="lg:col-span-2">
-            <Link href={`/post/${heroPost.slug}`} className="group block h-full">
+            <Link href={`/post/${heroPost.slug}`} className="group block">
               <article
-                className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden border transition-all duration-500 hover:shadow-2xl"
+                className="relative rounded-2xl sm:rounded-3xl overflow-hidden border transition-all duration-500 hover:shadow-2xl"
                 style={{ borderColor: heroConfig.borderColor }}
               >
                 {/* Category gradient background */}
@@ -354,12 +354,12 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
       </nav>
 
       {heroPost ? (
-        <div className="grid lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+        <div className="grid lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 items-start">
           {/* Featured Post */}
           <div className="lg:col-span-2">
-            <Link href={`/post/${heroPost.slug}`} className="group block h-full">
+            <Link href={`/post/${heroPost.slug}`} className="group block">
               <article
-                className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden border"
+                className="relative rounded-2xl sm:rounded-3xl overflow-hidden border"
                 style={{ borderColor: heroConfig.borderColor }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${heroConfig.bgGradient}`} />
