@@ -1143,6 +1143,32 @@
   /* ===========================================
      ANIMATIONS
      =========================================== */
+
+  /* Slow pulse for background orbs */
+  .animate-pulse-slow {
+    animation: pulseSlow 8s ease-in-out infinite;
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Animation delay utilities */
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
   .animate-fade-in {
     animation: fadeIn 0.5s var(--ease-out) forwards;
   }

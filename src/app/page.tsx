@@ -3,7 +3,6 @@ import { getPosts, getCategories, getFeaturedPosts } from '@/lib/api';
 import { SITE_URL } from '@/lib/constants';
 import {
   HomeHero,
-  FeatureShowcase,
   TrendingSection,
   LatestPostsSection,
   CategoriesSection,
@@ -79,15 +78,12 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with 3D Dreamscape Background */}
+      {/* Hero Section */}
       <HomeHero
         heroPost={heroPost}
         secondaryPosts={secondaryPosts}
         categories={categories}
       />
-
-      {/* Feature Showcase */}
-      <FeatureShowcase />
 
       {/* Trending Section */}
       <TrendingSection posts={featuredPosts} />
