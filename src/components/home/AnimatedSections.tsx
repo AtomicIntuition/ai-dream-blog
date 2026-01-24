@@ -36,7 +36,7 @@ export function TrendingSection({ posts }: TrendingSectionProps) {
           {posts.map((post, index) => (
             <ScrollReveal key={post.id} direction="right" delay={0.1 + index * 0.1}>
               <Link href={`/post/${post.slug}`} className="group flex items-start gap-4">
-                <span className="text-4xl font-display font-bold text-[rgb(var(--accent-primary))]/50 group-hover:text-[rgb(var(--accent-primary))]/70 transition-colors">
+                <span className="text-4xl font-display font-bold text-[rgb(var(--text-secondary))] group-hover:text-[rgb(var(--accent-primary))] transition-colors">
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <div className="flex-1 min-w-0">
