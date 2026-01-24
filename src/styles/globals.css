@@ -29,8 +29,8 @@
 
     /* Text colors - ivory cream, easy on the eyes */
     --text-primary: 232 228 221;
-    --text-secondary: 168 163 154;
-    --text-muted: 115 111 105;
+    --text-secondary: 178 173 164;
+    --text-muted: 148 144 138;
     --text-accent: 212 184 150;
 
     /* Accent colors - refined gold & steel */
@@ -95,8 +95,8 @@
 
     /* Text colors - rich ink with warmth */
     --text-primary: 28 28 26;
-    --text-secondary: 82 80 75;
-    --text-muted: 130 127 120;
+    --text-secondary: 68 66 62;
+    --text-muted: 95 92 86;
     --text-accent: 79 70 229;
 
     /* Accent colors - sophisticated indigo & slate */
@@ -161,8 +161,8 @@
 
     /* Text colors - warm parchment */
     --text-primary: 237 232 223;
-    --text-secondary: 186 178 166;
-    --text-muted: 128 122 112;
+    --text-secondary: 196 188 176;
+    --text-muted: 158 152 142;
     --text-accent: 201 149 108;
 
     /* Accent colors - polished copper & amber */

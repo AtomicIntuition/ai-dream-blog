@@ -1,0 +1,13 @@
+# Robots.txt for Dream Insights Blog
+# https://ai-dream-blog.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ai-dream-blog.vercel.app/sitemap.xml
+
+# Disallow admin/internal paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/

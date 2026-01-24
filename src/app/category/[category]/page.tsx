@@ -12,9 +12,15 @@ import {
   getOgImageForCategory,
 } from '@/lib/constants';
 
-// Force dynamic rendering to always fetch fresh data
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Generate static params for all valid categories
+export async function generateStaticParams() {
+  return VALID_CATEGORIES.map((category) => ({
+    category,
+  }));
+}
+
+// Enable ISR with revalidation
+export const revalidate = 60;
 
 // Category colors with explicit hex values for reliability
 const CATEGORY_GRADIENT_COLORS: Record<string, { from: string; to: string }> = {

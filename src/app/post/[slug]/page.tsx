@@ -10,6 +10,9 @@ import { AuthorCard } from '@/components/posts/AuthorCard';
 import { AUTHOR } from '@/lib/author';
 import { SITE_URL, getOgImageForCategory } from '@/lib/constants';
 
+// Enable ISR with revalidation
+export const revalidate = 60;
+
 interface PageProps {
   params: { slug: string };
 }

@@ -33,7 +33,7 @@ export function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-0.5">
+            <nav aria-label="Main navigation" className="hidden md:flex items-center gap-0.5">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -91,7 +91,7 @@ export function Header() {
             isMenuOpen ? 'max-h-96' : 'max-h-0'
           )}
         >
-          <nav className="px-4 py-3 space-y-1">
+          <nav aria-label="Mobile navigation" className="px-4 py-3 space-y-1">
             {navigation.map((item) => (
               <Link
                 key={item.name}
