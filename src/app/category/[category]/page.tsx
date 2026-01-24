@@ -19,6 +19,9 @@ export async function generateStaticParams() {
   }));
 }
 
+// Allow dynamic params for any new categories
+export const dynamicParams = true;
+
 // Enable ISR with revalidation
 export const revalidate = 60;
 

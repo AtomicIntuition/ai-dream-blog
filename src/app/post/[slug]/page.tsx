@@ -13,6 +13,9 @@ import { SITE_URL, getOgImageForCategory } from '@/lib/constants';
 // Enable ISR with revalidation
 export const revalidate = 60;
 
+// Allow dynamic params for posts not pre-generated
+export const dynamicParams = true;
+
 // Pre-generate popular posts at build time
 export async function generateStaticParams() {
   try {
