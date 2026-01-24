@@ -16,7 +16,7 @@ export const AuthorCard = memo(function AuthorCard({ variant = 'compact' }: Auth
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-dream-500 to-aurora-500 flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
-          <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-emerald-500 rounded-full border-2 border-[rgb(var(--bg-primary))] flex items-center justify-center">
+          <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-emerald-700 rounded-full border-2 border-[rgb(var(--bg-primary))] flex items-center justify-center">
             <span className="text-[8px] text-white font-bold">AI</span>
           </div>
         </div>
@@ -35,7 +35,7 @@ export const AuthorCard = memo(function AuthorCard({ variant = 'compact' }: Auth
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-dream-500 via-aurora-500 to-cosmic-500 flex items-center justify-center">
             <Sparkles className="w-8 h-8 text-white" />
           </div>
-          <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-[rgb(var(--bg-primary))] flex items-center justify-center">
+          <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-700 rounded-full border-2 border-[rgb(var(--bg-primary))] flex items-center justify-center">
             <span className="text-[10px] text-white font-bold">AI</span>
           </div>
         </div>

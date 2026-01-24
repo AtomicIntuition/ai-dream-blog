@@ -154,6 +154,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
                 {pagination.hasPrevPage && (
                   <Link
                     href={`/category/${category}?page=${page - 1}`}
+                    prefetch={false}
                     className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors rounded-lg"
                   >
                     Previous
@@ -167,6 +168,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
                 {pagination.hasNextPage && (
                   <Link
                     href={`/category/${category}?page=${page + 1}`}
+                    prefetch={false}
                     className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors rounded-lg"
                   >
                     Next

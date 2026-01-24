@@ -71,6 +71,7 @@ export function LatestPostsSection({ posts }: LatestPostsSectionProps) {
             </h2>
             <Link
               href="/archive"
+              prefetch={false}
               className="flex items-center gap-1 text-sm font-medium text-[rgb(var(--accent-primary))] hover:opacity-80 transition-colors"
             >
               View all

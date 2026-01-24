@@ -67,6 +67,7 @@ export default async function ArchivePage({ searchParams }: PageProps) {
                 {pagination.hasPrevPage && (
                   <Link
                     href={`/archive?page=${page - 1}`}
+                    prefetch={false}
                     className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors"
                   >
                     Previous
@@ -80,6 +81,7 @@ export default async function ArchivePage({ searchParams }: PageProps) {
                 {pagination.hasNextPage && (
                   <Link
                     href={`/archive?page=${page + 1}`}
+                    prefetch={false}
                     className="px-4 py-2 glass-card text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--surface-hover))] transition-colors"
                   >
                     Next

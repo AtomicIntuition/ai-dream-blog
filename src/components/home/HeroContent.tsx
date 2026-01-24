@@ -95,6 +95,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
             >
               <Link
                 href={`/category/${category.slug}`}
+                prefetch={false}
                 className="group flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-medium rounded-full border border-[rgba(var(--accent-primary),0.2)] bg-[rgba(var(--accent-primary),0.06)] transition-all duration-300 hover:scale-105 hover:bg-[rgba(var(--accent-primary),0.12)] hover:border-[rgba(var(--accent-primary),0.3)]"
               >
                 <Icon className="h-4 w-4 text-[rgb(var(--accent-primary))]" />
@@ -117,7 +118,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
         >
           {/* Featured Post - Large Card */}
           <motion.div variants={itemVariants} className="lg:col-span-2">
-            <Link href={`/post/${heroPost.slug}`} className="group block">
+            <Link href={`/post/${heroPost.slug}`} prefetch={false} className="group block">
               <article className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[rgba(var(--accent-primary),0.2)] transition-all duration-500 hover:shadow-2xl hover:border-[rgba(var(--accent-primary),0.3)]">
                 {/* Subtle accent gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--accent-primary),0.08)] via-transparent to-transparent" />
@@ -227,7 +228,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
             })}
 
             {/* Explore More Card */}
-            <Link href="/archive" className="group">
+            <Link href="/archive" prefetch={false} className="group">
               <div className="rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-dashed border-[rgb(var(--border-color))] hover:border-[rgb(var(--accent-primary))] bg-[rgb(var(--bg-secondary))]/30 transition-all duration-300 hover:bg-[rgba(var(--accent-primary),0.05)]">
                 <div className="flex items-center justify-between">
                   <div>
@@ -265,6 +266,7 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
             <Link
               key={category.slug}
               href={`/category/${category.slug}`}
+              prefetch={false}
               className="group flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-medium rounded-full border border-[rgba(var(--accent-primary),0.2)] bg-[rgba(var(--accent-primary),0.06)] transition-all hover:bg-[rgba(var(--accent-primary),0.12)]"
             >
               <Icon className="h-4 w-4 text-[rgb(var(--accent-primary))]" />
@@ -278,7 +280,7 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
         <div className="grid lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 items-start">
           {/* Featured Post */}
           <div className="lg:col-span-2">
-            <Link href={`/post/${heroPost.slug}`} className="group block">
+            <Link href={`/post/${heroPost.slug}`} prefetch={false} className="group block">
               <article className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[rgba(var(--accent-primary),0.2)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--accent-primary),0.08)] via-transparent to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg-primary))]/90 via-[rgb(var(--bg-primary))]/50 to-transparent" />
