@@ -205,7 +205,7 @@ export function CTASection() {
               </p>
               <Link
                 href="https://dreamanalysis.netlify.app"
-                className="btn-primary inline-flex text-lg px-8 py-4 animate-glow-pulse"
+                className="button-primary inline-flex text-lg px-8 py-4 animate-glow-pulse"
               >
                 Analyze Your Dreams Free
                 <ArrowRight className="ml-2 h-5 w-5" />

@@ -15,7 +15,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="btn-primary inline-flex"
+          className="button-primary inline-flex"
         >
           Back to Home
         </Link>

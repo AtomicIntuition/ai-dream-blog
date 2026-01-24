@@ -784,7 +784,7 @@
   /* ===========================================
      BUTTONS - Premium
      =========================================== */
-  .btn {
+  .button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -799,32 +799,32 @@
       background-color var(--transition-base) var(--ease-out);
   }
 
-  .btn-primary {
+  .button-primary {
     background: rgb(var(--accent-primary));
     color: white;
     box-shadow: 0 2px 8px rgba(var(--accent-primary), 0.25);
   }
 
-  [data-theme="obsidian"] .btn-primary {
+  [data-theme="obsidian"] .button-primary {
     color: rgb(15 15 15);
   }
 
-  [data-theme="dusk"] .btn-primary {
+  [data-theme="dusk"] .button-primary {
     color: rgb(15 15 15);
   }
 
-  .btn-primary:hover {
+  .button-primary:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 16px rgba(var(--accent-primary), 0.35);
   }
 
-  .btn-secondary {
+  .button-secondary {
     background: transparent;
     color: rgb(var(--text-primary));
     border: 1px solid rgb(var(--border-color));
   }
 
-  .btn-secondary:hover {
+  .button-secondary:hover {
     background: rgb(var(--surface-hover));
     border-color: rgb(var(--border-hover));
   }

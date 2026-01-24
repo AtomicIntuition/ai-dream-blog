@@ -67,7 +67,7 @@ export function Header() {
 
               <Link
                 href="https://dreamanalysis.netlify.app"
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 btn-primary text-sm"
+                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 button-primary text-sm"
               >
                 Try the App
               </Link>
@@ -104,7 +104,7 @@ export function Header() {
             ))}
             <Link
               href="https://dreamanalysis.netlify.app"
-              className="block mt-3 px-4 py-3 btn-primary text-center"
+              className="block mt-3 px-4 py-3 button-primary text-center"
             >
               Try the App
             </Link>

@@ -257,7 +257,7 @@ export default async function PostPage({ params }: PageProps) {
           </p>
           <Link
             href="https://dreamanalysis.netlify.app"
-            className="btn-primary inline-flex"
+            className="button-primary inline-flex"
           >
             Try Dream Analysis Free
           </Link>
