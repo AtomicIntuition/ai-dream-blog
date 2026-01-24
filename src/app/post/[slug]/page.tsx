@@ -13,6 +13,18 @@ import { SITE_URL, getOgImageForCategory } from '@/lib/constants';
 // Enable ISR with revalidation
 export const revalidate = 60;
 
+// Pre-generate popular posts at build time
+export async function generateStaticParams() {
+  try {
+    const { posts } = await getRecentPosts(20);
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch {
+    return [];
+  }
+}
+
 interface PageProps {
   params: { slug: string };
 }

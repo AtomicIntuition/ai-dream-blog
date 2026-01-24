@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Hide X-Powered-By header for security
+  poweredByHeader: false,
   // Optimize barrel imports for better bundle size and faster builds
   experimental: {
     optimizePackageImports: ['lucide-react'],
