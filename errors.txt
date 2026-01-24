@@ -1,12 +1,12 @@
 # Website Audit Report - LLM Fix Instructions
 ## URL: https://ai-dream-blog.vercel.app/
-## Overall Score: 91/100
+## Overall Score: 93/100
 
 ### SCORES BREAKDOWN
-- Performance: 99/100
+- Performance: 100/100
 - Security: 100/100
 - SEO: 100/100
-- Accessibility: 67/100
+- Accessibility: 76/100
 - Code Quality: 75/100
 
 ### TECH STACK DETECTED
@@ -31,22 +31,25 @@
 #### [SERIOUS] Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds
 - **Rule:** color-contrast
 - **Fix:** Elements must meet minimum color contrast ratio thresholds
-- **Elements Affected:** 7 elements
+- **Elements Affected:** 4 elements
 - **CSS Selectors:**
 ```css
-div:nth-child(1) > .items-start.gap-4.group > .text-4xl.text-\[rgb\(var\(--accent-primary\)\)\]\/50.group-hover\:text-\[rgb\(var\(--accent-primary\)\)\]\/70
-.md\:grid-cols-3 > div:nth-child(1) > .items-start.gap-4.group > .min-w-0.flex-1 > p
-div:nth-child(2) > .items-start.gap-4.group > .text-4xl.text-\[rgb\(var\(--accent-primary\)\)\]\/50.group-hover\:text-\[rgb\(var\(--accent-primary\)\)\]\/70
-.md\:grid-cols-3 > div:nth-child(2) > .items-start.gap-4.group > .min-w-0.flex-1 > .mb-1
 .md\:grid-cols-3 > div:nth-child(2) > .items-start.gap-4.group > .min-w-0.flex-1 > p
+div:nth-child(3) > .items-start.gap-4.group > .text-4xl.font-bold.font-display
+.md\:grid-cols-3 > div:nth-child(3) > .items-start.gap-4.group > .min-w-0.flex-1 > .mb-1
+.md\:grid-cols-3 > div:nth-child(3) > .items-start.gap-4.group > .min-w-0.flex-1 > p
 ```
 - **Details:** Fix any of the following:
-  Element has insufficient color contrast of 1.64 (foreground color: #c8c5f6, background color: #fffffd, font size: 27.0pt (36px), font weight: bold). Expected contrast ratio of 3:1
+  Element has insufficient color contrast of 3.67 (foreground color: #878581, background color: #fffffd, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
 - **Reference:** https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright
 
 ### CODE QUALITY ISSUES (5 issues)
 
-#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/post/shame-guide-dreams-moral-recko
+#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/sleep-tips. Falling back t
+
+- **Count:** 1
+
+#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/dream-stories. Falling bac
 
 - **Count:** 1
 
@@ -54,26 +57,22 @@ div:nth-child(2) > .items-start.gap-4.group > .text-4xl.text-\[rgb\(var\(--accen
 
 - **Count:** 1
 
-#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/archive. Falling back to browser na
+#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/symbolism. Falling back to
 
 - **Count:** 1
 
-#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/post/morning-routines-dream-recall.
-
-- **Count:** 1
-
-#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/post/dreams-creativity-sleep-sparks
+#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/dream-science. Falling bac
 
 - **Count:** 1
 
 ### PERFORMANCE METRICS
 
 - ✅ **First Contentful Paint:** 0.4 s (score: 100/100)
-- ✅ **Largest Contentful Paint:** 0.8 s (score: 98/100)
-- ✅ **Total Blocking Time:** 30 ms (score: 100/100)
+- ✅ **Largest Contentful Paint:** 0.7 s (score: 98/100)
+- ✅ **Total Blocking Time:** 10 ms (score: 100/100)
 - ✅ **Cumulative Layout Shift:** 0 (score: 100/100)
-- ✅ **Speed Index:** 0.9 s (score: 99/100)
-- ✅ **Time to Interactive:** 0.8 s (score: 100/100)
+- ✅ **Speed Index:** 0.7 s (score: 100/100)
+- ✅ **Time to Interactive:** 0.7 s (score: 100/100)
 
 ---
 
