@@ -1,12 +1,12 @@
 # Website Audit Report - LLM Fix Instructions
 ## URL: https://ai-dream-blog.vercel.app/
-## Overall Score: 93/100
+## Overall Score: 91/100
 
 ### SCORES BREAKDOWN
 - Performance: 100/100
 - Security: 100/100
 - SEO: 100/100
-- Accessibility: 76/100
+- Accessibility: 70/100
 - Code Quality: 75/100
 
 ### TECH STACK DETECTED
@@ -31,33 +31,22 @@
 #### [SERIOUS] Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds
 - **Rule:** color-contrast
 - **Fix:** Elements must meet minimum color contrast ratio thresholds
-- **Elements Affected:** 4 elements
+- **Elements Affected:** 6 elements
 - **CSS Selectors:**
 ```css
+div:nth-child(2) > .items-start.gap-4.group > .text-4xl.font-bold.font-display
+.md\:grid-cols-3 > div:nth-child(2) > .items-start.gap-4.group > .min-w-0.flex-1 > .mb-1
 .md\:grid-cols-3 > div:nth-child(2) > .items-start.gap-4.group > .min-w-0.flex-1 > p
 div:nth-child(3) > .items-start.gap-4.group > .text-4xl.font-bold.font-display
 .md\:grid-cols-3 > div:nth-child(3) > .items-start.gap-4.group > .min-w-0.flex-1 > .mb-1
-.md\:grid-cols-3 > div:nth-child(3) > .items-start.gap-4.group > .min-w-0.flex-1 > p
 ```
 - **Details:** Fix any of the following:
-  Element has insufficient color contrast of 3.67 (foreground color: #878581, background color: #fffffd, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+  Element has insufficient color contrast of 2.31 (foreground color: #abaaa8, background color: #fffffd, font size: 27.0pt (36px), font weight: bold). Expected contrast ratio of 3:1
 - **Reference:** https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright
 
 ### CODE QUALITY ISSUES (5 issues)
 
-#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/sleep-tips. Falling back t
-
-- **Count:** 1
-
-#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/dream-stories. Falling bac
-
-- **Count:** 1
-
-#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/post/mirror-city-dream-authentic-se
-
-- **Count:** 1
-
-#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/symbolism. Falling back to
+#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/post/shame-guide-dreams-moral-recko
 
 - **Count:** 1
 
@@ -65,10 +54,22 @@ div:nth-child(3) > .items-start.gap-4.group > .text-4xl.font-bold.font-display
 
 - **Count:** 1
 
+#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/sleep-tips. Falling back t
+
+- **Count:** 1
+
+#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/category/symbolism. Falling back to
+
+- **Count:** 1
+
+#### [CONSOLE_ERROR] Failed to fetch RSC payload for https://ai-dream-blog.vercel.app/post/mirror-city-dream-authentic-se
+
+- **Count:** 1
+
 ### PERFORMANCE METRICS
 
-- ✅ **First Contentful Paint:** 0.4 s (score: 100/100)
-- ✅ **Largest Contentful Paint:** 0.7 s (score: 98/100)
+- ✅ **First Contentful Paint:** 0.3 s (score: 100/100)
+- ✅ **Largest Contentful Paint:** 0.7 s (score: 99/100)
 - ✅ **Total Blocking Time:** 10 ms (score: 100/100)
 - ✅ **Cumulative Layout Shift:** 0 (score: 100/100)
 - ✅ **Speed Index:** 0.7 s (score: 100/100)
