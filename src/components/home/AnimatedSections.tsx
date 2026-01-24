@@ -35,7 +35,7 @@ export function TrendingSection({ posts }: TrendingSectionProps) {
         <div className="grid md:grid-cols-3 gap-6">
           {posts.map((post, index) => (
             <ScrollReveal key={post.id} direction="right" delay={0.1 + index * 0.1}>
-              <Link href={`/post/${post.slug}`} className="group flex items-start gap-4">
+              <Link href={`/post/${post.slug}`} prefetch={false} className="group flex items-start gap-4">
                 <span className="text-4xl font-display font-bold text-[rgb(var(--text-muted))] group-hover:text-[rgb(var(--accent-primary))] transition-colors">
                   {String(index + 1).padStart(2, '0')}
                 </span>
@@ -120,6 +120,7 @@ export function CategoriesSection({ categories }: CategoriesSectionProps) {
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
+                prefetch={false}
                 className="group glass-card p-6 rounded-2xl hover:border-[rgb(var(--border-hover))] transition-all flex items-start gap-4"
               >
                 <div className="p-3 rounded-xl bg-[rgba(var(--accent-primary),0.12)]">

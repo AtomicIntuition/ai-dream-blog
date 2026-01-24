@@ -29,7 +29,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
         featured && 'md:col-span-2'
       )}
     >
-      <Link href={`/post/${post.slug}`} className="block h-full">
+      <Link href={`/post/${post.slug}`} prefetch={false} className="block h-full">
         {/* Top accent line - uses theme accent */}
         <div className="h-1 w-full bg-[rgb(var(--accent-primary))]" />
 
