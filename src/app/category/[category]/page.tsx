@@ -22,8 +22,8 @@ export async function generateStaticParams() {
 // Allow dynamic params for any new categories
 export const dynamicParams = true;
 
-// Enable ISR with revalidation
-export const revalidate = 60;
+// Enable ISR with revalidation - 5 minutes
+export const revalidate = 300;
 
 // Category colors with explicit hex values for reliability
 const CATEGORY_GRADIENT_COLORS: Record<string, { from: string; to: string }> = {

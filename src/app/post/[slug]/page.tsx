@@ -10,8 +10,8 @@ import { AuthorCard } from '@/components/posts/AuthorCard';
 import { AUTHOR } from '@/lib/author';
 import { SITE_URL, getOgImageForCategory } from '@/lib/constants';
 
-// Enable ISR with revalidation
-export const revalidate = 60;
+// Enable ISR with revalidation - 5 minutes
+export const revalidate = 300;
 
 // Allow dynamic params for posts not pre-generated
 export const dynamicParams = true;

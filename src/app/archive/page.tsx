@@ -4,8 +4,8 @@ import { ArrowLeft } from 'lucide-react';
 import { getPosts } from '@/lib/api';
 import { PostCard } from '@/components/posts/PostCard';
 
-// Enable ISR with revalidation
-export const revalidate = 60;
+// Enable ISR with revalidation - 5 minutes
+export const revalidate = 300;
 
 interface PageProps {
   searchParams: { page?: string };

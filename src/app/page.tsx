@@ -11,8 +11,8 @@ import {
   StatsSection,
 } from '@/components/home';
 
-// Revalidate every 60 seconds for fresh content
-export const revalidate = 60;
+// Revalidate every 5 minutes to reduce API pressure
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: 'Dream Insights | AI-Powered Dream Analysis Blog',

@@ -69,22 +69,36 @@ interface ApiResponse<T> {
   error?: string;
 }
 
-async function fetchApi<T>(endpoint: string): Promise<T> {
-  const res = await fetch(`${API_URL}${endpoint}`, {
-    next: { revalidate: 60 }, // Revalidate every minute
-  });
+async function fetchApi<T>(endpoint: string, retries = 2): Promise<T> {
+  let lastError: Error | null = null;
 
-  if (!res.ok) {
-    throw new Error(`API error: ${res.status}`);
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(`${API_URL}${endpoint}`, {
+        next: { revalidate: 300 }, // Cache for 5 minutes to reduce API calls
+      });
+
+      if (!res.ok) {
+        throw new Error(`API error: ${res.status}`);
+      }
+
+      const json: ApiResponse<T> = await res.json();
+
+      if (!json.success || !json.data) {
+        throw new Error(json.error || 'Unknown error');
+      }
+
+      return json.data;
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error('Unknown error');
+      // Wait before retry (exponential backoff)
+      if (attempt < retries) {
+        await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+      }
+    }
   }
 
-  const json: ApiResponse<T> = await res.json();
-
-  if (!json.success || !json.data) {
-    throw new Error(json.error || 'Unknown error');
-  }
-
-  return json.data;
+  throw lastError;
 }
 
 export async function getPosts(page = 1, limit = 12): Promise<{
