@@ -48,7 +48,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: https: blob:",
-              "connect-src 'self' https://dream-analysis-t3ub.onrender.com https://va.vercel-scripts.com",
+              "connect-src 'self' https://ai-dream-blog.vercel.app https://dream-analysis-t3ub.onrender.com https://va.vercel-scripts.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

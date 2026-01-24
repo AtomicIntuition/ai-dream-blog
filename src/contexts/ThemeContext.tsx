@@ -16,7 +16,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 const TRANSITION_DURATION = 350;
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('obsidian');
+  const [theme, setThemeState] = useState<Theme>('alabaster');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -80,7 +80,7 @@ export function useTheme() {
   // Return default values during SSR/SSG when context is not available
   if (context === undefined) {
     return {
-      theme: 'obsidian' as Theme,
+      theme: 'alabaster' as Theme,
       setTheme: () => {},
       isTransitioning: false,
     };

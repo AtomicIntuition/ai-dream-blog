@@ -106,10 +106,10 @@ export default function RootLayout({
                   var theme = localStorage.getItem('blog-theme');
                   if (theme && ['obsidian', 'alabaster', 'dusk'].includes(theme)) {
                     document.documentElement.setAttribute('data-theme', theme);
-                  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-                    document.documentElement.setAttribute('data-theme', 'alabaster');
-                  } else {
+                  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     document.documentElement.setAttribute('data-theme', 'obsidian');
+                  } else {
+                    document.documentElement.setAttribute('data-theme', 'alabaster');
                   }
                 } catch (e) {}
               })();

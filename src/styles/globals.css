@@ -13,13 +13,83 @@
 
 @layer base {
   /* ===========================================
+     THEME: ALABASTER (DEFAULT)
+     Editorial White - Museum Quality Reading
+
+     Philosophy: Warm paper whites, rich ink blacks,
+     sophisticated indigo accents. Like a premium magazine.
+
+     NOTE: This is the default theme for accessibility.
+     Dark text on light backgrounds ensures WCAG compliance
+     during SSR and before JavaScript hydrates.
+     =========================================== */
+  :root,
+  [data-theme="alabaster"] {
+    /* Core backgrounds - warm paper, not clinical */
+    --bg-primary: 252 251 249;
+    --bg-secondary: 247 246 243;
+    --bg-tertiary: 240 239 235;
+    --bg-card: 255 255 253;
+
+    /* Text colors - rich ink with warmth (WCAG AA compliant) */
+    --text-primary: 28 28 26;
+    --text-secondary: 58 56 52;
+    --text-muted: 70 68 64;
+    --text-accent: 79 70 229;
+
+    /* Accent colors - sophisticated indigo & slate */
+    --accent-primary: 79 70 229;
+    --accent-secondary: 99 102 241;
+    --accent-tertiary: 100 116 139;
+
+    /* Component colors */
+    --border-color: 0 0 0 / 0.05;
+    --border-hover: 0 0 0 / 0.10;
+    --glass-bg: 255 255 253 / 0.97;
+    --glass-hover: 255 255 255 / 1;
+    --surface-hover: 0 0 0 / 0.025;
+    --glass-solid: 252 251 249;
+    --glass-solid-hover: 255 255 255;
+
+    /* Shadows - minimal and refined */
+    --shadow-color: 0 0 0 / 0.04;
+    --shadow-lg: 0 4px 24px rgb(0 0 0 / 0.06);
+    --glow-color: 79 70 229 / 0.08;
+    --card-glow: 0 0 0 / 0.02;
+
+    /* Reading - maximum clarity */
+    --article-text: 45 45 42;
+    --article-heading: 15 15 14;
+    --article-link: 79 70 229;
+    --article-link-hover: 67 56 202;
+
+    /* Callout backgrounds - whisper-light */
+    --callout-insight: 79 70 229 / 0.05;
+    --callout-science: 59 130 246 / 0.05;
+    --callout-tip: 234 179 8 / 0.06;
+    --callout-reflect: 168 85 247 / 0.04;
+    --callout-success: 34 197 94 / 0.05;
+    --callout-info: 59 130 246 / 0.05;
+
+    /* Hero & CTA */
+    --hero-text: 15 15 14;
+    --hero-subtitle: 60 58 54;
+    --hero-meta: 90 87 82;
+    --cta-heading: 15 15 14;
+    --cta-text: 60 58 54;
+
+    /* Mode identifiers */
+    --is-dark: 0;
+    --is-light: 1;
+  }
+
+  /* ===========================================
      THEME: OBSIDIAN
      Midnight Library - The Ultimate Dark Reading Experience
 
      Philosophy: Warm charcoal backgrounds, ivory cream text,
      refined gold accents. Like reading in a luxury private library.
      =========================================== */
-  :root,
   [data-theme="obsidian"] {
     /* Core backgrounds - warm charcoal, not cold blue-black */
     --bg-primary: 13 13 13;
@@ -77,72 +147,6 @@
     /* Mode identifiers */
     --is-dark: 1;
     --is-light: 0;
-  }
-
-  /* ===========================================
-     THEME: ALABASTER
-     Editorial White - Museum Quality Reading
-
-     Philosophy: Warm paper whites, rich ink blacks,
-     sophisticated indigo accents. Like a premium magazine.
-     =========================================== */
-  [data-theme="alabaster"] {
-    /* Core backgrounds - warm paper, not clinical */
-    --bg-primary: 252 251 249;
-    --bg-secondary: 247 246 243;
-    --bg-tertiary: 240 239 235;
-    --bg-card: 255 255 253;
-
-    /* Text colors - rich ink with warmth */
-    --text-primary: 28 28 26;
-    --text-secondary: 58 56 52;
-    --text-muted: 70 68 64;
-    --text-accent: 79 70 229;
-
-    /* Accent colors - sophisticated indigo & slate */
-    --accent-primary: 79 70 229;
-    --accent-secondary: 99 102 241;
-    --accent-tertiary: 100 116 139;
-
-    /* Component colors */
-    --border-color: 0 0 0 / 0.05;
-    --border-hover: 0 0 0 / 0.10;
-    --glass-bg: 255 255 253 / 0.97;
-    --glass-hover: 255 255 255 / 1;
-    --surface-hover: 0 0 0 / 0.025;
-    --glass-solid: 252 251 249;
-    --glass-solid-hover: 255 255 255;
-
-    /* Shadows - minimal and refined */
-    --shadow-color: 0 0 0 / 0.04;
-    --shadow-lg: 0 4px 24px rgb(0 0 0 / 0.06);
-    --glow-color: 79 70 229 / 0.08;
-    --card-glow: 0 0 0 / 0.02;
-
-    /* Reading - maximum clarity */
-    --article-text: 45 45 42;
-    --article-heading: 15 15 14;
-    --article-link: 79 70 229;
-    --article-link-hover: 67 56 202;
-
-    /* Callout backgrounds - whisper-light */
-    --callout-insight: 79 70 229 / 0.05;
-    --callout-science: 59 130 246 / 0.05;
-    --callout-tip: 234 179 8 / 0.06;
-    --callout-reflect: 168 85 247 / 0.04;
-    --callout-success: 34 197 94 / 0.05;
-    --callout-info: 59 130 246 / 0.05;
-
-    /* Hero & CTA */
-    --hero-text: 15 15 14;
-    --hero-subtitle: 60 58 54;
-    --hero-meta: 90 87 82;
-    --cta-heading: 15 15 14;
-    --cta-text: 60 58 54;
-
-    /* Mode identifiers */
-    --is-dark: 0;
-    --is-light: 1;
   }
 
   /* ===========================================
