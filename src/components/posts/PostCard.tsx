@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import Link from 'next/link';
-import { Calendar, Clock, Eye, Moon, Brain, Bed, Sparkles } from 'lucide-react';
+import { Calendar, Clock, Eye, Moon, Brain, Bed, Sparkles, ArrowRight } from 'lucide-react';
 import { cn, formatDate, calculateReadingTime, getCategoryLabel } from '@/lib/utils';
 import type { BlogPost } from '@/lib/api';
 
@@ -31,7 +31,7 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
     >
       <Link href={`/post/${post.slug}`} prefetch={false} className="block h-full">
         {/* Top accent line - uses theme accent */}
-        <div className="h-1 w-full bg-[rgb(var(--accent-primary))]" />
+        <div className="h-0.5 w-full bg-[rgb(var(--accent-primary))]" />
 
         {/* Card content */}
         <div className={cn('p-5 sm:p-6', featured && 'md:p-8')}>
@@ -99,13 +99,20 @@ export const PostCard = memo(function PostCard({ post, featured = false }: PostC
               {post.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 text-xs font-ui bg-[rgb(var(--bg-tertiary))] text-[rgb(var(--text-muted))] rounded-md border border-[rgb(var(--border-color))] hover:border-[rgb(var(--border-hover))] transition-colors"
+                  className="px-2.5 py-1 text-xs font-ui bg-[rgb(var(--bg-tertiary))] text-[rgb(var(--text-muted))] rounded-md border border-[rgb(var(--border-color))] hover:border-[rgb(var(--border-hover))] transition-colors"
                 >
                   #{tag}
                 </span>
               ))}
             </div>
           )}
+
+          {/* Read indicator on hover */}
+          <div className="mt-4 flex justify-end">
+            <span className="flex items-center gap-1 text-xs font-medium text-[rgb(var(--accent-primary))] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              Read <ArrowRight className="h-3 w-3" />
+            </span>
+          </div>
         </div>
       </Link>
     </article>

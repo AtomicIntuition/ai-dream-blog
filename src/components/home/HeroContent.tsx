@@ -77,11 +77,25 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
 
   return (
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+      {/* Editorial Masthead */}
+      <motion.div
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-8 sm:mb-10"
+      >
+        <h1 className="blog-title mb-3">Dream Insights</h1>
+        <p className="text-[rgb(var(--text-secondary))] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          AI-powered dream analysis, sleep science, and the hidden language of your subconscious
+        </p>
+        <div className="mx-auto mt-5 h-px w-12 bg-[rgb(var(--accent-primary))] opacity-40" />
+      </motion.div>
+
       {/* Category Navigation - unified accent color */}
       <motion.nav
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.4, delay: 0.15 }}
         className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 flex-wrap"
       >
         {categories.map((category, index) => {
@@ -91,7 +105,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
               key={category.slug}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.05, duration: 0.3 }}
+              transition={{ delay: 0.2 + index * 0.05, duration: 0.3 }}
             >
               <Link
                 href={`/category/${category.slug}`}
@@ -125,7 +139,7 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg-primary))]/90 via-[rgb(var(--bg-primary))]/50 to-transparent" />
 
                 {/* Accent line at top */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-[rgb(var(--accent-primary))]" />
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-[rgb(var(--accent-primary))]" />
 
                 {/* Content */}
                 <div className="relative z-10 p-5 sm:p-6 lg:p-8">
@@ -151,9 +165,9 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
 
                   {/* Main content */}
                   <div className="space-y-3 sm:space-y-4">
-                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-[rgb(var(--text-primary))] leading-tight group-hover:text-[rgb(var(--accent-primary))] transition-colors">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-[rgb(var(--text-primary))] leading-tight group-hover:text-[rgb(var(--accent-primary))] transition-colors">
                       {heroPost.title}
-                    </h1>
+                    </h2>
 
                     {heroPost.subtitle && (
                       <p className="text-sm sm:text-base lg:text-lg text-[rgb(var(--text-secondary))] line-clamp-2">
@@ -165,14 +179,19 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                       {heroPost.excerpt}
                     </p>
 
-                    <div className="flex items-center gap-3 sm:gap-4 flex-wrap text-xs sm:text-sm text-[rgb(var(--text-muted))] pt-2">
-                      <AuthorCard variant="compact" />
-                      <span className="hidden sm:inline">·</span>
-                      <span>{formatDate(heroPost.published_at)}</span>
-                      <span className="hidden sm:inline">·</span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3.5 w-3.5" />
-                        {calculateReadingTime(heroPost.content)} min read
+                    <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4 pt-2">
+                      <div className="flex items-center gap-3 sm:gap-4 flex-wrap text-xs sm:text-sm text-[rgb(var(--text-muted))]">
+                        <AuthorCard variant="compact" />
+                        <span className="hidden sm:inline">·</span>
+                        <span>{formatDate(heroPost.published_at)}</span>
+                        <span className="hidden sm:inline">·</span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3.5 w-3.5" />
+                          {calculateReadingTime(heroPost.content)} min read
+                        </span>
+                      </div>
+                      <span className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-[rgb(var(--accent-primary))] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Read Article <ArrowRight className="h-4 w-4" />
                       </span>
                     </div>
                   </div>
@@ -213,9 +232,12 @@ export function HeroContent({ heroPost, secondaryPosts, categories }: HeroConten
                       </p>
 
                       <div className="flex items-center justify-between text-xs text-[rgb(var(--text-muted))]">
-                        <span className="flex items-center gap-1.5">
-                          <Clock className="h-3.5 w-3.5" />
-                          {calculateReadingTime(post.content)} min
+                        <span className="flex items-center gap-3">
+                          <span>{formatDate(post.published_at)}</span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="h-3.5 w-3.5" />
+                            {calculateReadingTime(post.content)} min
+                          </span>
                         </span>
                         <span className="flex items-center gap-1 text-[rgb(var(--accent-primary))] opacity-0 group-hover:opacity-100 transition-opacity">
                           Read <ArrowRight className="h-3 w-3" />
@@ -258,6 +280,15 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
 
   return (
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+      {/* Editorial Masthead */}
+      <div className="text-center mb-8 sm:mb-10">
+        <h1 className="blog-title mb-3">Dream Insights</h1>
+        <p className="text-[rgb(var(--text-secondary))] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          AI-powered dream analysis, sleep science, and the hidden language of your subconscious
+        </p>
+        <div className="mx-auto mt-5 h-px w-12 bg-[rgb(var(--accent-primary))] opacity-40" />
+      </div>
+
       {/* Category Navigation - unified accent */}
       <nav className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 flex-wrap">
         {categories.map((category) => {
@@ -284,7 +315,7 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
               <article className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[rgba(var(--accent-primary),0.2)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-[rgba(var(--accent-primary),0.08)] via-transparent to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg-primary))]/90 via-[rgb(var(--bg-primary))]/50 to-transparent" />
-                <div className="absolute top-0 left-0 right-0 h-1 bg-[rgb(var(--accent-primary))]" />
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-[rgb(var(--accent-primary))]" />
 
                 <div className="relative z-10 p-5 sm:p-6 lg:p-8">
                   <div className="flex items-center justify-between mb-4 sm:mb-5">
@@ -301,9 +332,9 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
                   </div>
 
                   <div className="space-y-3 sm:space-y-4">
-                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-[rgb(var(--text-primary))] leading-tight">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-[rgb(var(--text-primary))] leading-tight">
                       {heroPost.title}
-                    </h1>
+                    </h2>
                     {heroPost.subtitle && (
                       <p className="text-sm sm:text-base lg:text-lg text-[rgb(var(--text-secondary))] line-clamp-2">
                         {heroPost.subtitle}
@@ -312,6 +343,21 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
                     <p className="text-sm text-[rgb(var(--text-muted))] line-clamp-3 leading-relaxed">
                       {heroPost.excerpt}
                     </p>
+                    <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4 pt-2">
+                      <div className="flex items-center gap-3 sm:gap-4 flex-wrap text-xs sm:text-sm text-[rgb(var(--text-muted))]">
+                        <AuthorCard variant="compact" />
+                        <span className="hidden sm:inline">·</span>
+                        <span>{formatDate(heroPost.published_at)}</span>
+                        <span className="hidden sm:inline">·</span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3.5 w-3.5" />
+                          {calculateReadingTime(heroPost.content)} min read
+                        </span>
+                      </div>
+                      <span className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-[rgb(var(--accent-primary))]">
+                        Read Article <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -334,9 +380,16 @@ function HeroContentStatic({ heroPost, secondaryPosts, categories }: HeroContent
                       <h2 className="text-base sm:text-lg font-semibold text-[rgb(var(--text-primary))] mb-2 line-clamp-2">
                         {post.title}
                       </h2>
-                      <p className="text-sm text-[rgb(var(--text-muted))] line-clamp-2">
+                      <p className="text-sm text-[rgb(var(--text-muted))] line-clamp-2 mb-3">
                         {post.excerpt}
                       </p>
+                      <div className="flex items-center gap-3 text-xs text-[rgb(var(--text-muted))]">
+                        <span>{formatDate(post.published_at)}</span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3.5 w-3.5" />
+                          {calculateReadingTime(post.content)} min
+                        </span>
+                      </div>
                     </div>
                   </article>
                 </Link>

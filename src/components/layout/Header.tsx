@@ -21,13 +21,13 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full">
       <div className="header-glass border-b border-[rgb(var(--border-color))]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
+          <div className="flex h-[72px] items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-[rgb(var(--accent-primary)/0.15)]">
-                <Sparkles className="h-5 w-5 text-[rgb(var(--accent-primary))] transition-transform group-hover:scale-110" />
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-[rgb(var(--accent-primary)/0.15)]">
+                <Sparkles className="h-[22px] w-[22px] text-[rgb(var(--accent-primary))] transition-transform group-hover:scale-110" />
               </div>
-              <span className="text-lg font-display text-[rgb(var(--text-primary))]">
+              <span className="text-lg sm:text-xl font-display text-[rgb(var(--text-primary))]">
                 Dream Insights
               </span>
             </Link>

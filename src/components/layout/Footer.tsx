@@ -23,7 +23,10 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-[rgb(var(--border-color))]">
+    <footer className="mt-24">
+      {/* Thin accent line */}
+      <div className="h-px bg-[rgb(var(--accent-primary))] opacity-20" />
+      <div className="border-t border-[rgb(var(--border-color))]"></div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -108,7 +111,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="py-6 border-t border-[rgb(var(--border-color))] flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="py-8 border-t border-[rgb(var(--border-color))] flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm font-ui text-[rgb(var(--text-muted))]">
             &copy; {new Date().getFullYear()} Dream Insights. All rights reserved.
           </p>
