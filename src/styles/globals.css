@@ -4,20 +4,20 @@
 
 /* ============================================
    WORLD-CLASS BLOG THEME SYSTEM
-   Three $100M Premium Reading Experiences
+   Three Drastically Different Reading Experiences
 
-   Obsidian  - Midnight Library (Dark)
-   Alabaster - Editorial White (Light)
-   Dusk      - Candlelit Study (Warm)
+   Obsidian  - Cosmic Void (Cool/Electric)
+   Alabaster - The Studio (Clean/Editorial)
+   Dusk      - The Hearth (Warm/Intimate)
    ============================================ */
 
 @layer base {
   /* ===========================================
      THEME: ALABASTER (DEFAULT)
-     Editorial White - Museum Quality Reading
+     The Studio - Morning Light in a Designer's Studio
 
-     Philosophy: Warm paper whites, rich ink blacks,
-     sophisticated indigo accents. Like a premium magazine.
+     Philosophy: Slightly warm paper whites, rich ink blacks,
+     vivid royal blue accents. Apple/Stripe-level clean.
 
      NOTE: This is the default theme for accessibility.
      Dark text on light backgrounds ensures WCAG compliance
@@ -26,45 +26,45 @@
   :root,
   [data-theme="alabaster"] {
     /* Core backgrounds - warm paper, not clinical */
-    --bg-primary: 252 251 249;
-    --bg-secondary: 247 246 243;
-    --bg-tertiary: 240 239 235;
-    --bg-card: 255 255 253;
+    --bg-primary: 250 249 246;
+    --bg-secondary: 244 242 238;
+    --bg-tertiary: 236 233 228;
+    --bg-card: 255 255 252;
 
-    /* Text colors - rich ink with warmth (WCAG AA compliant) */
-    --text-primary: 28 28 26;
-    --text-secondary: 58 56 52;
-    --text-muted: 70 68 64;
-    --text-accent: 79 70 229;
+    /* Text colors - rich ink blacks (WCAG AA compliant) */
+    --text-primary: 23 23 23;
+    --text-secondary: 64 64 64;
+    --text-muted: 115 115 115;
+    --text-accent: 37 99 235;
 
-    /* Accent colors - sophisticated indigo & slate */
-    --accent-primary: 79 70 229;
-    --accent-secondary: 99 102 241;
+    /* Accent colors - royal blue, vivid and bold */
+    --accent-primary: 37 99 235;
+    --accent-secondary: 59 130 246;
     --accent-tertiary: 100 116 139;
 
     /* Component colors */
     --border-color: 0 0 0 / 0.05;
     --border-hover: 0 0 0 / 0.10;
-    --glass-bg: 255 255 253 / 0.97;
+    --glass-bg: 255 255 252 / 0.97;
     --glass-hover: 255 255 255 / 1;
     --surface-hover: 0 0 0 / 0.025;
-    --glass-solid: 252 251 249;
+    --glass-solid: 250 249 246;
     --glass-solid-hover: 255 255 255;
 
     /* Shadows - minimal and refined */
     --shadow-color: 0 0 0 / 0.04;
     --shadow-lg: 0 4px 24px rgb(0 0 0 / 0.06);
-    --glow-color: 79 70 229 / 0.08;
+    --glow-color: 37 99 235 / 0.08;
     --card-glow: 0 0 0 / 0.02;
 
     /* Reading - maximum clarity */
-    --article-text: 45 45 42;
-    --article-heading: 15 15 14;
-    --article-link: 79 70 229;
-    --article-link-hover: 67 56 202;
+    --article-text: 45 45 45;
+    --article-heading: 15 15 15;
+    --article-link: 37 99 235;
+    --article-link-hover: 29 78 216;
 
     /* Callout backgrounds - whisper-light */
-    --callout-insight: 79 70 229 / 0.05;
+    --callout-insight: 37 99 235 / 0.05;
     --callout-science: 59 130 246 / 0.05;
     --callout-tip: 234 179 8 / 0.06;
     --callout-reflect: 168 85 247 / 0.04;
@@ -72,11 +72,11 @@
     --callout-info: 59 130 246 / 0.05;
 
     /* Hero & CTA */
-    --hero-text: 15 15 14;
-    --hero-subtitle: 60 58 54;
-    --hero-meta: 90 87 82;
-    --cta-heading: 15 15 14;
-    --cta-text: 60 58 54;
+    --hero-text: 15 15 15;
+    --hero-subtitle: 64 64 64;
+    --hero-meta: 115 115 115;
+    --cta-heading: 15 15 15;
+    --cta-text: 64 64 64;
 
     /* Mode identifiers */
     --is-dark: 0;
@@ -85,64 +85,64 @@
 
   /* ===========================================
      THEME: OBSIDIAN
-     Midnight Library - The Ultimate Dark Reading Experience
+     Cosmic Void - Reading Aboard a Spacecraft
 
-     Philosophy: Warm charcoal backgrounds, ivory cream text,
-     refined gold accents. Like reading in a luxury private library.
+     Philosophy: Cool blue-black void, electric cyan/purple accents.
+     Futuristic and sleek, inspired by Linear/Raycast.
      =========================================== */
   [data-theme="obsidian"] {
-    /* Core backgrounds - warm charcoal, not cold blue-black */
-    --bg-primary: 13 13 13;
-    --bg-secondary: 20 20 20;
-    --bg-tertiary: 28 28 28;
-    --bg-card: 23 23 23;
+    /* Core backgrounds - cool blue-blacks */
+    --bg-primary: 10 10 16;
+    --bg-secondary: 16 16 24;
+    --bg-tertiary: 24 24 35;
+    --bg-card: 18 18 28;
 
-    /* Text colors - ivory cream, easy on the eyes */
-    --text-primary: 232 228 221;
-    --text-secondary: 185 180 172;
-    --text-muted: 158 154 148;
-    --text-accent: 212 184 150;
+    /* Text colors - cool platinum/silver */
+    --text-primary: 228 228 236;
+    --text-secondary: 160 160 180;
+    --text-muted: 110 110 130;
+    --text-accent: 56 189 248;
 
-    /* Accent colors - refined gold & steel */
-    --accent-primary: 212 184 150;
-    --accent-secondary: 185 160 125;
-    --accent-tertiary: 156 163 175;
+    /* Accent colors - electric cyan → purple spectrum */
+    --accent-primary: 56 189 248;
+    --accent-secondary: 99 102 241;
+    --accent-tertiary: 168 85 247;
 
     /* Component colors */
-    --border-color: 255 250 245 / 0.06;
-    --border-hover: 255 250 245 / 0.12;
-    --glass-bg: 20 20 20 / 0.92;
-    --glass-hover: 28 28 28 / 0.95;
+    --border-color: 200 210 255 / 0.06;
+    --border-hover: 200 210 255 / 0.12;
+    --glass-bg: 16 16 24 / 0.92;
+    --glass-hover: 24 24 35 / 0.95;
     --surface-hover: 255 255 255 / 0.04;
-    --glass-solid: 22 22 22;
-    --glass-solid-hover: 30 30 30;
+    --glass-solid: 16 16 24;
+    --glass-solid-hover: 24 24 35;
 
-    /* Shadows & Glows - subtle and warm */
+    /* Shadows & Glows - cyan/blue tones */
     --shadow-color: 0 0 0 / 0.5;
     --shadow-lg: 0 8px 32px rgb(0 0 0 / 0.6);
-    --glow-color: 212 184 150 / 0.12;
-    --card-glow: 212 184 150 / 0.04;
+    --glow-color: 56 189 248 / 0.12;
+    --card-glow: 56 189 248 / 0.04;
 
     /* Reading - optimized for extended sessions */
-    --article-text: 220 216 208;
-    --article-heading: 245 242 237;
-    --article-link: 180 190 210;
-    --article-link-hover: 210 218 232;
+    --article-text: 220 220 232;
+    --article-heading: 240 240 248;
+    --article-link: 96 165 250;
+    --article-link-hover: 147 197 253;
 
-    /* Callout backgrounds - warm and subtle */
-    --callout-insight: 212 184 150 / 0.08;
-    --callout-science: 156 163 175 / 0.08;
-    --callout-tip: 185 160 125 / 0.08;
-    --callout-reflect: 160 140 180 / 0.06;
-    --callout-success: 140 170 145 / 0.06;
-    --callout-info: 156 163 175 / 0.08;
+    /* Callout backgrounds - cool and electric */
+    --callout-insight: 56 189 248 / 0.08;
+    --callout-science: 99 102 241 / 0.08;
+    --callout-tip: 168 85 247 / 0.08;
+    --callout-reflect: 139 92 246 / 0.06;
+    --callout-success: 52 211 153 / 0.06;
+    --callout-info: 96 165 250 / 0.08;
 
     /* Hero & CTA */
-    --hero-text: 250 248 244;
-    --hero-subtitle: 200 196 188;
-    --hero-meta: 160 156 148;
-    --cta-heading: 250 248 244;
-    --cta-text: 200 196 188;
+    --hero-text: 240 240 248;
+    --hero-subtitle: 180 180 200;
+    --hero-meta: 130 130 155;
+    --cta-heading: 240 240 248;
+    --cta-text: 180 180 200;
 
     /* Mode identifiers */
     --is-dark: 1;
@@ -151,64 +151,64 @@
 
   /* ===========================================
      THEME: DUSK
-     Candlelit Study - Warm Evening Reading
+     The Hearth - Leather Armchair by a Crackling Fire
 
-     Philosophy: Rich espresso backgrounds with subtle purple,
-     warm parchment text, copper/amber accents. Cozy yet refined.
+     Philosophy: Deep warm brown-blacks, vivid amber/gold accents.
+     Clearly warm and cozy, unmistakably different from cool Obsidian.
      =========================================== */
   [data-theme="dusk"] {
-    /* Core backgrounds - espresso with purple undertone */
-    --bg-primary: 22 20 24;
-    --bg-secondary: 30 28 33;
-    --bg-tertiary: 40 37 44;
-    --bg-card: 28 25 30;
+    /* Core backgrounds - warm brown-blacks, visibly warm */
+    --bg-primary: 16 12 9;
+    --bg-secondary: 24 19 14;
+    --bg-tertiary: 34 27 20;
+    --bg-card: 22 17 12;
 
-    /* Text colors - warm parchment */
-    --text-primary: 237 232 223;
-    --text-secondary: 200 194 184;
-    --text-muted: 168 162 152;
-    --text-accent: 201 149 108;
+    /* Text colors - warm cream/parchment */
+    --text-primary: 240 232 218;
+    --text-secondary: 192 180 162;
+    --text-muted: 140 130 115;
+    --text-accent: 245 158 11;
 
-    /* Accent colors - polished copper & amber */
-    --accent-primary: 201 149 108;
-    --accent-secondary: 217 175 95;
-    --accent-tertiary: 167 139 250;
+    /* Accent colors - vivid amber/gold */
+    --accent-primary: 245 158 11;
+    --accent-secondary: 217 119 6;
+    --accent-tertiary: 180 83 9;
 
     /* Component colors */
-    --border-color: 200 180 160 / 0.08;
-    --border-hover: 200 180 160 / 0.16;
-    --glass-bg: 28 25 30 / 0.94;
-    --glass-hover: 38 35 42 / 0.96;
-    --surface-hover: 200 180 160 / 0.05;
-    --glass-solid: 30 27 32;
-    --glass-solid-hover: 40 36 44;
+    --border-color: 200 170 130 / 0.08;
+    --border-hover: 200 170 130 / 0.16;
+    --glass-bg: 22 17 12 / 0.94;
+    --glass-hover: 34 27 20 / 0.96;
+    --surface-hover: 200 170 130 / 0.05;
+    --glass-solid: 24 19 14;
+    --glass-solid-hover: 34 27 20;
 
     /* Shadows - warm and enveloping */
     --shadow-color: 0 0 0 / 0.45;
     --shadow-lg: 0 8px 32px rgb(0 0 0 / 0.5);
-    --glow-color: 201 149 108 / 0.15;
-    --card-glow: 201 149 108 / 0.05;
+    --glow-color: 245 158 11 / 0.15;
+    --card-glow: 245 158 11 / 0.05;
 
     /* Reading - warm and comfortable */
-    --article-text: 225 218 206;
-    --article-heading: 248 245 239;
-    --article-link: 217 175 95;
-    --article-link-hover: 235 200 130;
+    --article-text: 230 222 206;
+    --article-heading: 248 242 230;
+    --article-link: 251 191 36;
+    --article-link-hover: 252 211 77;
 
-    /* Callout backgrounds - cozy warmth */
-    --callout-insight: 201 149 108 / 0.10;
-    --callout-science: 167 139 250 / 0.08;
-    --callout-tip: 217 175 95 / 0.10;
-    --callout-reflect: 200 160 180 / 0.08;
+    /* Callout backgrounds - warm firelight */
+    --callout-insight: 245 158 11 / 0.10;
+    --callout-science: 217 119 6 / 0.08;
+    --callout-tip: 251 191 36 / 0.10;
+    --callout-reflect: 180 83 9 / 0.08;
     --callout-success: 160 190 150 / 0.08;
-    --callout-info: 167 139 250 / 0.08;
+    --callout-info: 217 119 6 / 0.08;
 
     /* Hero & CTA */
-    --hero-text: 248 245 239;
-    --hero-subtitle: 210 204 192;
-    --hero-meta: 168 162 152;
-    --cta-heading: 248 245 239;
-    --cta-text: 210 204 192;
+    --hero-text: 248 242 230;
+    --hero-subtitle: 210 200 182;
+    --hero-meta: 160 148 130;
+    --cta-heading: 248 242 230;
+    --cta-text: 210 200 182;
 
     /* Mode identifiers */
     --is-dark: 1;
@@ -324,24 +324,24 @@
     transition: opacity var(--transition-slow) var(--ease-out);
   }
 
-  /* Obsidian - warm glow from corners */
+  /* Obsidian - aurora gradients (cyan top-left, purple bottom-right) */
   [data-theme="obsidian"] body::before {
     background:
-      radial-gradient(ellipse at 0% 0%, rgba(212, 184, 150, 0.03) 0%, transparent 50%),
-      radial-gradient(ellipse at 100% 100%, rgba(156, 163, 175, 0.02) 0%, transparent 50%);
+      radial-gradient(ellipse at 0% 0%, rgba(56, 189, 248, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(168, 85, 247, 0.03) 0%, transparent 50%);
   }
 
-  /* Alabaster - clean with subtle warmth */
+  /* Alabaster - ultra-subtle blue radial from top */
   [data-theme="alabaster"] body::before {
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(79, 70, 229, 0.015) 0%, transparent 50%);
+      radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.015) 0%, transparent 50%);
   }
 
-  /* Dusk - ambient candlelight glow */
+  /* Dusk - amber firelight glow top, deep orange glow bottom */
   [data-theme="dusk"] body::before {
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(201, 149, 108, 0.05) 0%, transparent 45%),
-      radial-gradient(ellipse at 80% 100%, rgba(167, 139, 250, 0.03) 0%, transparent 45%);
+      radial-gradient(ellipse at 20% 0%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
+      radial-gradient(ellipse at 80% 100%, rgba(180, 83, 9, 0.04) 0%, transparent 45%);
   }
 
   ::selection {
@@ -429,13 +429,13 @@
   }
 
   [data-theme="alabaster"] .header-glass {
-    background-color: rgba(252, 251, 249, 0.95);
+    background-color: rgba(250, 249, 246, 0.95);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
   }
 
   [data-theme="dusk"] .header-glass {
-    background-color: rgba(28, 25, 30, 0.95);
-    box-shadow: 0 1px 0 rgba(200, 180, 160, 0.06);
+    background-color: rgba(22, 17, 12, 0.95);
+    box-shadow: 0 1px 0 rgba(200, 170, 130, 0.06);
   }
 
   /* Hero card overlay */
@@ -448,15 +448,15 @@
   }
 
   [data-theme="obsidian"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(13 13 13) 0%, rgb(13 13 13 / 0.75) 40%, transparent 100%);
+    background: linear-gradient(to top, rgb(10 10 16) 0%, rgb(10 10 16 / 0.75) 40%, transparent 100%);
   }
 
   [data-theme="alabaster"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(252 251 249) 0%, rgb(252 251 249 / 0.85) 40%, transparent 100%);
+    background: linear-gradient(to top, rgb(250 249 246) 0%, rgb(250 249 246 / 0.85) 40%, transparent 100%);
   }
 
   [data-theme="dusk"] .hero-card-overlay::before {
-    background: linear-gradient(to top, rgb(22 20 24) 0%, rgb(22 20 24 / 0.8) 40%, transparent 100%);
+    background: linear-gradient(to top, rgb(16 12 9) 0%, rgb(16 12 9 / 0.8) 40%, transparent 100%);
   }
 
   /* CTA card styling */
@@ -466,15 +466,15 @@
   }
 
   [data-theme="obsidian"] .cta-card {
-    background: linear-gradient(135deg, rgb(18 18 18) 0%, rgb(26 26 26) 100%);
+    background: linear-gradient(135deg, rgb(16 16 24) 0%, rgb(24 24 35) 100%);
   }
 
   [data-theme="alabaster"] .cta-card {
-    background: linear-gradient(135deg, rgb(247 246 243) 0%, rgb(255 255 253) 100%);
+    background: linear-gradient(135deg, rgb(244 242 238) 0%, rgb(255 255 252) 100%);
   }
 
   [data-theme="dusk"] .cta-card {
-    background: linear-gradient(135deg, rgb(28 25 30) 0%, rgb(38 35 42) 100%);
+    background: linear-gradient(135deg, rgb(22 17 12) 0%, rgb(34 27 20) 100%);
   }
 
   /* ===========================================
@@ -488,14 +488,14 @@
   }
 
   [data-theme="obsidian"] .blog-title {
-    background: linear-gradient(135deg, rgb(var(--text-primary)) 0%, rgb(var(--accent-primary)) 100%);
+    background: linear-gradient(135deg, rgb(228 228 236) 0%, rgb(56 189 248) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   [data-theme="dusk"] .blog-title {
-    background: linear-gradient(135deg, rgb(var(--text-primary)) 0%, rgb(var(--accent-secondary)) 100%);
+    background: linear-gradient(135deg, rgb(240 232 218) 0%, rgb(245 158 11) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -810,11 +810,11 @@
   }
 
   [data-theme="obsidian"] .button-primary {
-    color: rgb(15 15 15);
+    color: rgb(10 10 16);
   }
 
   [data-theme="dusk"] .button-primary {
-    color: rgb(15 15 15);
+    color: rgb(16 12 9);
   }
 
   .button-primary:hover {
@@ -992,11 +992,11 @@
   }
 
   [data-theme="obsidian"] .theme-toggle-btn.active {
-    color: rgb(15 15 15);
+    color: rgb(10 10 16);
   }
 
   [data-theme="dusk"] .theme-toggle-btn.active {
-    color: rgb(15 15 15);
+    color: rgb(16 12 9);
   }
 
   .theme-toggle-btn:disabled {

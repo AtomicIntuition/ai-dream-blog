@@ -9,23 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Obsidian theme accents (champagne gold, rose gold, steel blue)
+        // Obsidian theme accents (electric cyan, indigo, purple)
         obsidian: {
-          gold: '#c9a87c',
-          rose: '#e8c4a0',
-          steel: '#8b9dc3',
+          cyan: '#38bdf8',
+          indigo: '#6366f1',
+          purple: '#a855f7',
         },
-        // Alabaster theme accents (slate, graphite, indigo)
+        // Alabaster theme accents (royal blue, blue, slate)
         alabaster: {
-          slate: '#4a5568',
-          graphite: '#2d3748',
-          indigo: '#5a67d8',
+          blue: '#2563eb',
+          sky: '#3b82f6',
+          slate: '#64748b',
         },
-        // Dusk theme accents (sienna, amber, forest)
+        // Dusk theme accents (amber, amber-dark, amber-deep)
         dusk: {
-          sienna: '#c2410c',
-          amber: '#a16207',
-          forest: '#4d7c0f',
+          amber: '#f59e0b',
+          'amber-dark': '#d97706',
+          'amber-deep': '#b45309',
         },
         // Legacy dream colors (for compatibility)
         dream: {
@@ -95,9 +95,9 @@ const config: Config = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'obsidian-gradient': 'linear-gradient(135deg, #0a0a0f 0%, #12121a 50%, #1a1a24 100%)',
-        'alabaster-gradient': 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 50%, #eeeeee 100%)',
-        'dusk-gradient': 'linear-gradient(135deg, #1c1917 0%, #262220 50%, #302b27 100%)',
+        'obsidian-gradient': 'linear-gradient(135deg, #0a0a10 0%, #101018 50%, #181823 100%)',
+        'alabaster-gradient': 'linear-gradient(135deg, #faf9f6 0%, #f4f2ee 50%, #ece9e4 100%)',
+        'dusk-gradient': 'linear-gradient(135deg, #100c09 0%, #18130e 50%, #221b14 100%)',
       },
       boxShadow: {
         'refined': '0 2px 12px rgb(var(--shadow-color))',
